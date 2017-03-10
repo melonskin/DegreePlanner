@@ -1,5 +1,6 @@
 # README
 
+
 ## TSJ 0309
 
 
@@ -109,7 +110,7 @@ StudentCourseSemestership.where(:student=>st1,:semester=>se1).all
 - [] create controller and views
 
 
-### Create 3 models
+### Create 2 models
 
 
 #### bash cmd
@@ -144,16 +145,120 @@ Based on the excel file we have.
 #### Clean db
 
 
-In rails console  
+Change f1status to `is_f1:boolean` in Student  
+Change prerequisite to `description:string` in Course  
 
 
-```ruby
-Student.destroy_all
-Semester.destroy_all
-Program.destroy_all
-Course.destroy_all
-StudentCourseSemestership.destroy_all
+In Bash
+
+
+```bash
+$ rg migration remove_f1status_from_students f1status:string
+$ rg migration add_is_f1_to_students is_f1:boolean
+rg migration remove_prerequisite_from_courses prerequisite:text
+rg migration add_description_to_courses description:string
 ```
+
+
+```bash
+rake db:migrate
+rake db:migrate:reset
+```
+
+
+#### test models
+
+
+##### Student
+
+
+|firstname| lastname|   email|  password|   is_f1|  program_id|  
+|:---:|:---:|:---:|:---:|:---:|
+|Johana|    Rueda|  xxx@tamu.edu|   xxx|    FALSE|  1|  
+|Yining|    Bao|    yyy@tamu.edu|   yyy|    TRUE|   2|
+|Andres|    Gonzalez|   xxx@tamu.edu|   xxx|    TRUE|   3|
+|Shijin|    Tang|   yyy@tamu.edu|   yyy|    TRUE|   4|
+|Jingjia|   Li| xxx@tamu.edu|   xxx|    FALSE|  1|
+
+
+##### course  
+
+
+|department|    number| name|   credit| description|
+|:---:|:---:|:---:|:---:|:---:|
+CSCE|   601|    Programming with C and Java|    3|a|
+CSCE|   602|    Object-Oriented Programming, Development and Software Engineering|  3|b|
+CSCE|   603|    Database Systems and Applications|  3|c|
+CSCE|   604|    Programming Languages|  3|d|
+CSCE|   605 |Compiler Design    |3|e|
+CSCE|   606|    Software Engineering    |3|f|
+CSCE|   608|    Database Systems    |3|j|
+CSCE|   610|    Hypertext/Hypermedia Systems    |3|g|
+CSCE|   611|    Operating Systems and Applications  |3|h|
+CSCE|   612 |Applied Networks and Distributed Processing    |3|i|
+
+
+##### semester
+
+
+term|   year|
+|:---:|:---:|
+|Spring|    2017|
+|Fall|  2017|
+|Spring|    2018|
+
+
+##### student_course_semestership
+
+
+|Student_ID|    Course_ID|  Semester_ID|  
+|:---:|:---:|:---:|
+1|  6|  1|
+1|  4|  1|
+1|  1|  2|
+2|  6|  1|
+3|  4|  1|
+4|  1|  2|
+5|  1|  2|
+
+
+##### program
+
+
+|name|  acronym|    is_thesis|
+|:---:|:---:|:---:|
+|Master of Computer Science|    MCS|    FALSE|
+|Master of Engineering in Computer Science| MEN|    FALSE|
+|Master of Science in Computer Science| MSCS|   TRUE|
+|Master of Science in Computer Engineering| MSCE|   TRUE|
+
+
+##### package
+
+
+|number|
+|:---:|
+|1|
+|2|
+|3|
+|4|
+|5|
+
+
+##### `program_course_packageship`
+
+
+|program_id|    course_id|  package_id|
+|:---:|:---:|:---:|
+|1| 1   |1|
+|1| 2|  1|
+|1| 3   |2|
+|1| 4   |2|
+|1  |5  |2|
+|2| 1   |1|
+|2| 6   |1|
+|2| 2   |2|
+|3| 1   |1|
 
 
 #### Add to `db/seed.rb`

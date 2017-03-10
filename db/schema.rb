@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310192130) do
+ActiveRecord::Schema.define(version: 20170310220201) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "department"
     t.integer  "number"
     t.string   "name"
     t.integer  "credit"
-    t.text     "prerequisite"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
   end
 
   create_table "packages", force: :cascade do |t|
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20170310192130) do
     t.string   "lastname"
     t.string   "email"
     t.string   "password"
-    t.string   "f1status"
     t.integer  "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "is_f1"
   end
 
 end
