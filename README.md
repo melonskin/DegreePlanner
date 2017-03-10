@@ -3,15 +3,15 @@
 ## TSJ 0309
 
 
-1. Initial set up
-2. Create five models (Student, Course, Semester, StudentCourseSemestership and Program)
-3. Test the relationship between models
+- [x] Initial set up
+- [x] Create five models (Student, Course, Semester, StudentCourseSemestership and Program)
+- [x] Test the relationship between models
 
 
 To do:  
 
 
-1. add other 3 models
+1. add other 2 models
 2. input proper test dataset in db:seed
 3. implement Yining's user model
 
@@ -100,6 +100,69 @@ StudentCourseSemestership.where(:student=>st1,:semester=>se1).all
 
 ***
 
+
+## TSJ 0310
+
+
+- [x] add other 2 models
+- [] input proper test dataset in db:seed
+- [] create controller and views
+
+
+### Create 3 models
+
+
+#### bash cmd
+
+
+```bash
+rg model package number:integer
+rg model program_course_packageship program_id:integer course_id:integer package_id:integer
+```
+
+
+#### modify models
+
+
+Then add relationship to models
+
+
+#### apply migration
+
+
+```bash
+bin/rake db:migrate
+```
+
+
+### create test dataset  
+
+
+Based on the excel file we have.  
+
+
+#### Clean db
+
+
+In rails console  
+
+
+```ruby
+Student.destroy_all
+Semester.destroy_all
+Program.destroy_all
+Course.destroy_all
+StudentCourseSemestership.destroy_all
+```
+
+
+#### Add to `db/seed.rb`
+
+
+Perhaps generate code with python  
+
+
+***
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
