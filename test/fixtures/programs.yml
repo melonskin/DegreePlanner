@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  acronym: MyString
+  is_thesis: false
+
+two:
+  name: MyString
+  acronym: MyString
+  is_thesis: false

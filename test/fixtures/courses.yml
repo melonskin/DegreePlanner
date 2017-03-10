@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  department: MyString
+  number: 1
+  name: MyString
+  credit: 1
+  prerequisite: MyText
+
+two:
+  department: MyString
+  number: 1
+  name: MyString
+  credit: 1
+  prerequisite: MyText
