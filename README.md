@@ -26,7 +26,7 @@ $ rails new degreePlanner --skip-test-unit
 $ cd degreePlanner
 $ bundle install
 $ bin/rails server
-
+# ctrl+c to close server if it works well
 $ r db:create
 ```
 
