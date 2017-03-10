@@ -19,7 +19,7 @@ To do:
 ### initial setup
 
 
-```
+```bash
 $ mkdir projects
 $ cd projects
 $ rails new degreePlanner --skip-test-unit
@@ -33,7 +33,8 @@ $ r db:create
 
 ### create 5 models
 
-```
+
+```bash
 $ rg model student firstname:string lastname:string email:string password:string f1status:string program_id:integer
 $ rg model course department:string number:integer name:string credit:integer prerequisite:text
 $ rg model semester term:string year:integer
