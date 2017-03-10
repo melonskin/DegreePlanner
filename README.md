@@ -173,7 +173,7 @@ rake db:migrate:reset
 
 
 |firstname| lastname|   email|  password|   is_f1|  program_id|  
-|:---:|:---:|:---:|:---:|:---:|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 |Johana|    Rueda|  xxx@tamu.edu|   xxx|    FALSE|  1|  
 |Yining|    Bao|    yyy@tamu.edu|   yyy|    TRUE|   2|
 |Andres|    Gonzalez|   xxx@tamu.edu|   xxx|    TRUE|   3|
