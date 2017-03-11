@@ -283,6 +283,7 @@ Check in rails console
 
 ```ruby
 Student.first
+Program.first.students.first.courses
 ```
 
 
