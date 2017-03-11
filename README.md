@@ -106,7 +106,7 @@ StudentCourseSemestership.where(:student=>st1,:semester=>se1).all
 
 
 - [x] add other 2 models
-- [] input proper test dataset in db:seed
+- [x] input proper test dataset in db:seed
 - [] create controller and views
 
 
@@ -245,7 +245,7 @@ term|   year|
 |5|
 
 
-##### `program_course_packageship`
+##### program_course_packageship
 
 
 |program_id|    course_id|  package_id|
@@ -264,10 +264,30 @@ term|   year|
 #### Add to `db/seed.rb`
 
 
-Perhaps generate code with python  
+Generated with some python  
+
+
+#### Apply changes in database  
+
+
+In bash  
+
+
+```bash
+$ rake db:seed
+```
+
+
+Check in rails console  
+
+
+```ruby
+Student.first
+```
 
 
 ***
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
