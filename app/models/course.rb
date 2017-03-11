@@ -6,4 +6,6 @@ class Course < ApplicationRecord
     has_many :program_course_packageships
     has_many :programs, :through => :program_course_packageships
     has_many :packages, :through => :program_course_packageships
+
+    has_many :coursesections
 end
