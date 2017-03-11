@@ -106,8 +106,8 @@ StudentCourseSemestership.where(:student=>st1,:semester=>se1).all
 
 
 - [x] add other 2 models
-- [x] input proper test dataset in db:seed
-- [] create controller and views
+- [x] input proper test dataset in db:seed  
+- [ ] create controller and views
 
 
 ### Create 2 models
@@ -174,11 +174,11 @@ rake db:migrate:reset
 
 |firstname| lastname|   email|  password|   is_f1|  program_id|  
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|Johana|    Rueda|  xxx@tamu.edu|   xxx|    FALSE|  1|  
-|Yining|    Bao|    yyy@tamu.edu|   yyy|    TRUE|   2|
-|Andres|    Gonzalez|   xxx@tamu.edu|   xxx|    TRUE|   3|
-|Shijin|    Tang|   yyy@tamu.edu|   yyy|    TRUE|   4|
-|Jingjia|   Li| xxx@tamu.edu|   xxx|    FALSE|  1|
+|Johana|    Rueda|  xxx@tamu.edu|   xxx|    false|  1|  
+|Yining|    Bao|    yyy@tamu.edu|   yyy|    true|   2|
+|Andres|    Gonzalez|   xxx@tamu.edu|   xxx|    true|   3|
+|Shijin|    Tang|   yyy@tamu.edu|   yyy|    true|   4|
+|Jingjia|   Li| xxx@tamu.edu|   xxx|    false|  1|
 
 
 ##### course  
@@ -227,10 +227,10 @@ term|   year|
 
 |name|  acronym|    is_thesis|
 |:---:|:---:|:---:|
-|Master of Computer Science|    MCS|    FALSE|
-|Master of Engineering in Computer Science| MEN|    FALSE|
-|Master of Science in Computer Science| MSCS|   TRUE|
-|Master of Science in Computer Engineering| MSCE|   TRUE|
+|Master of Computer Science|    MCS|    false|
+|Master of Engineering in Computer Science| MEN|    false|
+|Master of Science in Computer Science| MSCS|   true|
+|Master of Science in Computer Engineering| MSCE|   true|
 
 
 ##### package
@@ -264,7 +264,7 @@ term|   year|
 #### Add to `db/seed.rb`
 
 
-Generated with some python  
+Inside ruby code was generated with some python.  
 
 
 #### Apply changes in database  
