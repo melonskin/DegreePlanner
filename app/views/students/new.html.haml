@@ -1,0 +1,31 @@
+%h1 Input Your Info
+
+
+= form_tag students_path do
+
+
+  = label :student, :firstname, 'First Name'
+  = text_field :student, :firstname
+
+
+  = label :student, :lastname, 'Last Name'
+  = text_field :student, :lastname
+
+
+  = label :student, :email, 'Email'
+  = text_field :student, :email
+
+
+  = label :student, :password, 'Password'
+  = password_field :student, :password
+
+
+  = label :student, :is_f1, 'Are you F1?'
+  = select :student, :is_f1, ['True','False']
+
+
+  = label :student, :program_id, 'Degree Program'
+  = select :student, :program_id, ['1','2','3','4']
+
+
+  = submit_tag 'Save Changes'

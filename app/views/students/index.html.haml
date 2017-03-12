@@ -1,0 +1,22 @@
+-#  This file is app/views/students/index.html.haml
+%h1 All students
+
+%table#students
+  %thead
+    %tr
+    %th First Name
+    %th Last Name
+    %th Email
+    %th Is F1? 
+    %th Program
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td= student.firstname
+        %td= student.lastname
+        %td= student.email
+        %td= student.is_f1
+        %td= Program.find_by_id(student.program_id).acronym
+        %td= link_to "More about", student_path(student)
+
+= link_to 'Add new student', new_student_path

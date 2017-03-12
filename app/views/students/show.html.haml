@@ -1,0 +1,22 @@
+%h2 Details about #{@student.firstname}
+
+%ul#details
+  %li
+    First Name:
+    = @student.firstname
+  %li
+    Last Name:
+    = @student.lastname
+  %li
+    Email:
+    = @student.email
+  %li
+    Is F1? :
+    = @student.is_f1
+  %li
+    Program? :
+    = @student.program_id
+
+= link_to 'Edit', edit_student_path(@student)
+= button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to Student list', students_path

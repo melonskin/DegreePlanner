@@ -373,6 +373,35 @@ rake db:migrate
 ### change codes in `db/seed.rb`
 
 
+## TSJ 0312
+
+
+- [x] create students controller and views
+
+
+### Validation of student input  
+
+
+modify student model to add validation of presence.  
+
+
+### create student controller
+
+
+```bash
+$ rg controller students
+```
+
+
+### modify routes, RESTful
+
+
+### create student views
+
+
+Add haml gem to `Gemfile`  
+And `bundle install`  
+
 
 ***
 
