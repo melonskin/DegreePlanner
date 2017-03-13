@@ -19,12 +19,12 @@
 
 |department |number |name |credit |description |is_fall |is_spring |is_summer |
 |:---|:---|:---|:---|:---|:---|:---|:---|
-|CSCE |603 |Database Systems and Applications |3 |Introduction to the concepts and design methodologies of database systems for non-computer science majors; emphasis on E. F. Codd's relational model with hands-on design application. No credit will be given for both CSCE 310 and CSCE 603. Prerequisites: CSCE 601; graduate classification. |false |true |false |
-|CSCE |604 |Programming Languages |3 |Study in the design space of programming languages, covering language processing, formalisms to describe semantics of programming languages, important concepts found in current programming languages, and programming paradigms. Prerequisite: Graduate classification. |true |false |false |
-|CSCE |605 |Compiler Design |3 |Advanced topics in compiler writing; parser generators and compiler-compilers; dynamic storage and scope resolution; data flow analysis and code optimization. Prerequisite: CSCE 434. |false |true |false |
-|CSCE |606 |Software Engineering |3 |Development of advanced concepts in software engineering; software development environments as a mechanism for enhancing productivity and software quality; the classification, evaluation and selection of methodologies for environments; rapid prototyping and reusability concepts; artificial intelligence techniques applied to software engineering. Prerequisite: CSCE 431 or approval of instructor. |true |true |false |
-|CSCE |608 |Database Systems |3 |Database modeling techniques; expressiveness in query languages including knowledge representation; manipulation languages data models; physical data organization; relational database design theory; query processing; transaction management and recovery; distributed data management. Prerequisite: CSCE 310 or CSCE 603. |true |false |false |
-|CSCE |611 |Operating Systems and Applications |3 |Review of computer architecture hardware/software evolution leading to contemporary operating systems; basic operating systems concepts; methods of operating systems design and construction; algorithms for CPU scheduling memory and general resource allocation; process coordination and management; case studies of several operating systems; quality-of-services of operating systems and their impact on applications. No credit will be given for both CSCE 410 and CSCE 611. Prerequisites: CSCE 313; graduate classification. |true |true |false |
+|CSCE |603 |Database Systems and Applications |3 |Introduction to the concepts and design methodologies...|false |true |false |
+|CSCE |604 |Programming Languages |3 |Study in the design space of programming languages... |true |false |false |
+|CSCE |605 |Compiler Design |3 |Advanced topics in compiler writing... |false |true |false |
+|CSCE |606 |Software Engineering |3 |Development of advanced concepts in software engineering... |true |true |false |
+|CSCE |608 |Database Systems |3 |Database modeling techniques;... |true |false |false |
+|CSCE |611 |Operating Systems and Applications |3 |Review of computer architecture ... |true |true |false |
 
 
 ### Coursesection
