@@ -1,5 +1,6 @@
 class Package < ApplicationRecord
+    belongs_to :program
+
     has_many :package_courseships
-    belongs_to :programs
     has_many :courses, :through => :package_courseships
 end

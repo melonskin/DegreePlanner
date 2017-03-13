@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170313033945) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
-    t.boolean  "is_fall"
-    t.boolean  "is_spring"
-    t.boolean  "is_summer"
+    t.string   "is_fall"
+    t.string   "is_spring"
+    t.string   "is_summer"
   end
 
   create_table "coursesections", force: :cascade do |t|
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170313033945) do
     t.integer  "program_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "is_f1"
+    t.string   "is_f1"
   end
 
 end
