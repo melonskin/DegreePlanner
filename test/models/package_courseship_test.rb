@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProgramCoursePackageshipTest < ActiveSupport::TestCase
+class PackageCourseshipTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

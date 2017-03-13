@@ -1,5 +1,5 @@
 class Package < ApplicationRecord
-    has_many :program_course_packageships
-    has_many :programs, :through => :program_course_packageships
-    has_many :courses, :through => :program_course_packageships
+    has_many :package_courseships
+    belongs_to :programs
+    has_many :courses, :through => :package_courseships
 end

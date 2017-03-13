@@ -1,0 +1,2 @@
+class PackageCourseship < ApplicationRecord
+end

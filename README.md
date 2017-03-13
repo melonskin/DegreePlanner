@@ -377,6 +377,10 @@ rake db:migrate
 
 
 - [x] create students controller and views
+- [x] modify relationship between program, package, course
+- [ ] add courses selected in student's show page. 
+- [ ] add login and signup features
+- [ ] delete `student#index`
 
 
 ### Validation of student input  
@@ -401,6 +405,65 @@ $ rg controller students
 
 Add haml gem to `Gemfile`  
 And `bundle install`  
+
+
+### modify relationships
+
+
+1. program, package => one to many  
+2. package, course => many to many  
+3. program, course => don't need
+
+
+Add a NoCourse column to Package to denote how many courses required in this package. Also add foreign_key: program_id.  
+
+
+Remove program_course_packageship model
+
+
+```bash
+$ bundle exec rake db:rollback
+$ rails destroy model program_course_packageship
+$ rg model package_courseship
+$ rg migration add_course_id_to_package_courseships course_id:integer
+$ rg migration add_package_id_to_package_courseships package_id:integer
+$ rg migration add_program_id_to_packages program_id:integer
+$ rg migration add_no_required_to_packages no_required:integer
+```
+
+
+#### Package
+
+
+|number |no_required |program_id |
+|:---|:---|:---|
+|1 |1 |1 |
+|2 |2 |1 |
+|3 |1 |1 |
+|4 |1 |2 |
+|5 |1 |2 |
+|6 |1 |3 |
+
+
+#### PackageCourseship
+
+
+|course_id |package_id |
+|:---|:---|
+|1 |1 |
+|2 |1 |
+|3 |2 |
+|4 |2 |
+|5 |2 |
+|1 |3 |
+|6 |4 |
+|2 |4 |
+|1 |5 |
+|3 |5 |
+|1 |6 |
+|2 |6 |
+|3 |6 |
+
 
 
 ***
