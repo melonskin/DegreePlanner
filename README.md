@@ -184,18 +184,7 @@ rake db:migrate:reset
 ##### course  
 
 
-|department|    number| name|   credit| description|
-|:---:|:---:|:---:|:---:|:---:|
-CSCE|   601|    Programming with C and Java|    3|a|
-CSCE|   602|    Object-Oriented Programming, Development and Software Engineering|  3|b|
-CSCE|   603|    Database Systems and Applications|  3|c|
-CSCE|   604|    Programming Languages|  3|d|
-CSCE|   605 |Compiler Design    |3|e|
-CSCE|   606|    Software Engineering    |3|f|
-CSCE|   608|    Database Systems    |3|j|
-CSCE|   610|    Hypertext/Hypermedia Systems    |3|g|
-CSCE|   611|    Operating Systems and Applications  |3|h|
-CSCE|   612 |Applied Networks and Distributed Processing    |3|i|
+changed
 
 
 ##### semester
@@ -211,7 +200,7 @@ term|   year|
 ##### student_course_semestership
 
 
-|Student_ID|    Course_ID|  Semester_ID|  
+|student_ID|    course_ID|  semester_ID|  
 |:---:|:---:|:---:|
 1|  6|  1|
 1|  4|  1|
@@ -236,29 +225,13 @@ term|   year|
 ##### package
 
 
-|number|
-|:---:|
-|1|
-|2|
-|3|
-|4|
-|5|
+changed 
 
 
 ##### program_course_packageship
 
 
-|program_id|    course_id|  package_id|
-|:---:|:---:|:---:|
-|1| 1   |1|
-|1| 2|  1|
-|1| 3   |2|
-|1| 4   |2|
-|1  |5  |2|
-|2| 1   |1|
-|2| 6   |1|
-|2| 2   |2|
-|3| 1   |1|
+deleted.  
 
 
 #### Add to `db/seed.rb`
