@@ -378,6 +378,7 @@ rake db:migrate
 
 - [x] create students controller and views
 - [x] modify relationship between program, package, course
+- [x] modify :boolean type in Models to :string
 - [ ] add courses selected in student's show page. 
 - [ ] add login and signup features
 - [ ] delete `student#index`
@@ -464,6 +465,11 @@ $ rg migration add_no_required_to_packages no_required:integer
 |2 |6 |
 |3 |6 |
 
+
+### modify :boolean type in Models to :string
+
+
+Rails seems to handle :boolean badly. 
 
 
 ***
