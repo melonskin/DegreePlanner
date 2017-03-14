@@ -9,8 +9,8 @@
   %body
     %h1.title Degree Planner
     #main
-      - if flash[:notice]
-        #notice.message= flash[:notice]
+      - if flash[:success]
+        #notice.message= flash[:success]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
 

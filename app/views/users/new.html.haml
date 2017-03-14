@@ -1,2 +1,37 @@
-%h1 Users#new
-%p Find me in app/views/users/new.html.haml
+/ %provide(:title,'Sign up')
+%h1 Sign up
+.row
+  .col-md-6.col-md-offset-3
+    = form_tag signup_path do 
+      = label :user, :name
+      = text_field :user, :name
+
+      = label :user, :email
+      = email_field :user, :email
+
+      = label :user, :password
+      = password_field :user, :password
+
+      = label :user, :password_confirmation, "Comfirmation"
+      = password_field :user, :password_confirmation
+
+      = submit_tag "Create my account"
+
+/ %h1 Sign up
+/ .row
+/   .col-md-6.col-md-offset-3
+/     = form_for(@user，url: signup_path) do |f|
+/       = f.label :name
+/       = f.text_field :name
+
+/       = f.label :email
+/       = f.email_field :email
+
+/       = f.label :password
+/       = f.password_field :password
+
+/       = f.label :password_confirmation, "Comfirmation"
+/       = f.password_field :password_confirmation
+
+/       = f.submit "Create my account"
+
