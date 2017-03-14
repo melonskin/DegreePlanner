@@ -1,0 +1,324 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/course.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/students_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1489502749
+  },
+  "Cucumber Features": {
+    "coverage": {
+      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/course.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/students_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1489502676
+  }
+}
