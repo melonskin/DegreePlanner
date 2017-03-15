@@ -1,19 +1,30 @@
 !!!
 %html
   %head
-    %title Degree Planner
+    %title= "#{yield(:title)} | Degree Planner"
     = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
+    = render 'layouts/shim'
   %body
-    %h1.title Degree Planner
-    #main
-      - if flash[:success]
-        #notice.message= flash[:success]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
-
+    / %h1.title Degree Planner
+    / - if flash[:success]
+    /   #notice.message= flash[:success]
+    / - elsif flash[:warning]
+    /   #warning.message= flash[:warning]
+    / %header.navbar.navbar-fixed-top.navbar-inverse
+    /   .container
+    /     = link_to "Degree Planner", signup_path, id: "logo"
+    /     %nav
+    /       %ul.nav.navbar-nav.navbar-right
+    /         %li= link_to "Home",   static_pages_home_path
+    /         %li= link_to "About",   static_pages_about_path
+    /         %li= link_to "Log in", signup_path
+    = render 'layouts/header'
+    .container
+      - flash.each do |message_type, message|
+        %div{:class => "alert alert-#{message_type}"}= message
       = yield
+      = render 'layouts/footer'
       = debug(params) if Rails.env.development?
 
