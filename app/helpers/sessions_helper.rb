@@ -16,4 +16,8 @@ module SessionsHelper
     @current_user = nil
   end
   
+  def current_student
+    @current_student ||= Student.find_by(user_id: session[:user_id])
+  end
+  
 end

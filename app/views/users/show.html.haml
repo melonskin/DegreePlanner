@@ -1,4 +1,8 @@
-= content_for(:title, "Sign up")
+= content_for(:title, "User details")
 
 = @user.name  
 = @user.email  
+- if current_student
+  = link_to "View your information", student_path(current_student)
+- else
+  = link_to "Fill in your information", new_student_path

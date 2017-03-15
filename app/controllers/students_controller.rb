@@ -18,9 +18,11 @@ class StudentsController < ApplicationController
     end
 
     def create
-        @student = Student.create!(student_params)
-        flash[:notice] = "#{@student.firstname}'s profile was successfully created."
-        redirect_to students_path
+      student_params_all = student_params
+      student_params_all[:user_id] = current_user[:id]
+      @student = Student.create!(student_params_all)
+      flash[:notice] = "#{@student.firstname}'s profile was successfully created."
+      redirect_to student_path(@student)
     end
 
   def edit
@@ -44,7 +46,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:firstname, :lastname, :email, :password, :is_f1, :program_id)
+    params.require(:student).permit(:firstname, :lastname, :is_f1, :program_id)
   end
 
   def set_student
