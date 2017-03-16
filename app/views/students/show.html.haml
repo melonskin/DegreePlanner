@@ -14,29 +14,29 @@
     Is F1? :
     = @student.is_f1
   %li
-    Program? :
-    = @student.program_id
+    Program:
+    = @student.program[:name]
+
+%br
+/ %h3 Selected Courses:
 
 
-%h3 Selected Courses:
-
-
-%table#courses
-  %thead
-    %tr
-    %th Department
-    %th Number
-    %th Name
-    %th Credit
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= course.department
-        %td= course.number
-        %td= course.name
-        %td= course.credit
+/ %table#courses
+/   %thead
+/     %tr
+/     %th Department
+/     %th Number
+/     %th Name
+/     %th Credit
+/   %tbody
+/     - @courses.each do |course|
+/       %tr
+/         %td= course.department
+/         %td= course.number
+/         %td= course.name
+/         %td= course.credit
  
 
-= link_to 'Edit', edit_student_path(@student)
-= button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Back to Student list', students_path
+= link_to 'Edit', edit_student_path(@student), class: "btn btn-lg btn-primary"
+/ = button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'
+/ = link_to 'Back to Student list', students_path

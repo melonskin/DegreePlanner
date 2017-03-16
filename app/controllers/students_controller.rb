@@ -46,7 +46,9 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:firstname, :lastname, :is_f1, :program_id)
+    student_params = params.require(:student).permit(:firstname, :lastname, :is_f1, :program_id)
+    student_params[:program_id] = Program.find_by_name(student_params[:program_id]).id
+    student_params
   end
 
   def set_student

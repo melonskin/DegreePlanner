@@ -77,13 +77,13 @@
 ### Student
 
 
-|firstname |lastname |email |password |is_f1 |program_id |
-|:---|:---|:---|:---|:---|:---|
-|Johana  |Rueda |xxx@tamu.edu |xxx |FALSE |1 |
-|Yining |Bao |yyy@tamu.edu |yyy |TRUE |2 |
-|Andres |Gonzalez |xxx@tamu.edu |xxx |TRUE |3 |
-|Shijin |Tang |yyy@tamu.edu |yyy |TRUE |4 |
-|Jingjia |Li |xxx@tamu.edu |xxx |FALSE |1 |
+|firstname |lastname ||is_f1 |program_id |user_id|
+|:---|:---|:---|:---|:---|
+|Johana  |Rueda |FALSE |1 |1|
+|Yining |Bao |TRUE |2 |2|
+|Andres |Gonzalez |TRUE |3 |3|
+|Shijin |Tang |TRUE |4 |4|
+|Jingjia |Li |FALSE |1 |5|
 
 
 ### PackageCourseship
