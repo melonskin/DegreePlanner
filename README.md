@@ -3,6 +3,30 @@
 # Models
 
 
+#### User
+
+
+|name |email |password |password_confirmation |
+|:---|:---|:---|:---|
+|Johana  |xxx@tamu.edu |aaaaaa |aaaaaa |
+|Yining |yyy@tamu.edu |aaaaaa |aaaaaa |
+|Andres |xxx2@tamu.edu |aaaaaa |aaaaaa |
+|Shijin |yyy1@tamu.edu |aaaaaa |aaaaaa |
+|Jingjia |xxx3@tamu.edu |aaaaaa |aaaaaa |
+
+
+#### Student
+
+
+|firstname |lastname |is_f1 |program_id |user_id |
+|:---|:---|:---|:---|:---|
+|Johana  |Rueda |FALSE |1 |1 |
+|Yining |Bao |TRUE |2 |2 |
+|Andres |Gonzalez |TRUE |3 |3 |
+|Shijin |Tang |TRUE |4 |4 |
+|Jingjia |Li |FALSE |1 |5 |
+
+
 ### Program
 
 
@@ -72,26 +96,6 @@
 |Spring |2017 |
 |Fall |2017 |
 |Spring |2018 |
-
-
-### User
-
-
-|name |email |password_digest   |
-|:---|:---|:---|  
-|JR |xxx@tamu.edu   |xxjd|  
-
-
-### Student
-
-
-|firstname |lastname |is_f1 |program_id |user_id|
-|:---|:---|:---|:---|:---|
-|Johana  |Rueda |FALSE |1 |1|
-|Yining |Bao |TRUE |2 |2|
-|Andres |Gonzalez |TRUE |3 |3|
-|Shijin |Tang |TRUE |4 |4|
-|Jingjia |Li |FALSE |1 |5|
 
 
 ### PackageCourseship
