@@ -74,10 +74,18 @@
 |Spring |2018 |
 
 
+### User
+
+
+|name |email |password_digest   |
+|:---|:---|:---|  
+|JR |xxx@tamu.edu   |xxjd|  
+
+
 ### Student
 
 
-|firstname |lastname ||is_f1 |program_id |user_id|
+|firstname |lastname |is_f1 |program_id |user_id|
 |:---|:---|:---|:---|:---|
 |Johana  |Rueda |FALSE |1 |1|
 |Yining |Bao |TRUE |2 |2|
