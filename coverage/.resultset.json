@@ -5,11 +5,178 @@
         1,
         null
       ],
+      "/Users/SkinTang/Projects/degreePlanner/app/helpers/sessions_helper.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/helpers/static_pages_helper.rb": [
+        1,
+        null
+      ],
       "/Users/SkinTang/Projects/degreePlanner/app/helpers/students_helper.rb": [
         1,
         null
       ],
       "/Users/SkinTang/Projects/degreePlanner/app/helpers/users_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/controllers/static_pages_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/controllers/users_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/course.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/coursesection.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/package_courseship.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/package.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/program.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/semester.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/student_course_semestership.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/SkinTang/Projects/degreePlanner/app/models/student.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         1,
         null
       ],
@@ -26,11 +193,6 @@
         1,
         1,
         null,
-        null,
-        null
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/application_record.rb": [
-        1,
         1,
         null
       ],
@@ -42,11 +204,6 @@
       ],
       "/Users/SkinTang/Projects/degreePlanner/app/channels/application_cable/connection.rb": [
         0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/controllers/application_controller.rb": [
         0,
         0,
         0
@@ -105,13 +262,6 @@
         0,
         0,
         0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/controllers/users_controller.rb": [
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -127,69 +277,9 @@
         0,
         0,
         0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/course.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/coursesection.rb": [
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/package.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/package_courseship.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/program.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/semester.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/student.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/student_course_semestership.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
       ]
     },
-    "timestamp": 1489519934
+    "timestamp": 1489778002
   },
   "Cucumber Features": {
     "coverage": {
