@@ -193,16 +193,121 @@
   },
   "Cucumber Features": {
     "coverage": {
+      "/home/ubuntu/workspace/DegreePlanner/app/models/user.rb": [
+        1,
+        null,
+        null,
+        18,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/users_controller.rb": [
+        1,
+        1,
+        4,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        4,
+        4,
+        1,
+        1,
+        1,
+        null,
+        3,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        4,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/sessions_helper.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        9,
+        null,
+        null,
+        1,
+        8,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/static_pages_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/users_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
       "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
         0,
         0
       ],
       "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
         0,
         0,
         0
@@ -253,7 +358,7 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/static_pages_controller.rb": [
         0,
         0,
         0,
@@ -262,20 +367,36 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/sessions_controller.rb": [
         0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
         0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0
       ],
       "/home/ubuntu/workspace/DegreePlanner/app/controllers/students_controller.rb": [
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -350,6 +471,6 @@
         0
       ]
     },
-    "timestamp": 1489502676
+    "timestamp": 1489733693
   }
 }
