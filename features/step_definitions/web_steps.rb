@@ -252,3 +252,10 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Given(/^the following User exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |user|
+    User.create(name: user[:name], email: user[:email], password: user[:password])
+  end
+end
