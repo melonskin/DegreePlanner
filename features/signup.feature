@@ -39,7 +39,7 @@ Scenario: fail to signup because of not using tamu email address
 Scenario: fail to signup because of different password_confirmation
     Given I am on the signup page
     And  I fill in "Name" with "Student"
-    And  I fill in "Email" with "student@gmail.com"
+    And  I fill in "Email" with "student@tamu.edu"
     And  I fill in "Password" with "123456"
     And  I fill in "Comfirmation" with "135678"
     And I press "Create my account"
@@ -49,9 +49,19 @@ Scenario: fail to signup because of different password_confirmation
 Scenario: fail to signup because of short password
     Given I am on the signup page
     And  I fill in "Name" with "Student"
-    And  I fill in "Email" with "student@gmail.com"
+    And  I fill in "Email" with "student@tamu.edu"
     And  I fill in "Password" with "123"
     And  I fill in "Comfirmation" with "123"
     And I press "Create my account"
     Then I should be on the signup page
     And I should see "Password is too short"
+    
+Scenario: fail to signup because of duplicate email
+    Given I am on the signup page
+    And  I fill in "Name" with "Student"
+    And  I fill in "Email" with "Lilei@tamu.edu"
+    And  I fill in "Password" with "123"
+    And  I fill in "Comfirmation" with "123"
+    And I press "Create my account"
+    Then I should be on the signup page
+    And I should see "Email has already been taken"

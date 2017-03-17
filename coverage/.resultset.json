@@ -1,57 +1,211 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/SkinTang/Projects/degreePlanner/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/helpers/students_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/sessions_helper.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/static_pages_helper.rb": [
         1,
         null
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/helpers/users_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
         1,
         null
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/user.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/users_helper.rb": [
         1,
-        null,
-        null,
-        1,
-        null,
-        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/sessions_controller.rb": [
         1,
         1,
         null,
+        null,
         1,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
         1,
+        0,
+        0,
         null,
         null,
         null
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/application_record.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/static_pages_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/users_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/course.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/channels/application_cable/channel.rb": [
-        0,
-        0,
+      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/user.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/channels/application_cable/connection.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/students_controller.rb": [
         0,
         0,
         0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/controllers/application_controller.rb": [
         0,
         0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/controllers/students_controller.rb": [
         0,
         0,
         0,
@@ -98,81 +252,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/controllers/users_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/jobs/application_job.rb": [
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/mailers/application_mailer.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/course.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/coursesection.rb": [
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/package.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/package_courseship.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/program.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/semester.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/student.rb": [
         0,
         0,
         0,
@@ -181,15 +260,26 @@
         0,
         0
       ],
-      "/Users/SkinTang/Projects/degreePlanner/app/models/student_course_semestership.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
         0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ]
     },
-    "timestamp": 1489519934
+    "timestamp": 1489733890
   },
   "Cucumber Features": {
     "coverage": {
@@ -197,7 +287,7 @@
         1,
         null,
         null,
-        18,
+        22,
         null,
         1,
         1,
@@ -217,30 +307,30 @@
       "/home/ubuntu/workspace/DegreePlanner/app/controllers/users_controller.rb": [
         1,
         1,
+        5,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        5,
+        5,
+        1,
+        1,
+        1,
+        null,
         4,
         null,
         null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        4,
-        4,
-        1,
-        1,
-        1,
-        null,
-        3,
-        null,
-        null,
         null,
         1,
         null,
         1,
-        4,
+        5,
         null,
         null
       ],
@@ -262,11 +352,11 @@
         null,
         null,
         1,
-        9,
+        11,
         null,
         null,
         1,
-        8,
+        10,
         null,
         null,
         1,
@@ -471,6 +561,6 @@
         0
       ]
     },
-    "timestamp": 1489733693
+    "timestamp": 1489734391
   }
 }
