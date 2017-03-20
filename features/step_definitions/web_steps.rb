@@ -259,3 +259,10 @@ Given(/^the following User exist:$/) do |table|
     User.create(name: user[:name], email: user[:email], password: user[:password])
   end
 end
+
+Given(/^the following Program exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |prog|
+    Program.create(name: prog[:name], acronym: prog[:acronym], is_thesis: prog[:is_thesis])
+  end
+end

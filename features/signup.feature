@@ -11,10 +11,10 @@ Background: users in database
       | Hanlei|Hanlei@tamu.edu|123456|
       | Limeimei|Limeimei@tamu.edu|123456|
 
-# Scenario: go to the sign up page
-#     Given I am on the home page
-#     When I follow "Sign up now!"
-#     Then I should be on the sign up page
+Scenario: go to the sign up page
+    Given I am on the root page
+    When I follow "Sign up now!"
+    Then I should be on the signup page
     
 Scenario: successful signup
     Given I am on the signup page

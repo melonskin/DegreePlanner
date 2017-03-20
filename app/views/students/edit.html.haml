@@ -1,4 +1,4 @@
-= content_for(:title, @student.firstname+"s profile")
+= content_for(:title, "Edit " + @student.firstname+"'s profile")
 
 %h1 Edit Your Profile
 .row
@@ -29,4 +29,4 @@
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
 
-      = submit_tag 'Update Student Info'
+      = submit_tag 'Update student info'

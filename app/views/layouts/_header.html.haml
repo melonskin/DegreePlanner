@@ -1,9 +1,15 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
   .container
-    = link_to "Degree Planner", root_path, id: "logo"
+    - if logged_in? and current_student
+      = link_to "Degree Planner", student_path(current_student), id: "logo"
+    - else
+      = link_to "Degree Planner", root_path, id: "logo"
     %nav
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "Home", root_path
+        - if logged_in? and current_student
+          %li= link_to "Home", student_path(current_user)
+        - else
+          %li= link_to "Home", root_path
         %li= link_to "About", about_path
         - if logged_in?
           %li= link_to "Users", '#'

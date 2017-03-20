@@ -1,3 +1,4 @@
+= content_for(:title, "Create your profile")
 %h1 Input Your Info
 
 .row
@@ -29,4 +30,4 @@
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
 
-      = submit_tag 'Save Changes'
+      = submit_tag 'Save changes'
