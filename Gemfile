@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
@@ -44,7 +45,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
@@ -74,4 +74,4 @@ end
 gem 'bcrypt',         '3.1.11'
 gem 'bootstrap-sass',       '3.2.0.0'
 
-gem 'pg'
+# gem 'pg'
