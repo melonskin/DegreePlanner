@@ -7,7 +7,7 @@
     %nav
       %ul.nav.navbar-nav.navbar-right
         - if logged_in? and current_student
-          %li= link_to "Home", student_path(current_user)
+          %li= link_to "Home", student_path(current_student)
         - else
           %li= link_to "Home", root_path
         %li= link_to "About", about_path
