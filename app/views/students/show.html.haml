@@ -2,24 +2,43 @@
 
 %h2 Details about #{@student.firstname}
 
-%ul#details
-  %li
-    First Name:
-    = @student.firstname
-  %li
-    Last Name:
-    = @student.lastname
-  %li
-    Email:
-    = @student.user.email
-  %li
-    Is F1? :
-    = @student.is_f1
-  %li
-    Program:
-    = @student.program[:name]
+.row
+  .col-md-5.col-md-offset-4
+    %table.table
+      %tr
+        %th First name:
+        %td= @student.firstname
+      %tr
+        %th Last name:
+        %td= @student.lastname
+      %tr
+        %th Email:
+        %td= @student.user.email
+      %tr
+        %th Is F1?:
+        %td= @student.is_f1
+      %tr
+        %th Program:
+        %td= @student.program[:name]
 
-%br
+/ %ul#details
+/   %li
+/     First Name:
+/     = @student.firstname
+/   %li
+/     Last Name:
+/     = @student.lastname
+/   %li
+/     Email:
+/     = @student.user.email
+/   %li
+/     Is F1? :
+/     = @student.is_f1
+/   %li
+/     Program:
+/     = @student.program[:name]
+
+/ %br
 / %h3 Selected Courses:
 
 
@@ -38,7 +57,7 @@
 /         %td= course.name
 /         %td= course.credit
  
-
-= link_to 'Edit', edit_student_path(@student), class: "btn btn-lg btn-primary"
+.center
+  = link_to 'Edit', edit_student_path(@student), class: "btn btn-lg btn-primary"
 / = button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'
 / = link_to 'Back to Student list', students_path

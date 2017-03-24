@@ -2,7 +2,6 @@ class StudentsController < ApplicationController
     before_action :set_student, :only => [:show,:edit,:update,:destroy]
 
 
-
     def show
         # id = params[:id]
         # @student = Student.find(id)

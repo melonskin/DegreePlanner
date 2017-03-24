@@ -29,4 +29,4 @@
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
 
-      = submit_tag 'Update student info'
+      = submit_tag 'Update student info', class: "btn btn-lg btn-primary"
