@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-    before_action :set_student, :only => [:show,:edit,:update,:destroy]
+    before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs]
 
 
     def show
@@ -42,12 +42,71 @@ class StudentsController < ApplicationController
     redirect_to students_path
   end
 
+  def newrequirecourse
+
+  end
+
+  def createrequirecourse
+    # debugger
+    # validate requirecourse
+    @student.program.packages.all.each do |package|
+      if not createpackage_params[:courses].has_value?(package.id.to_s)
+        flash[:warning] = "Pick required courses from each package"
+        redirect_to newrequirecourse_student_path
+        return
+      end
+    end
+    package_dict = {}
+    createpackage_params[:courses].each do |course_id, package_id|
+      if not package_dict.has_key?(package_id)
+        package_dict[package_id] = 1
+      else
+        package_dict[package_id] =+ 1
+      end
+    end
+    package_dict.each do |package_id,no_picked|
+      if Package.find(package_id).no_required < no_picked
+        flash[:warning] = "Pick required number of courses from each package"
+        redirect_to newrequirecourse_student_path
+        return
+      end
+    end
+    # destroy all relationship
+    StudentCourseSemestership.where(:student=>@student).destroy_all
+    # create relationship
+    createpackage_params[:courses].each do |course_id, package_id|
+      term = createpackage_params[:semester][course_id.to_s]
+      year = createpackage_params[:year][course_id.to_s]
+      semester = Semester.find_by_term_and_year(term, year)
+      course = Course.find(course_id)
+      # add relationships
+      StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+      # debugger
+    end
+      # debugger
+    redirect_to plan_student_path
+  end
+
+  def plan 
+    @semesters = @student.semesters.distinct
+  end
+
+  def destroyscs
+    course = Course.find(params[:course])
+    StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
+    flash[:notice] = "#{course.name} was deleted."
+    redirect_to plan_student_path
+  end
   private
 
   def student_params
     student_params = params.require(:student).permit(:firstname, :lastname, :is_f1, :program_id)
     student_params[:program_id] = Program.find_by_name(student_params[:program_id]).id
     student_params
+  end
+
+  def createpackage_params
+    createpackage_params = params
   end
 
   def set_student

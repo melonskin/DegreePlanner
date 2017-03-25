@@ -1,0 +1,28 @@
+= content_for(:title, "Course packages")
+
+.center
+  %h1 As a #{@student.program.name} student, You need to pick courses from packages below.
+  = form_tag createrequirecourse_student_path(@student) do
+    - @student.program.packages.all.each do |package|
+      %h2 Pick #{package.no_required} from:     
+      .row
+        .col-md-5.col-md-offset-4
+          %table.table
+            %thead
+              %tr
+                %th Course
+                %th Select
+                %th Year
+                %th Semester
+            %tbody
+            - package.courses.all.each do |course|
+              %tr
+                %td= course.department+course.number.to_s+' '+course.name
+                %td= check_box_tag "courses[#{course.id}]", package.id
+                %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'])
+                %td= select_tag "year[#{course.id}]",options_for_select(['2017','2018','2019','2020','2021','2022','2023','2024','2025'])
+
+
+    = submit_tag 'Save changes', class: "btn btn-lg btn-primary"
+
+

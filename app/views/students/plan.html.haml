@@ -1,0 +1,16 @@
+= content_for(:title, "Degree plan")
+
+- @semesters.each do |semester|
+  
+  %h2 Semester #{semester.term} #{semester.year}    
+  .row
+    .col-md-5.col-md-offset-4
+      %table.table
+        %tbody
+          - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
+            - course = Course.find(scs.course_id.to_i)
+            %tr
+              %td= course.department+course.number.to_s
+              %td= course.name
+              %td= link_to "More about", '#'
+              %td= button_to 'Delete', destroyscs_student_path(@student), :method => :delete, :params => { :course => course} 
