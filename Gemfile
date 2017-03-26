@@ -76,4 +76,6 @@ gem 'bootstrap-sass',       '3.2.0.0'
 
 # gem 'pg'
 
+# auto complete search
 gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'

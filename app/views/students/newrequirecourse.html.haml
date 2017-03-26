@@ -20,8 +20,7 @@
                 %td= course.department+course.number.to_s+' '+course.name
                 %td= check_box_tag "courses[#{course.id}]", package.id
                 %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'])
-                %td= select_tag "year[#{course.id}]",options_for_select(['2017','2018','2019','2020','2021','2022','2023','2024','2025'])
-
+                %td= select_tag "year[#{course.id}]",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
 
     = submit_tag 'Save changes', class: "btn btn-lg btn-primary"
 

@@ -4,7 +4,7 @@
   
   %h2 Semester #{semester.term} #{semester.year}    
   .row
-    .col-md-5.col-md-offset-4
+    .col-md-6.col-md-offset-3
       %table.table
         %tbody
           - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
@@ -14,3 +14,20 @@
               %td= course.name
               %td= link_to "More about", '#'
               %td= button_to 'Delete', destroyscs_student_path(@student), :method => :delete, :params => { :course => course} 
+
+.row
+  .col-md-4.col-md-offset-4
+    = form_tag(addplancourse_student_path(@student), :method => "post", id: "search-form") do
+      / text field tag=action,args,identifier,placeholdertext...
+      = hidden_field_tag :course_id, '', :id => "my_course_id"
+      = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
+      = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
+      = select_tag "year",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+      = submit_tag "Add course", class: "btn btn-lg btn-primary"
+
+      %script{:charset => "utf-8", :type => "text/javascript"}
+      :cdata
+        $('#search').bind('railsAutocomplete.select', function(event, data){
+        $('#search-form').submit()
+        });
+

@@ -14,12 +14,15 @@ Rails.application.routes.draw do
   
   resources :users
   resources :students do 
+    get :autocomplete_course_name, :on => :collection
     member do 
       get :newrequirecourse
       get :editrequirecourse
       post :createrequirecourse
       get :plan
       delete :destroyscs
+ #     get :addplancourse
+      post :addplancourse
     end
   end
   

@@ -1,28 +1,36 @@
 class StudentsController < ApplicationController
-    before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs]
+  before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs, :addplancourse]
+ # autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name], :full => true
 
 
-    def show
-        # id = params[:id]
-        # @student = Student.find(id)
-        @courses = @student.courses.all
-    end
 
-    def index
-        @students = Student.all
-    end
+  autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name], :full => true
 
-    def new
+  def get_autocomplete_items(params)   
+   items = Course.search_by_name(params[:term]).all
+  end
 
-    end
+  def show
+      # id = params[:id]
+      # @student = Student.find(id)
+      @courses = @student.courses.all
+  end
 
-    def create
-      student_params_all = student_params
-      student_params_all[:user_id] = current_user[:id]
-      @student = Student.create!(student_params_all)
-      flash[:notice] = "#{@student.firstname}'s profile was successfully created."
-      redirect_to student_path(@student)
-    end
+  def index
+      @students = Student.all
+  end
+
+  def new
+
+  end
+
+  def create
+    student_params_all = student_params
+    student_params_all[:user_id] = current_user[:id]
+    @student = Student.create!(student_params_all)
+    flash[:notice] = "#{@student.firstname}'s profile was successfully created."
+    redirect_to student_path(@student)
+  end
 
   def edit
     # @student = Student.find params[:id]
@@ -89,6 +97,17 @@ class StudentsController < ApplicationController
 
   def plan 
     @semesters = @student.semesters.distinct
+    # create relationship
+  end
+
+  def addplancourse
+    # create relationship
+    course = Course.find(params[:course_id])
+    term = params[:semester]
+    year = params[:year]
+    semester = Semester.find_by_term_and_year(term, year)
+    StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+    redirect_to plan_student_path
   end
 
   def destroyscs
@@ -97,6 +116,7 @@ class StudentsController < ApplicationController
     flash[:notice] = "#{course.name} was deleted."
     redirect_to plan_student_path
   end
+
   private
 
   def student_params
