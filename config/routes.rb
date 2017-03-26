@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     get :autocomplete_course_name, :on => :collection
     member do 
       get :newrequirecourse
-      get :editrequirecourse
       post :createrequirecourse
       get :plan
       delete :destroyscs

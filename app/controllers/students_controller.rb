@@ -1,8 +1,9 @@
 class StudentsController < ApplicationController
   before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs, :addplancourse]
 
-  autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name], :full => true
+  autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
 
+  # rewrite autocomplete function
   def get_autocomplete_items(params)   
    items = Course.search_by_name(params[:term]).all
   end
@@ -84,11 +85,12 @@ class StudentsController < ApplicationController
       if not package_dict.has_key?(package_id)
         package_dict[package_id] = 1
       else
-        package_dict[package_id] =+ 1
+        package_dict[package_id] += 1
       end
     end
+    # debugger
     package_dict.each do |package_id,no_picked|
-      if Package.find(package_id).no_required < no_picked
+      if Package.find(package_id).no_required > no_picked
         flash[:warning] = "Pick required number of courses from each package"
         redirect_to newrequirecourse_student_path
         return
@@ -129,8 +131,7 @@ class StudentsController < ApplicationController
   end
 
   def plan 
-    @semesters = @student.semesters.distinct
-    # create relationship
+    @semesters = @student.semesters.order("semesters.id ASC").distinct
   end
 
   def addplancourse

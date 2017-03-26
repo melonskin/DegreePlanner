@@ -6,11 +6,11 @@
     = form_tag students_path do
 
 
-      = label :student, :firstname, 'First Name'
+      = label :student, :firstname, 'First name'
       = text_field :student, :firstname
 
 
-      = label :student, :lastname, 'Last Name'
+      = label :student, :lastname, 'Last name'
       = text_field :student, :lastname
 
 
@@ -18,7 +18,7 @@
       = select :student, :is_f1, ['True','False']
 
 
-      = label :student, :program_id, 'Degree Program'
+      = label :student, :program_id, 'Degree program'
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
 

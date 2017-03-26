@@ -1,6 +1,10 @@
 = content_for(:title, "Course details")
 
-%h1= 'Sections for ' + @course.department + @course.number.to_s+' '+@course.name
+%h1= @course.department + @course.number.to_s+' '+@course.name
+%h2 Description:
+%p= @course.description
+
+%h2 Previous sections:
 
 .row
   .col-md-10.col-md-offset-1

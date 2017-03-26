@@ -15,7 +15,26 @@ class Course < ApplicationRecord
     }
 
     def display_autocomplete
-      "#{self.department}"+" "+"#{self.number}"+" "+"#{self.name}"
+      semester = []
+      if self.is_fall.downcase == 'true'
+        semester.push('Fall')
+      end
+      if self.is_spring.downcase == 'true'
+        semester.push('Spring')
+      end
+      if self.is_summer.downcase == 'true'
+        semester.push('Summer')
+      end
+      if semester.length > 1
+        semester = semester.join(", ")
+      else
+        semester = semester.pop
+      end
+      if semester == []
+        semester = "Not offered recently"
+      end
+      semester = "("+semester+")"
+      "#{self.department}"+" "+"#{self.number}"+" "+"#{self.name}"+" "+"#{semester}"
     end
 
     
