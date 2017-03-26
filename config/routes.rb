@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'courses/show'
+
+  get 'course/show'
+
   get 'sessions/new'
 
   # get 'static_pages/home'
@@ -25,5 +29,6 @@ Rails.application.routes.draw do
       post :addplancourse
     end
   end
-  
+ 
+ resources :courses 
 end

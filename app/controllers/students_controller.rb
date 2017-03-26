@@ -1,8 +1,5 @@
 class StudentsController < ApplicationController
   before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs, :addplancourse]
- # autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name], :full => true
-
-
 
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name], :full => true
 
@@ -51,6 +48,24 @@ class StudentsController < ApplicationController
   end
 
   def newrequirecourse
+    
+    # store selected 
+    @selected_hash = {}
+    @student.program.packages.all.each do |package|
+      @selected_hash[package.id] = {}
+      package.courses.all.each do |course|
+        @selected_hash[package.id][course.id] = {}
+      end
+    end
+
+    @student.program.packages.all.each do |package|
+      package.courses.all.each do |course|
+        selected_semester = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.term : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
+        selected_year = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.year : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
+        @selected_hash[package.id][course.id][:semester] = selected_semester
+        @selected_hash[package.id][course.id][:year] = selected_year
+      end
+    end
 
   end
 
@@ -92,6 +107,24 @@ class StudentsController < ApplicationController
       # debugger
     end
       # debugger
+    # store selected 
+    @selected_hash = {}
+    @student.program.packages.all.each do |package|
+      package.courses.all.each do |course|
+        if @selected_hash.has_key?(package.id)
+          if @selected_hash[package.id].has_key?(course.id)
+             selected_semester = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.term : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
+             selected_year = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.year : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
+             @selected_hash[package.id][course.id][:semester] = selected_semester
+             @selected_hash[package.id][course.id][:year] = selected_year
+          else
+            @selected_hash[package.id][course.id]={}
+          end
+        else
+          @selected_hash[package.id] = {}
+        end
+      end
+    end
     redirect_to plan_student_path
   end
 

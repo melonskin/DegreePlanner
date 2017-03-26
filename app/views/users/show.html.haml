@@ -8,7 +8,9 @@
     = link_to "View your information", student_path(current_student), class: "btn btn-lg btn-primary"
   - else
     = link_to "Fill in your information", new_student_path, class: "btn btn-lg btn-primary"
-  - if current_student and (0<1)
+  %br
+  %br
+  - if current_student and current_student.courses.first.nil?
     = link_to "Create degree plan", newrequirecourse_student_path(current_student), class: "btn btn-lg btn-primary"
   - else
     = link_to "View degree plan", plan_student_path(current_student), class: "btn btn-lg btn-primary"

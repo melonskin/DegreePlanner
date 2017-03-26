@@ -12,8 +12,8 @@
             %tr
               %td= course.department+course.number.to_s
               %td= course.name
-              %td= link_to "More about", '#'
-              %td= button_to 'Delete', destroyscs_student_path(@student), :method => :delete, :params => { :course => course} 
+              %td= link_to "More about", course_path(course), class: "btn btn-primary"
+              %td= button_to 'Delete', destroyscs_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
 
 .row
   .col-md-4.col-md-offset-4
@@ -30,4 +30,10 @@
         $('#search').bind('railsAutocomplete.select', function(event, data){
         $('#search-form').submit()
         });
+%br 
+
+.center
+  .col-md-4.col-md-offset-4
+    = link_to "Back to package courses", newrequirecourse_student_path, class: "btn btn-lg btn-primary"
+
 
