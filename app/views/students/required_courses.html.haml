@@ -2,7 +2,7 @@
 
 .center
   %h1 As a #{@student.program.name} student, You need to pick courses from packages below.
-  = form_tag createrequirecourse_student_path(@student) do
+  = form_tag create_required_courses_student_path(@student) do
     - @student.program.packages.all.each do |package|
       %h2 Pick #{package.no_required} from:     
       .row

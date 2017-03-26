@@ -13,11 +13,11 @@
               %td= course.department+course.number.to_s
               %td= course.name
               %td= link_to "More about", course_path(course), class: "btn btn-primary"
-              %td= button_to 'Delete', destroyscs_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
+              %td= button_to 'Delete', destroy_scs_ship_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
 
 .row
   .col-md-4.col-md-offset-4
-    = form_tag(addplancourse_student_path(@student), :method => "post", id: "search-form") do
+    = form_tag(add_plan_courses_student_path(@student), :method => "post", id: "search-form") do
       / text field tag=action,args,identifier,placeholdertext...
       = hidden_field_tag :course_id, '', :id => "my_course_id"
       = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
@@ -34,6 +34,6 @@
 
 .center
   .col-md-4.col-md-offset-4
-    = link_to "Back to package courses", newrequirecourse_student_path, class: "btn btn-lg btn-primary"
+    = link_to "Back to package courses", required_courses_student_path, class: "btn btn-lg btn-primary"
 
 

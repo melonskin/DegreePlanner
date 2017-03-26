@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, :only => [:show,:edit,:update,:destroy,:newrequirecourse, :createrequirecourse, :plan, :destroyscs, :addplancourse]
+  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
 
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
 
@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
     redirect_to students_path
   end
 
-  def newrequirecourse
+  def required_courses
     
     # store selected 
     @selected_hash = {}
@@ -70,13 +70,13 @@ class StudentsController < ApplicationController
 
   end
 
-  def createrequirecourse
+  def create_required_courses
     # debugger
     # validate requirecourse
     @student.program.packages.all.each do |package|
       if not createpackage_params[:courses].has_value?(package.id.to_s)
         flash[:warning] = "Pick required courses from each package"
-        redirect_to newrequirecourse_student_path
+        redirect_to required_courses_student_path
         return
       end
     end
@@ -92,7 +92,7 @@ class StudentsController < ApplicationController
     package_dict.each do |package_id,no_picked|
       if Package.find(package_id).no_required > no_picked
         flash[:warning] = "Pick required number of courses from each package"
-        redirect_to newrequirecourse_student_path
+        redirect_to required_courses_student_path
         return
       end
     end
@@ -109,24 +109,7 @@ class StudentsController < ApplicationController
       # debugger
     end
       # debugger
-    # store selected 
-    @selected_hash = {}
-    @student.program.packages.all.each do |package|
-      package.courses.all.each do |course|
-        if @selected_hash.has_key?(package.id)
-          if @selected_hash[package.id].has_key?(course.id)
-             selected_semester = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.term : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
-             selected_year = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.year : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
-             @selected_hash[package.id][course.id][:semester] = selected_semester
-             @selected_hash[package.id][course.id][:year] = selected_year
-          else
-            @selected_hash[package.id][course.id]={}
-          end
-        else
-          @selected_hash[package.id] = {}
-        end
-      end
-    end
+
     redirect_to plan_student_path
   end
 
@@ -134,7 +117,7 @@ class StudentsController < ApplicationController
     @semesters = @student.semesters.order("semesters.id ASC").distinct
   end
 
-  def addplancourse
+  def add_plan_courses
     # create relationship
     course = Course.find(params[:course_id])
     term = params[:semester]
@@ -144,7 +127,7 @@ class StudentsController < ApplicationController
     redirect_to plan_student_path
   end
 
-  def destroyscs
+  def destroy_scs_ship
     course = Course.find(params[:course])
     StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
     flash[:notice] = "#{course.name} was deleted."
