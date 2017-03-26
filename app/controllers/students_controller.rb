@@ -130,7 +130,7 @@ class StudentsController < ApplicationController
   def destroy_scs_ship
     course = Course.find(params[:course])
     StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
-    flash[:notice] = "#{course.name} was deleted."
+    flash[:notice] = "#{course.department+ course.number.to_s+" "+course.name} was deleted."
     redirect_to plan_student_path
   end
 
