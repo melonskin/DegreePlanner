@@ -21,6 +21,7 @@
                 %td= check_box_tag "courses[#{course.id}]", package.id, checked = (not StudentCourseSemestership.where(:student=>@student, :course=>course).blank?)
                 %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'], @selected_hash[package.id][course.id][:semester])
                 %td= select_tag "year[#{course.id}]",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq, @selected_hash[package.id][course.id][:year])
+                
     .center
       .col-md-2.col-md-offset-5
         = submit_tag 'Save changes', class: "btn btn-lg btn-primary"

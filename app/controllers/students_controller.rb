@@ -96,8 +96,12 @@ class StudentsController < ApplicationController
         return
       end
     end
-    # destroy all relationship
-    StudentCourseSemestership.where(:student=>@student).destroy_all
+
+    # destroy all relationship for required course
+    createpackage_params[:courses].each do |course_id, package_id|
+      StudentCourseSemestership.where(:student=>@student, :course_id=>course_id).destroy_all
+    end
+
     # create relationship
     createpackage_params[:courses].each do |course_id, package_id|
       term = createpackage_params[:semester][course_id.to_s]
