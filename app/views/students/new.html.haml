@@ -4,14 +4,15 @@
 .row
   .col-md-6.col-md-offset-3
     = form_tag students_path do
+      = render 'shared/student_error_messages'
 
 
       = label :student, :firstname, 'First name'
-      = text_field :student, :firstname
+      = text_field :student, :firstname, class: 'form-control'
 
 
       = label :student, :lastname, 'Last name'
-      = text_field :student, :lastname
+      = text_field :student, :lastname, class: 'form-control'
 
 
       = label :student, :is_f1, 'Are you F1?'

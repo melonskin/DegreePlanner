@@ -6,4 +6,8 @@ class Student < ApplicationRecord
     validates_presence_of :firstname, :lastname, :is_f1, :program_id, :user_id
 
     belongs_to :user
+    before_save
+    
+    validates :firstname, presence: true
+    validates :lastname, presence: true
 end
