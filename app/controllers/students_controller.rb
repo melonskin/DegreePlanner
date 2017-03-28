@@ -19,15 +19,19 @@ class StudentsController < ApplicationController
   end
 
   def new
-
+    @student = Student.new
   end
 
   def create
     student_params_all = student_params
     student_params_all[:user_id] = current_user[:id]
-    @student = Student.create!(student_params_all)
-    flash[:notice] = "#{@student.firstname}'s profile was successfully created."
-    redirect_to student_path(@student)
+    @student = Student.new(student_params_all)
+    if @student.save
+      flash[:notice] = "#{@student.firstname}'s profile was successfully created."
+      redirect_to student_path(@student)
+    else
+      render 'new'
+    end
   end
 
   def edit
