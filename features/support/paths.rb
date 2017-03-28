@@ -22,6 +22,15 @@ module NavigationHelpers
     when /^the user page for "([^"]*)"$/
       user_path(User.find_by_name($1))
 
+    when /^the profile_create page$/
+      '/students/new'
+
+    when /^the student_profile page for "([^"]*)"$/
+      student_path(Student.find_by_user_id(User.find_by_name($1)))
+      
+    when /^the edit_profile page for "([^"]*)"$/
+      edit_student_path(Student.find_by_user_id(User.find_by_name($1)))
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

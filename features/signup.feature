@@ -26,6 +26,15 @@ Scenario: successful signup
     Then I should be on the user page for "Student"
     And I should see "Howdy, welcome to the Degree Planner!"
 
+Scenario: fail to signup because of lack of name
+    Given I am on the signup page
+    And  I fill in "Email" with "student@gmail.com"
+    And  I fill in "Password" with "123456"
+    And  I fill in "Comfirmation" with "123456"
+    And I press "Create my account"
+    Then I should be on the signup page
+    And I should see "Name can't be blank"
+
 Scenario: fail to signup because of not using tamu email address
     Given I am on the signup page
     And  I fill in "Name" with "Student"
