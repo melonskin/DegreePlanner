@@ -22,5 +22,16 @@
       = label :student, :program_id, 'Degree program'
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
+      = label :student, :yearstart, 'Year of your first semester'
+      = text_field :student, :yearstart, class: 'form-control'
+      
+      = label :student, :semstart, 'First semester'
+      = select :student, :semstart, ['Spring','Summer','Fall'], :selected => @student.semstart
+
+      = label :student, :yearend, 'Expected Graduation year'
+      = text_field :student, :yearend, class: 'form-control'
+      
+      = label :student, :semend, 'Expected Graduation Semester'
+      = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
 
       = submit_tag 'Save changes'

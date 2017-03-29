@@ -8,6 +8,10 @@
     %th Email
     %th Is F1? 
     %th Program
+    %th Beginning year
+    %th First Semester
+    %th Expected Graduation year
+    %th Expected Graduation Semester
   %tbody
     - @students.each do |student|
       %tr
@@ -16,6 +20,10 @@
         %td= student.email
         %td= student.is_f1
         %td= Program.find_by_id(student.program_id).acronym
+        %td= student.yearstart
+        %td= student.semstart
+        %td= student.yearend
+        %td= student.semend
         %td= link_to "More about", student_path(student)
 
 = link_to 'Add new student', new_student_path

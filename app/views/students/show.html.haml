@@ -20,7 +20,18 @@
       %tr
         %th Program:
         %td= @student.program[:name]
-
+      %tr
+        %th Beginning year:
+        %td= @student.yearstart
+      %tr
+        %th First Semester:
+        %td= @student.semstart
+      %tr
+        %th Expected Graduation year:
+        %td= @student.yearend
+      %tr
+        %th Expected Graduation Semester:
+        %td= @student.semend
 .center
   = link_to 'Edit', edit_student_path(@student), class: "btn btn-lg btn-primary"
   = link_to 'Back to home', user_path(current_user), class: "btn btn-lg btn-primary"
