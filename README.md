@@ -160,6 +160,22 @@
 |5 |1 |2 |
 
 
+## TSJ 0329  
+
+
+- [ ] Limit drop down menu for year
+- [ ] Add security validation
+- [ ] Add forgot password
+- [ ] Add change password
+- [ ] Add remember me
+- [ ] Write cucumber test
+- [ ] Write and revise Rspec test
+- [ ] Think about degree validation steps
+- [ ] Prevent picking duplicate courses
+- [ ] Add function to select research, direct study, seminar
+- [ ] Add program advisor to add degrees
+
+
 ## TSJ 0309
 
 
