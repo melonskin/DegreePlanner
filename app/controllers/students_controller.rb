@@ -53,34 +53,52 @@ class StudentsController < ApplicationController
   end
 
   def required_courses
-    
+    # debugger
     # store selected 
     @selected_hash = {}
-    @student.program.packages.all.each do |package|
-      @selected_hash[package.id] = {}
-      package.courses.all.each do |course|
-        @selected_hash[package.id][course.id] = {}
+    if params.has_key?(:courses)
+      courses_hash = Rack::Utils.parse_nested_query(params[:courses])
+      semester_hash = Rack::Utils.parse_nested_query(params[:semester])
+      year_hash = Rack::Utils.parse_nested_query(params[:year])
+      courses_hash.each do |course_id, package_id|
+        if not @selected_hash.has_key?(package_id.to_i)
+          @selected_hash[package_id.to_i]={}
+        end
+        @selected_hash[package_id.to_i][course_id.to_i] = {}
+        @selected_hash[package_id.to_i][course_id.to_i][:semester]= semester_hash[course_id.to_s]
+        @selected_hash[package_id.to_i][course_id.to_i][:year]= year_hash[course_id.to_s]
       end
-    end
 
-    @student.program.packages.all.each do |package|
-      package.courses.all.each do |course|
-        selected_semester = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.term : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
-        selected_year = ( StudentCourseSemestership.where(:student=>@student, :course=>course).blank? ) ? Semester.first.year : Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
-        @selected_hash[package.id][course.id][:semester] = selected_semester
-        @selected_hash[package.id][course.id][:year] = selected_year
+    else
+
+      @student.program.packages.all.each do |package|
+        package.courses.all.each do |course|
+          if not StudentCourseSemestership.where(:student=>@student, :course=>course).blank?
+            if not @selected_hash.has_key?(package.id)
+              @selected_hash[package.id]={}
+            end
+            if not @selected_hash[package.id].has_key?(course.id)
+              @selected_hash[package.id][course.id] = {}
+            end
+            selected_semester = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
+            selected_year = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
+            @selected_hash[package.id][course.id][:semester] = selected_semester
+            @selected_hash[package.id][course.id][:year] = selected_year
+          end
+        end
       end
     end
 
   end
 
   def create_required_courses
-    # debugger
     # validate requirecourse
     @student.program.packages.all.each do |package|
       if not createpackage_params[:courses].has_value?(package.id.to_s)
         flash[:warning] = "Pick required courses from each package"
-        redirect_to required_courses_student_path
+        # render "required_courses"
+
+        redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
       end
     end
@@ -96,7 +114,8 @@ class StudentsController < ApplicationController
     package_dict.each do |package_id,no_picked|
       if Package.find(package_id).no_required > no_picked
         flash[:warning] = "Pick required number of courses from each package"
-        redirect_to required_courses_student_path
+        # render "required_courses"
+        redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
       end
     end

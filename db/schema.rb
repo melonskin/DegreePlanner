@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315231258) do
+ActiveRecord::Schema.define(version: 20170329014912) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "department"
@@ -53,19 +53,36 @@ ActiveRecord::Schema.define(version: 20170315231258) do
   end
 
   create_table "packages", force: :cascade do |t|
-    t.integer  "number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "program_id"
     t.integer  "no_required"
+    t.string   "name"
   end
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
     t.string   "acronym"
     t.boolean  "is_thesis"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "dep_hour"
+    t.integer  "graded_grad_hour"
+    t.integer  "ug_class"
+    t.integer  "non_dep_hour_min"
+    t.integer  "non_dep_hour_max"
+    t.integer  "seminar_hour_min"
+    t.integer  "seminar_hour_max"
+    t.integer  "direct_study_hour_min"
+    t.integer  "direct_study_hour_max"
+    t.integer  "total_hour"
+    t.integer  "total_hour_prior"
+    t.integer  "research_hour_min"
+    t.integer  "research_hour_max"
+    t.integer  "joint_hour_min"
+    t.integer  "joint_hour_max"
+    t.integer  "elective_hour_min"
+    t.integer  "elective_hour_max"
   end
 
   create_table "semesters", force: :cascade do |t|

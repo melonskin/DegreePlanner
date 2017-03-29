@@ -30,12 +30,14 @@
 ### Program
 
 
-|name |acronym |is_thesis |
-|:---|:---|:---|
-|Master of Computer Science |MCS |FALSE |
-|Master of Engineering in Computer Science |MEN |FALSE |
-|Master of Science in Computer Science |MSCS |TRUE |
-|Master of Science in Computer Engineering |MSCE |TRUE |
+|name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+|Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
+|Master of Engineering in Computer Science |MEN |FALSE |12 |0 |1 |0 |999 |1 |1 |0 |3 |30 |0 |4 |7 |6 |999 |6 |999 |
+|Master of Science in Computer Science |MSCS |TRUE |18 |0 |1 |0 |6 |1 |1 |0 |3 |32 |0 |4 |7 |0 |0 |0 |0 |
+|Master of Science in Computer Engineering |MSCE |TRUE |10 |0 |1 |0 |999 |1 |1 |0 |3 |32 |0 |4 |7 |6 |999 |6 |999 |
+|PhD in Computer Science |PhDCS |TRUE |30 |0 |0 |0 |6 |1 |2 |0 |0 |96 |64 |18 |999 |0 |0 |0 |0 |
+|PhD in Computer Engineering |PhDCE |TRUE |12 |30 |0 |0 |999 |1 |2 |0 |0 |96 |64 |18 |999 |6 |999 |12 |999 |
 
 
 ### Course
@@ -78,14 +80,17 @@
 ### Package
 
 
-|number |norequired |program_id |
+|name |no_required |program_id |
 |:---|:---|:---|
-|1 |1 |1 |
-|2 |2 |1 |
-|3 |1 |1 |
-|4 |1 |2 |
-|5 |1 |2 |
-|6 |1 |3 |
+|Theory |1 |1 |
+|Systems |1 |1 |
+|Software |1 |1 |
+|Theory |1 |3 |
+|Systems |1 |3 |
+|Software |1 |3 |
+|Theory |1 |5 |
+|Systems |1 |5 |
+|Software |1 |5 |
 
 
 ### Semester
@@ -94,8 +99,20 @@
 |term |year |
 |:---|:---|
 |Spring |2017 |
+|Summer |2017 |
 |Fall |2017 |
 |Spring |2018 |
+|Summer |2018 |
+|Fall |2018 |
+|Spring |2019 |
+|Summer |2019 |
+|Fall |2019 |
+|Spring |2020 |
+|Summer |2020 |
+|Fall |2020 |
+|Spring |2021 |
+|Summer |2021 |
+|Fall |2021 |
 
 
 ### PackageCourseship
@@ -103,19 +120,30 @@
 
 |course_id |package_id |
 |:---|:---|
-|1 |1 |
-|2 |1 |
-|3 |2 |
-|4 |2 |
-|5 |2 |
-|1 |3 |
-|6 |4 |
-|2 |4 |
-|1 |5 |
-|3 |5 |
-|1 |6 |
-|2 |6 |
-|3 |6 |
+|53 |1 |
+|55 |1 |
+|42 |2 |
+|46 |2 |
+|47 |2 |
+|41 |3 |
+|43 |3 |
+|72 |3 |
+|53 |4 |
+|55 |4 |
+|42 |5 |
+|46 |5 |
+|47 |5 |
+|41 |6 |
+|43 |6 |
+|72 |6 |
+|53 |7 |
+|55 |7 |
+|42 |8 |
+|46 |8 |
+|47 |8 |
+|41 |9 |
+|43 |9 |
+|72 |9 |
 
 
 ### StudentCourseSemestership

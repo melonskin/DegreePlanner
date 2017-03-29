@@ -14,11 +14,11 @@
 
 
       = label :student, :is_f1, 'Are you F1?'
-      = select :student, :is_f1, ['True','False']
+      = select :student, :is_f1, ['True','False'], :selected => @student.is_f1
 
 
       = label :student, :program_id, 'Degree program'
-      = select :student, :program_id, Program.all.map {|p| p.name.to_s}
+      = select :student, :program_id, Program.all.map {|p| p.name.to_s}, :selected => @student.program.name
 
 
       = submit_tag 'Update student info', class: "btn btn-lg btn-primary"
