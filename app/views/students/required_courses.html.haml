@@ -4,13 +4,15 @@
   %h1 As a #{@student.program.name} student, You need to pick courses from packages below.
   = form_tag create_required_courses_student_path(@student) do
     - @student.program.packages.all.each do |package|
-      %h2 Pick #{package.no_required} from:     
+      %h2 Pick #{package.no_required} from #{package.name} package:     
       .row
-        .col-md-6.col-md-offset-3
+        .col-md-8.col-md-offset-2
           %table.table
             %thead
               %tr
                 %th Course
+                %th Credit
+                %th Offered
                 %th Select
                 %th Semester
                 %th Year
@@ -18,11 +20,12 @@
             - package.courses.all.each do |course|
               %tr
                 %td= course.department+course.number.to_s+' '+course.name
+                %td= course.credit
+                %td= course.offered_semester
                 %td= check_box_tag "courses[#{course.id}]", package.id, checked = (@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id))
-                / (not StudentCourseSemestership.where(:student=>@student, :course=>course).blank?)
                 %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'], ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:semester] : Semester.first.term))
                 %td= select_tag "year[#{course.id}]",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq, ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:year] : Semester.first.year))
-
+      %br
     .center
       .col-md-2.col-md-offset-5
         = submit_tag 'Save changes', class: "btn btn-lg btn-primary"

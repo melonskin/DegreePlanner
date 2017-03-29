@@ -14,7 +14,7 @@ class Course < ApplicationRecord
     (q ? where(["number LIKE ? or lower(name) LIKE ? or (lower(department) || ' ' || number) like ? or (lower(department) || number) like ? ", '%'+ q + '%', '%'+ q + '%','%'+ q + '%', '%'+ q + '%'])  : {})
     }
 
-    def display_autocomplete
+    def offered_semester
       semester = []
       if self.is_fall.downcase == 'true'
         semester.push('Fall')
@@ -33,9 +33,13 @@ class Course < ApplicationRecord
       if semester == []
         semester = "Not offered recently"
       end
+      semester
+    end
+
+    def display_autocomplete
+      semester = self.offered_semester
       semester = "("+semester+")"
       "#{self.department}"+" "+"#{self.number}"+" "+"#{self.name}"+" "+"#{semester}"
     end
 
-    
 end
