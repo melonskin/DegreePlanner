@@ -24,10 +24,8 @@
                 %td= course.offered_semester
                 %td= check_box_tag "courses[#{course.id}]", package.id, checked = (@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id))
                 %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'], ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:semester] : Semester.first.term))
-                %td= select_tag "year[#{course.id}]",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq, ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:year] : Semester.first.year))
-      %br
+                %td= select_tag "year[#{course.id}]",options_for_select(((@student.yearstart..@student.yearend).step(1)), ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:year] : Semester.first.year))
+                
     .center
       .col-md-2.col-md-offset-5
         = submit_tag 'Save changes', class: "btn btn-lg btn-primary"
-
-

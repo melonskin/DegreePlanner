@@ -8,14 +8,11 @@
       = label :student, :firstname, 'First name'
       = text_field :student, :firstname
 
-
       = label :student, :lastname, 'Last name'
       = text_field :student, :lastname
 
-
       = label :student, :is_f1, 'Are you F1?'
       = select :student, :is_f1, ['True','False'], :selected => @student.is_f1
-
 
       = label :student, :program_id, 'Degree program'
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}, :selected => @student.program.name
@@ -31,6 +28,5 @@
       
       = label :student, :semend, 'Expected Graduation Semester'
       = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
-      
 
       = submit_tag 'Update student info', class: "btn btn-lg btn-primary"
