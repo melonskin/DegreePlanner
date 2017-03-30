@@ -18,13 +18,13 @@
 #### Student
 
 
-|firstname |lastname |is_f1 |program_id |user_id | yearstart | semstart | yearend | semend |
+|firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearstart |semend |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|
-|Johana  |Rueda |FALSE |1 |1 |:---|:---|:---|:---|
-|Yining |Bao |TRUE |2 |2 |:---|:---|:---|:---|
-|Andres |Gonzalez |TRUE |3 |3 |:---|:---|:---|:---|
-|Shijin |Tang |TRUE |4 |4 |:---|:---|:---|:---|
-|Jingjia |Li |FALSE |1 |5 |:---|:---|:---|:---|
+|Johana  |Rueda |FALSE |1 |1 |2017 |Spring |2019 |Spring |
+|Yining |Bao |TRUE |2 |2 |2017 |Fall |2019 |Fall |
+|Andres |Gonzalez |TRUE |3 |3 |2018 |Spring |2019 |Fall |
+|Shijin |Tang |TRUE |4 |4 |2018 |Fall |2020 |Fall |
+|Jingjia |Li |FALSE |1 |5 |2019 |Spring |2022 |Spring |
 
 
 ### Program
@@ -158,6 +158,22 @@
 |3 |4 |1 |
 |4 |1 |2 |
 |5 |1 |2 |
+
+
+## TSJ 0329  
+
+
+- [ ] Limit drop down menu for year
+- [ ] Add security validation
+- [ ] Add forgot password
+- [ ] Add change password
+- [ ] Add remember me
+- [ ] Write cucumber test
+- [ ] Write and revise Rspec test
+- [ ] Think about degree validation steps
+- [ ] Prevent picking duplicate courses
+- [ ] Add function to select research, direct study, seminar
+- [ ] Add program advisor to add degrees
 
 
 ## TSJ 0309
