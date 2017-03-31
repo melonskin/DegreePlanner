@@ -11,12 +11,9 @@ Background: users, programs, students in database
       | Hanlei|Hanlei@tamu.edu|123456|
       | Limeimei|Limeimei@tamu.edu|123456|
     Given the following Program exist:
-      |name |acronym |is_thesis|
-      |Master of Computer Science |MCS  |false  |
-    Given the following Student exist:
-      | firstname | lastname | is_f1 | program_id | user_id |
-      | Lei | Li | TRUE | 1 | 1 |
-      | Meimei | Han | FALSE | 1 | 2 |
+      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
+      |Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
+
 
 Given I am on the login page
     And  I fill in "Email" with "Hanlei@tamu.edu"
