@@ -34,6 +34,10 @@ Scenario: able to see personal profile as a comeback user
     And I should see "Email: lilei@tamu.edu"
     And I should see "Is F1?: TRUE"
     And I should see "Program: 	Master of Computer Science"
+    And I should see "Beginning year:	2017"
+    And I should see "First Semester:	Spring"
+    And I should see "Expected Graduation year:	2019"
+    And I should see "Expected Graduation Semester:	Spring"
     
 Scenario: able to edit the personal profile
     Given I am on the student_profile page for "Lilei"
@@ -43,3 +47,12 @@ Scenario: able to edit the personal profile
     And I press "Update student info"
     Then I should be on the student_profile page for "Lilei"
     And I should see "First name: Le"
+    
+Scenario: able to edit the personal profile Semester
+    Given I am on the student_profile page for "Lilei"
+    And I follow "Edit"
+    Then I should be on the edit_profile page for "Lilei"
+    Then I select "Fall" from "First semester"
+    And I press "Update student info"
+    Then I should be on the student_profile page for "Lilei"
+    And I should see "First Semester:	Fall"
