@@ -9,9 +9,14 @@ class Course < ApplicationRecord
     has_many :coursesections
 
 # works in sqlite, may need some change for pg
+    # scope :search_by_name, lambda { |q|
+    #   q.downcase!
+    # (q ? where(["number LIKE ? or lower(name) LIKE ? or (lower(department) || ' ' || number) like ? or (lower(department) || number) like ? ", '%'+ q + '%', '%'+ q + '%','%'+ q + '%', '%'+ q + '%'])  : {})
+    # }
+    
     scope :search_by_name, lambda { |q|
       q.downcase!
-    (q ? where(["number LIKE ? or lower(name) LIKE ? or (lower(department) || ' ' || number) like ? or (lower(department) || number) like ? ", '%'+ q + '%', '%'+ q + '%','%'+ q + '%', '%'+ q + '%'])  : {})
+    (q ? where(["cast(number as text) LIKE ? or lower(name) LIKE ? or (lower(department) || ' ' || cast(number as text)) like ? or (lower(department) || cast(number as text)) like ? ", '%'+ q + '%', '%'+ q + '%','%'+ q + '%', '%'+ q + '%'])  : {})
     }
 
     def offered_semester
