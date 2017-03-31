@@ -82,10 +82,6 @@ When /^(?:|I )fill in the following:$/ do |fields|
   end
 end
 
-When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
-  select(value, :from => field)
-end
-
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
@@ -93,6 +89,15 @@ end
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
 end
+
+Then(/^I check  "([^"]*)"$/) do |field|
+  check(field)
+end
+
+When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
+  select(value, :from => field)
+end
+
 
 When /^(?:|I )choose "([^"]*)"$/ do |field|
   choose(field)
@@ -209,7 +214,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
-      field_checked.should be_true
+      field_checked.should be_truthy
     else
       assert field_checked
     end
@@ -220,7 +225,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
-      field_checked.should be_false
+      field_checked.should be_falsey
     else
       assert !field_checked
     end
@@ -253,6 +258,19 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
+Then /^"([^"]*)" should( not)? be an option for "([^"]*)"(?: within "([^\"]*)")?$/ do |value, negate, field, selector|
+  with_scope(selector) do
+    expectation = negate ? :should_not : :should
+    field_labeled(field).first(:xpath, ".//option[text() = '#{value}']").send(expectation, be_present)
+  end
+end
+
+Then /^"([^"]*)" should be selected for "([^"]*)"(?: within "([^\"]*)")?$/ do |value, field, selector|
+  with_scope(selector) do
+    field_labeled(field).find(:xpath, ".//option[@selected = 'selected'][text() = '#{value}']").should be_present
+  end
+end
+
 Given(/^the following User exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |user|
@@ -263,13 +281,41 @@ end
 Given(/^the following Program exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |prog|
-    Program.create(name: prog[:name], acronym: prog[:acronym], is_thesis: prog[:is_thesis])
+    Program.create(name: prog[:name], acronym: prog[:acronym], is_thesis: prog[:is_thesis], dep_hour: prog[:dep_hour], graded_grad_hour: prog[:graded_grad_hour], ug_class: prog[:ug_class], non_dep_hour_min: prog[:non_dep_hour_min], non_dep_hour_max: prog[:non_dep_hour_max], seminar_hour_min: prog[:seminar_hour_min], seminar_hour_max: prog[:seminar_hour_max], direct_study_hour_min: prog[:direct_study_hour_min], direct_study_hour_max: prog[:direct_study_hour_max], total_hour: prog[:total_hour], total_hour_prior: prog[:total_hour_prior], research_hour_min: prog[:research_hour_min], research_hour_max: prog[:research_hour_max], joint_hour_min: prog[:joint_hour_min], joint_hour_max: prog[:joint_hour_max], elective_hour_min: prog[:elective_hour_min], elective_hour_max: prog[:elective_hour_max])
   end
 end
 
 Given(/^the following Student exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |stud|
-    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], is_f1: stud[:is_f1], program_id: stud[:program_id], user_id: stud[:user_id])
+    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], is_f1: stud[:is_f1], program_id: stud[:program_id], user_id: stud[:user_id], yearstart: stud[:yearstart], semstart: stud[:semstart], yearend: stud[:yearend], semend: stud[:semend])
+  end
+end
+
+Given(/^the following Course exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |cour|
+    Course.create(department: cour[:department], number: cour[:number], name: cour[:name], credit: cour[:credit], description: cour[:description], is_fall: cour[:is_fall], is_spring: cour[:is_spring], is_summer: cour[:is_summer])
+  end
+end
+
+Given(/^the following Package exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |pack|
+    Package.create(name: pack[:name], no_required: pack[:no_required], program_id: pack[:program_id])
+  end
+end
+
+Given(/^the following Semester exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |seme|
+    Semester.create(term: seme[:term], year: seme[:year])
+  end
+end
+
+Given(/^the following PackageCourseship exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |paco|
+    PackageCourseship.create(course_id: paco[:course_id], package_id: paco[:package_id])
   end
 end
