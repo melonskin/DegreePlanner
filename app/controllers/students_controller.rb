@@ -93,9 +93,14 @@ class StudentsController < ApplicationController
   end
 
   def create_required_courses
+    # if the program has packages course
+    if createpackage_params[:semester].nil?
+      redirect_to plan_student_path
+      return
+    end
     # validate requirecourse
     @student.program.packages.all.each do |package|
-      if not createpackage_params[:courses].has_value?(package.id.to_s)
+      if createpackage_params[:courses].nil? or (not createpackage_params[:courses].has_value?(package.id.to_s))
         flash[:warning] = "Pick required courses from each package"
         # render "required_courses"
 
