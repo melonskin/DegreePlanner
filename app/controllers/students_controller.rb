@@ -1,8 +1,9 @@
 class StudentsController < ApplicationController
+  autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
   before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
   before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
   before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
+
 
   # rewrite autocomplete function
   def get_autocomplete_items(params)   
@@ -127,8 +128,10 @@ class StudentsController < ApplicationController
     end
 
     # destroy all relationship for required course
-    createpackage_params[:courses].each do |course_id, package_id|
-      StudentCourseSemestership.where(:student=>@student, :course_id=>course_id).destroy_all
+    @student.program.packages.each do |package|
+      package.courses.each do |course|
+        StudentCourseSemestership.where(:student=>@student, :course => course).destroy_all
+      end
     end
 
     # create relationship
