@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
   before_action :logged_in_user
+  before_action :correct_user
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
 
   # rewrite autocomplete function
@@ -174,7 +175,11 @@ class StudentsController < ApplicationController
   end
 
   def set_student
-    @student = Student.find(params[:id])
+    begin
+      @student = Student.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      @student = nil
+    end
   end
 
 end
