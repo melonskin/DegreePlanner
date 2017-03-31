@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
         redirect_to login_path
       end
   end
+  
+  def correct_user
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      @user = nil
+    end
+    redirect_to user_path(current_user) unless @user == current_user
+  end
 end
