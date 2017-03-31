@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-03-30T23:06:54+00:00">2017-03-30T23:06:54+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-03-31T02:02:24+00:00">2017-03-31T02:02:24+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -73,9 +73,9 @@
       <tr>
         <td class="strong"><a href="#f1d2fd52119d58dfee067d0e2757a258f8807c8f" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>5</td>
-        <td>3</td>
-        <td>3</td>
+        <td>12</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#0261f7f2dc262503e7334fde73f258754bd7e550" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-        <td class="red strong">57.14 %</td>
-        <td>38</td>
-        <td>21</td>
-        <td>12</td>
+        <td class="red strong">43.75 %</td>
+        <td>32</td>
+        <td>16</td>
+        <td>7</td>
         <td>9</td>
-        <td>0.6</td>
+        <td>0.4</td>
       </tr>
       
       <tr>
@@ -323,7 +323,7 @@
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.07
+         0.06
        </span>
     </span> hits/line)
   </h2>
@@ -351,9 +351,9 @@
       <tr>
         <td class="strong"><a href="#f1d2fd52119d58dfee067d0e2757a258f8807c8f" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>5</td>
-        <td>3</td>
-        <td>3</td>
+        <td>12</td>
+        <td>8</td>
+        <td>8</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -400,12 +400,12 @@
       
       <tr>
         <td class="strong"><a href="#0261f7f2dc262503e7334fde73f258754bd7e550" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-        <td class="red strong">57.14 %</td>
-        <td>38</td>
-        <td>21</td>
-        <td>12</td>
+        <td class="red strong">43.75 %</td>
+        <td>32</td>
+        <td>16</td>
+        <td>7</td>
         <td>9</td>
-        <td>0.6</td>
+        <td>0.4</td>
       </tr>
       
     </tbody>
@@ -934,8 +934,8 @@
     <h3>app/controllers/application_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>3</b> relevant lines. 
-      <span class="green"><b>3</b> lines covered</span> and
+      <b>8</b> relevant lines. 
+      <span class="green"><b>8</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -967,7 +967,49 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def logged_in_user</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      unless logged_in?</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        store_location</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        flash[:danger] = &quot;Please log in.&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        redirect_to login_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
           
           
           <code class="ruby">end</code>
@@ -1276,7 +1318,7 @@
         <li class="missed" data-hits="0" data-linenumber="3">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  before_action :logged_in_user</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="4">
@@ -2348,10 +2390,10 @@
         <div class="source_table" id="0261f7f2dc262503e7334fde73f258754bd7e550">
   <div class="header">
     <h3>app/controllers/users_controller.rb</h3>
-    <h4><span class="red">57.14 %</span> covered</h4>
+    <h4><span class="red">43.75 %</span> covered</h4>
     <div>
-      <b>21</b> relevant lines. 
-      <span class="green"><b>12</b> lines covered</span> and
+      <b>16</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
       <span class="red"><b>9</b> lines missed.</span>
     </div>
   </div>
@@ -2539,49 +2581,13 @@
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="31">
           
-          <code class="ruby">    def logged_in_user</code>
+          
+          <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      unless logged_in?</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        store_location</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="34">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        flash[:danger] = &quot;Please log in.&quot;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="35">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        redirect_to login_path</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="36">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">end</code>

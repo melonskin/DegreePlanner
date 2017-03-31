@@ -520,12 +520,6 @@
         0,
         null,
         null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
         null,
         null
       ],
@@ -533,6 +527,13 @@
         1,
         1,
         1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null
       ],
@@ -556,6 +557,42 @@
         1,
         1,
         null
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "/home/ubuntu/workspace/DegreePlanner/app/models/course.rb": [
         0,
@@ -604,6 +641,13 @@
         0,
         0
       ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
       "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
         0,
         0,
@@ -614,51 +658,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
@@ -888,10 +887,6 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
-        0,
-        0
-      ],
       "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
         0,
         0,
@@ -903,8 +898,14 @@
         0,
         0,
         0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1490915214
+    "timestamp": 1490925744
   }
 }
