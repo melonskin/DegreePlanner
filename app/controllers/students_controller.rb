@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  before_action :logged_in_user
-  before_action :correct_user
+  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
+  before_action :correct_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
 
   # rewrite autocomplete function
