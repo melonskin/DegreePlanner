@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/ubuntu/workspace/app/models/user.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/user.rb": [
         1,
         null,
         null,
@@ -17,18 +17,18 @@
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/application_record.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/program.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/program.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/student.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student.rb": [
         1,
         1,
         1,
@@ -43,7 +43,7 @@
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/course.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/course.rb": [
         1,
         1,
         1,
@@ -90,7 +90,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/models/package.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package.rb": [
         1,
         1,
         null,
@@ -98,20 +98,20 @@
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/semester.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/semester.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/models/package_courseship.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/package_courseship.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/sessions_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/sessions_controller.rb": [
         1,
         1,
         null,
@@ -136,7 +136,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -159,15 +159,15 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/courses_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/courses_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/sessions_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/sessions_helper.rb": [
         1,
         1,
         4,
@@ -203,19 +203,19 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/static_pages_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/static_pages_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/students_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/students_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/helpers/users_helper.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/users_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -250,14 +250,14 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/models/student_course_semestership.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/models/student_course_semestership.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/home/ubuntu/workspace/app/controllers/students_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/students_controller.rb": [
         1,
         1,
         1,
@@ -444,22 +444,16 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/mailers/application_mailer.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/jobs/application_job.rb": [
         0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/models/coursesection.rb": [
         0,
         0,
         0
       ],
-      "/home/ubuntu/workspace/app/jobs/application_job.rb": [
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/app/models/coursesection.rb": [
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/app/controllers/courses_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/courses_controller.rb": [
         0,
         0,
         0,
@@ -467,7 +461,7 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/app/controllers/static_pages_controller.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/controllers/static_pages_controller.rb": [
         0,
         0,
         0,
@@ -476,20 +470,26 @@
         0,
         0
       ],
-      "/home/ubuntu/workspace/app/channels/application_cable/connection.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0
       ],
-      "/home/ubuntu/workspace/app/channels/application_cable/channel.rb": [
+      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/DegreePlanner/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ]
     },
-    "timestamp": 1490930282
+    "timestamp": 1490933119
   },
   "RSpec": {
     "coverage": {
