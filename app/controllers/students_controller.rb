@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
-  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses, :plan, :destroy_scs_ship, :add_plan_courses]
+  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
+  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
+  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
 
 
   # rewrite autocomplete function
@@ -54,6 +54,7 @@ class StudentsController < ApplicationController
     # store selected 
     packages = @student.program.packages
     @selected_hash = selected_hash(packages)
+    @no_create = (createpackage_params.has_key?(:no_create)) ? 1 : 0
   end
 
   def create_required_courses
@@ -88,13 +89,42 @@ class StudentsController < ApplicationController
     # destroy all relationship for required course
     packages = @student.program.packages
     delete_all_package_courses(packages)
+
+    # create relationship
+    select_package_courses(createpackage_params)
+    # redirect_to plan_student_path
+    # TO DO, modifing package course will be directed to plan path
+    # debugger
+    if createpackage_params[:no_create].to_i == 1
+      redirect_to plan_student_path
+    else
+      redirect_to interest_courses_student_path
+    end
+  end
+
+  def interest_courses
+    # store selected 
+    packages = @student.program.interests
+    @selected_hash = selected_hash(packages)
+  end
+
+  def create_interest_courses
+    # if the program has interest course
+    if createpackage_params[:semester].nil?
+      redirect_to plan_student_path
+      return
+    end
+
+    # destroy all relationship for required course
+    packages = @student.program.interests
+    delete_all_package_courses(packages)
     
     # create relationship
     select_package_courses(createpackage_params)
     
     redirect_to plan_student_path
   end
-
+  
   def plan 
     @semesters = @student.semesters.order("semesters.id ASC").distinct
   end

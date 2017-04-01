@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     member do 
       get :required_courses
       post :create_required_courses
+      get :interest_courses
+      post :create_interest_courses
       get :plan
       delete :destroy_scs_ship
  #     get :addplancourse

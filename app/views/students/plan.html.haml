@@ -37,7 +37,7 @@
 %br 
 
 .center
-  .col-md-4.col-md-offset-4
-    = link_to "Back to package courses", required_courses_student_path, class: "btn btn-lg btn-primary"
+  = link_to "Back to package courses", required_courses_student_path(:no_create => 1), class: "btn btn-lg btn-primary"
+  = link_to "Back to interest courses", interest_courses_student_path, class: "btn btn-lg btn-primary"
 
 

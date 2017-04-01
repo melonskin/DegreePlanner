@@ -1,11 +1,10 @@
-= content_for(:title, "Course packages")
+= content_for(:title, "Interest courses")
 
 .center
-  %h1 As a #{@student.program.name} student, You need to pick courses from packages below.
-  = form_tag create_required_courses_student_path(@student) do
-    = hidden_field_tag "no_create", @no_create
-    - @student.program.packages.all.each do |package|
-      %h2 Pick #{package.no_required} from #{package.name} package:     
+  %h1 As a #{@student.program.name} student, You can pick some courses based on interest as below.
+  = form_tag create_interest_courses_student_path(@student) do
+    - @student.program.interests.all.each do |package|
+      %h2 Pick from #{package.name} interest package:     
       .row
         .col-md-8.col-md-offset-2
           %table.table
@@ -26,7 +25,7 @@
                 %td= check_box_tag "courses[#{course.id}]", package.id, checked = (@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id))
                 %td= select_tag "semester[#{course.id}]", options_for_select(['Fall','Spring','Summer'], ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:semester] : @student.semstart))
                 %td= select_tag "year[#{course.id}]",options_for_select(((@student.yearstart..@student.yearend).step(1)), ((@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id)) ? @selected_hash[package.id][course.id][:year] : @student.yearstart))
-               
+                
     .center
       .col-md-2.col-md-offset-5
         = submit_tag 'Save changes', class: "btn btn-lg btn-primary"
