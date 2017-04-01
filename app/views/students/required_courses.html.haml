@@ -19,7 +19,7 @@
             %tbody
             - package.courses.all.each do |course|
               %tr
-                %td= course.department+course.number.to_s+' '+course.name
+                %td= course.full_name
                 %td= course.credit
                 %td= course.offered_semester
                 %td= check_box_tag "courses[#{course.id}]", package.id, checked = (@selected_hash.has_key?(package.id) and @selected_hash[package.id].has_key?(course.id))

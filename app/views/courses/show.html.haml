@@ -1,6 +1,6 @@
 = content_for(:title, "Course details")
 
-%h1= @course.department + @course.number.to_s+' '+@course.name
+%h1= @course.full_name
 %h2 Description:
 %p= @course.description
 

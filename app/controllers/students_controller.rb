@@ -11,8 +11,6 @@ class StudentsController < ApplicationController
   end
 
   def show
-      # id = params[:id]
-      # @student = Student.find(id)
       @courses = @student.courses.all
   end
 
@@ -37,60 +35,25 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    # @student = Student.find params[:id]
+
   end
 
   def update
-    # @student = Student.find params[:id]
     @student.update_attributes!(student_params)
     flash[:notice] = "#{@student.firstname}'s profile was successfully updated."
     redirect_to student_path(@student)
   end
 
   def destroy
-    # @student = Student.find(params[:id])
     @student.destroy
     flash[:notice] = "#{@student.firstname}'s profile was deleted."
     redirect_to students_path
   end
 
   def required_courses
-    # debugger
     # store selected 
-    @selected_hash = {}
-    if params.has_key?(:courses)
-      courses_hash = Rack::Utils.parse_nested_query(params[:courses])
-      semester_hash = Rack::Utils.parse_nested_query(params[:semester])
-      year_hash = Rack::Utils.parse_nested_query(params[:year])
-      courses_hash.each do |course_id, package_id|
-        if not @selected_hash.has_key?(package_id.to_i)
-          @selected_hash[package_id.to_i]={}
-        end
-        @selected_hash[package_id.to_i][course_id.to_i] = {}
-        @selected_hash[package_id.to_i][course_id.to_i][:semester]= semester_hash[course_id.to_s]
-        @selected_hash[package_id.to_i][course_id.to_i][:year]= year_hash[course_id.to_s]
-      end
-
-    else
-
-      @student.program.packages.all.each do |package|
-        package.courses.all.each do |course|
-          if not StudentCourseSemestership.where(:student=>@student, :course=>course).blank?
-            if not @selected_hash.has_key?(package.id)
-              @selected_hash[package.id]={}
-            end
-            if not @selected_hash[package.id].has_key?(course.id)
-              @selected_hash[package.id][course.id] = {}
-            end
-            selected_semester = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
-            selected_year = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
-            @selected_hash[package.id][course.id][:semester] = selected_semester
-            @selected_hash[package.id][course.id][:year] = selected_year
-          end
-        end
-      end
-    end
-
+    packages = @student.program.packages
+    @selected_hash = selected_hash(packages)
   end
 
   def create_required_courses
@@ -104,18 +67,13 @@ class StudentsController < ApplicationController
       if createpackage_params[:courses].nil? or (not createpackage_params[:courses].has_value?(package.id.to_s))
         flash[:warning] = "Pick required courses from each package"
         # render "required_courses"
-
         redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
       end
     end
     package_dict = {}
     createpackage_params[:courses].each do |course_id, package_id|
-      if not package_dict.has_key?(package_id)
-        package_dict[package_id] = 1
-      else
-        package_dict[package_id] += 1
-      end
+      package_dict[package_id] = (not package_dict.has_key?(package_id)) ? 1 : package_dict[package_id]+1
     end
     # debugger
     package_dict.each do |package_id,no_picked|
@@ -128,24 +86,12 @@ class StudentsController < ApplicationController
     end
 
     # destroy all relationship for required course
-    @student.program.packages.each do |package|
-      package.courses.each do |course|
-        StudentCourseSemestership.where(:student=>@student, :course => course).destroy_all
-      end
-    end
-
+    packages = @student.program.packages
+    delete_all_package_courses(packages)
+    
     # create relationship
-    createpackage_params[:courses].each do |course_id, package_id|
-      term = createpackage_params[:semester][course_id.to_s]
-      year = createpackage_params[:year][course_id.to_s]
-      semester = Semester.find_by_term_and_year(term, year)
-      course = Course.find(course_id)
-      # add relationships
-      StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
-      # debugger
-    end
-      # debugger
-
+    select_package_courses(createpackage_params)
+    
     redirect_to plan_student_path
   end
 
@@ -166,7 +112,7 @@ class StudentsController < ApplicationController
   def destroy_scs_ship
     course = Course.find(params[:course])
     StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
-    flash[:notice] = "#{course.department+ course.number.to_s+" "+course.name} was deleted."
+    flash[:notice] = "#{course.full_name} was deleted."
     redirect_to plan_student_path
   end
 
@@ -180,6 +126,7 @@ class StudentsController < ApplicationController
 
   def createpackage_params
     createpackage_params = params
+    createpackage_params
   end
 
   def set_student
@@ -190,4 +137,56 @@ class StudentsController < ApplicationController
     end
   end
 
+# can use for both require courses and interest courses
+  def selected_hash(packages)
+    @selected_hash = {}
+    
+    if params.has_key?(:courses)
+      courses_hash = Rack::Utils.parse_nested_query(params[:courses])
+      semester_hash = Rack::Utils.parse_nested_query(params[:semester])
+      year_hash = Rack::Utils.parse_nested_query(params[:year])
+      courses_hash.each do |course_id, package_id|
+        @selected_hash[package_id.to_i]={} if not @selected_hash.has_key?(package_id.to_i)
+        @selected_hash[package_id.to_i][course_id.to_i] = {}
+        @selected_hash[package_id.to_i][course_id.to_i][:semester]= semester_hash[course_id.to_s]
+        @selected_hash[package_id.to_i][course_id.to_i][:year]= year_hash[course_id.to_s]
+      end
+
+    else
+
+      packages.all.each do |package|
+        package.courses.all.each do |course|
+          if not StudentCourseSemestership.where(:student=>@student, :course=>course).blank?
+            @selected_hash[package.id]={} if not @selected_hash.has_key?(package.id)
+            @selected_hash[package.id][course.id] = {} if not @selected_hash[package.id].has_key?(course.id)
+            selected_semester = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).term
+            selected_year = Semester.find(StudentCourseSemestership.where(:student=>@student, :course=>course).first.semester_id).year
+            @selected_hash[package.id][course.id][:semester] = selected_semester
+            @selected_hash[package.id][course.id][:year] = selected_year
+          end
+        end
+      end
+    end
+    @selected_hash
+  end
+  
+  def delete_all_package_courses(packages)
+    packages.each do |package|
+      package.courses.each do |course|
+        StudentCourseSemestership.where(:student=>@student, :course => course).destroy_all
+      end
+    end
+  end
+  
+  def select_package_courses(createpackage_params)
+      createpackage_params[:courses].each do |course_id, package_id|
+        term = createpackage_params[:semester][course_id.to_s]
+        year = createpackage_params[:year][course_id.to_s]
+        semester = Semester.find_by_term_and_year(term, year)
+        course = Course.find(course_id)
+        # add relationships
+        StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+    end
+  end
+  
 end
