@@ -44,4 +44,41 @@ class Course < ApplicationRecord
   def full_name
     "#{self.department}"+"#{self.number}"+" "+"#{self.name}"
   end
+  
+  def average_gpa
+    no_stu = 0
+    gpa_total = 0
+    self.coursesections.each do |section|
+      no_stu += section.student 
+      gpa_total += section.gpa*section.student
+    end
+    gpa = gpa_total/no_stu
+    gpa.round(2)
+  end
+  
+  def average_a
+    no_stu = 0
+    a_total = 0
+    self.coursesections.each do |section|
+      no_stu += section.student 
+      a_total += section.a.to_f*section.student
+    end
+    a = a_total/no_stu
+    a.round(2).to_s + "%"
+  end
+  
+  def average_b
+    no_stu = 0
+    b_total = 0
+    self.coursesections.each do |section|
+      no_stu += section.student 
+      b_total += section.b.to_f*section.student
+    end
+    b = b_total/no_stu
+    b.round(2).to_s + "%"
+  end
+  
+  def popup_display
+    popup = "GPA: " + self.average_gpa.to_s + "\n" +"A: " + self.average_a + "\n" + "B: " + self.average_b + "\n" + self.offered_semester
+  end
 end

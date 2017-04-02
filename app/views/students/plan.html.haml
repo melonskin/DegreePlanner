@@ -14,7 +14,8 @@
           - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
             - course = Course.find(scs.course_id.to_i)
             %tr
-              %td= course.full_name
+              %td
+                %div{:title => "#{course.popup_display}"} #{course.full_name}
               %td= course.credit
               %td= link_to "More about", course_path(course), class: "btn btn-primary"
               %td= button_to 'Delete', destroy_scs_ship_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
