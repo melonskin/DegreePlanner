@@ -110,7 +110,7 @@ class StudentsController < ApplicationController
 
   def create_interest_courses
     # if the program has interest course
-    if createpackage_params[:semester].nil?
+    if createpackage_params[:courses].nil?
       redirect_to plan_student_path
       return
     end

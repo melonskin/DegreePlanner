@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 20170401212609) do
     t.datetime "updated_at", null: false
     t.string   "is_f1"
     t.integer  "user_id"
-    t.string   "yearstart"
-    t.string   "yearend"
+    t.integer  "yearstart"
+    t.integer  "yearend"
     t.string   "semstart"
     t.string   "semend"
   end
