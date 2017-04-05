@@ -11,6 +11,9 @@
   %br
   %br
   - if current_student and current_student.courses.first.nil?
-    = link_to "Create degree plan", required_courses_student_path(current_student), class: "btn btn-lg btn-primary"
+    - if not current_student.program.packages.first.nil?
+      = link_to "Create degree plan", required_courses_student_path(current_student), class: "btn btn-lg btn-primary"
+    - else
+      = link_to "Create degree plan", interest_courses_student_path(current_student), class: "btn btn-lg btn-primary"
   - elsif current_student
     = link_to "View degree plan", plan_student_path(current_student), class: "btn btn-lg btn-primary"
