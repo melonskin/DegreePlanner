@@ -139,7 +139,9 @@ class StudentsController < ApplicationController
       StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
       redirect_to plan_student_path
     else
-      flash[:warning] = 'Please delete the previous selection for this course first.'
+      StudentCourseSemestership.where(:student=>@student, :course=>course).destroy_all
+      StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+      flash[:warning] = 'Previous selection of this course has been deleted.'
       redirect_to plan_student_path
     end
   end
