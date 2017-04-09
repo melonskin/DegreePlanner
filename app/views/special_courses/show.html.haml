@@ -1,0 +1,8 @@
+= content_for(:title, "Course details")
+
+%h1= @course.full_name
+%h2 Description:
+%p= @course.description
+
+.center
+  = link_to 'Back to degree plan', plan_student_path(current_student), class: "btn btn-lg btn-primary"

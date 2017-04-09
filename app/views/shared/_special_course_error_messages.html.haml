@@ -1,0 +1,6 @@
+- if @student_special_course_semestership.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      %ul
+        - @student_special_course_semestership.errors.full_messages.each do |msg|
+          %li= msg

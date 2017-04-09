@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'special_courses/show'
+
   get 'courses/show'
 
   get 'course/show'
@@ -26,10 +28,14 @@ Rails.application.routes.draw do
       post :create_interest_courses
       get :plan
       delete :destroy_scs_ship
+      delete :destroy_sscs_ship
+      
  #     get :addplancourse
       post :add_plan_courses
+      post :add_special_courses
     end
   end
  
  resources :courses 
+ resources :special_courses
 end

@@ -138,10 +138,35 @@ class StudentsController < ApplicationController
     StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
     redirect_to plan_student_path
   end
-
+  
+  def add_special_courses
+    # create special course relationship
+    department = params[:course][0, 4]
+    number = params[:course][4, 3].to_i
+    course = SpecialCourse.find_by_department_and_number(department, number)
+    term = params[:semester]
+    year = params[:year]
+    semester = Semester.find_by_term_and_year(term, year)
+    credit = params[:credit]
+    student = Student.find_by_id(params[:id])
+    StudentSpecialCourseSemestership.create(:student => student, :special_course => course, :semester => semester, :credit => credit)
+    redirect_to plan_student_path
+  end
+  
   def destroy_scs_ship
     course = Course.find(params[:course])
     StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
+    flash[:notice] = "#{course.full_name} was deleted."
+    redirect_to plan_student_path
+  end
+  
+  def destroy_sscs_ship
+    department = params[:course][0, 4]
+    number = params[:course][4, 3].to_i
+    student = Student.find_by_id(params[:id])
+    course = SpecialCourse.find(params[:course])
+    semester = params[:semester]
+    StudentSpecialCourseSemestership.where(:student => student, :special_course => course, :semester => semester).destroy_all
     flash[:notice] = "#{course.full_name} was deleted."
     redirect_to plan_student_path
   end
