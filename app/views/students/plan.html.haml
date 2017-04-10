@@ -5,11 +5,13 @@
   %h2 Semester #{semester.term} #{semester.year}    
   .row
     .col-md-6.col-md-offset-3
-      %table.table
+      %table.table{:border => 1 }
         %thead
           %tr
             %th Course
             %th Credit
+            %th Additional Information
+            %th Delete?
         %tbody
           - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
             - course = Course.find(scs.course_id.to_i)
