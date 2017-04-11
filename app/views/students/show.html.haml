@@ -1,8 +1,7 @@
 = content_for(:title, @student.firstname+" profile")
 
-%table.table
-%h2 Details about #{@student.firstname}
-
+%h1 Profile information about #{@student.firstname} #{@student.lastname}
+%br
 .row
   .col-md-5.col-md-offset-4
     %table.table
@@ -28,11 +27,12 @@
         %th First Semester:
         %td= @student.semstart
       %tr
-        %th Expected Graduation year:
+        %th Expected Graduation Year:
         %td= @student.yearend
       %tr
         %th Expected Graduation Semester:
         %td= @student.semend
+%br
 .center
-  = link_to 'Edit', edit_student_path(@student), class: "btn btn-lg btn-primary"
+  = link_to 'Edit Profile', edit_student_path(@student), class: "btn btn-lg btn-primary"
   = link_to 'Back to home', user_path(current_user), class: "btn btn-lg btn-primary"

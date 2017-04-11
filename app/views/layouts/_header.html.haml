@@ -19,7 +19,6 @@
               %li= link_to "Profile", current_user
               - if current_student
                 %li= link_to "Student info", student_path(current_student)
-              %li= link_to "Settings", '#'
               %li.divider
               %li
                 = link_to "Log out", logout_path, method: "delete"
