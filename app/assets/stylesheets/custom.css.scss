@@ -46,12 +46,13 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.6em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
   font-weight: normal;
   color: $gray-light;
+  text-align: center;
 }
 /*only for welcome*/
 h10 {
@@ -64,6 +65,21 @@ h10 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+table {
+  margin: 2px solid black;
+  }
+
+table th, td{
+  border: 1px solid black;
+  text-align: left;
+}
+
+table th {
+  background-color: $gray-lighter;
+  color: Black;
+  border: 1px solid black;
 }
 
 /* header */
