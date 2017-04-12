@@ -113,7 +113,7 @@ Scenario: successfully select mandatory courses
     And  I select "Spring" from "semester_8"
     And  I select "2017" from "year_8"
     And  I press "Save changes"
-    Then I should be on the student_plan page for "Lilei"
+    Then I should be on the InterestCourses page for "Lilei"
    
     
     
@@ -140,6 +140,8 @@ Scenario: fail to select mandatory courses due to less selected courses
     Then "Fall" should be selected for "semester_1"
     Then "Spring" should be selected for "semester_4"
     Then "2018" should be selected for "year_4"    
+    
+    
 Scenario: fail to select mandatory courses due to less selected packages
     ##############################################
     #add snippet in order to have student profile
@@ -180,6 +182,8 @@ Scenario: go plan page and go back, selected courses should be checked
     And  I check "courses_8"
     And  I select "Spring" from "semester_8"
     And  I select "2017" from "year_8"
+    And  I press "Save changes"
+    Then I should be on the InterestCourses page for "Lilei"
     And  I press "Save changes"
     Then I should be on the student_plan page for "Lilei"
     And I follow "Back to package courses"
