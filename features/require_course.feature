@@ -123,6 +123,7 @@ Scenario: fail to select mandatory courses due to less selected courses
     #TODO: add student profile in background
 
     And  I follow "Create degree plan"
+  
     And  I check "courses_1"
     And  I select "Fall" from "semester_1"
     And  I select "2017" from "year_1"

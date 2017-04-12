@@ -156,7 +156,7 @@ class StudentsController < ApplicationController
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
     student = Student.find_by_id(params[:id])
-    StudentSpecialCourseSemestership.create(:student => student, :special_course => course, :semester => semester, :credit => credit)
+    StudentSpecialCourseSemestership.create!(:student => student, :special_course => course, :semester => semester, :credit => credit)
     redirect_to plan_student_path
   end
   
