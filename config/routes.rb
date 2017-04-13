@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # get 'static_pages/home'
   root 'static_pages#home'
   get 'about'   => 'static_pages#about'
+  get 'help'   => 'static_pages#help'
+  get 'contact'   => 'static_pages#contact'
 
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'

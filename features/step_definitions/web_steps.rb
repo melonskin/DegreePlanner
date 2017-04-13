@@ -313,9 +313,30 @@ Given(/^the following Semester exist:$/) do |table|
   end
 end
 
+Given(/^the following Coursesection exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |coursec|
+    Coursesection.create(department: coursec[:department], number: coursec[:number], section: coursec[:section], instructor: coursec[:instructor], term: coursec[:term], year: coursec[:year], gpa: coursec[:gpa], student: coursec [:student], a: coursec[:a], b: coursec[:b], c: coursec[:c], d: coursec[:d], f: coursec[:f], q: coursec[:q], course_id: coursec[:course_id])
+  end
+end
+
 Given(/^the following PackageCourseship exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |paco|
     PackageCourseship.create(course_id: paco[:course_id], package_id: paco[:package_id])
+  end
+end
+
+Given(/^the following Interest exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |inte|
+    Interest.create(name: inte[:name], program_id: inte[:program_id])
+  end
+end
+
+Given(/^the following InterestCourseship exist:$/) do |table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  table.hashes.each do |coshi|
+    InterestCourseship.create(course_id: coshi[:course_id], interest_id: coshi[:interest_id])
   end
 end

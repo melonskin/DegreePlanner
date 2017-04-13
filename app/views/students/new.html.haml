@@ -34,4 +34,4 @@
       = label :student, :semend, 'Expected Graduation Semester'
       = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
 
-      = submit_tag 'Save changes'
+      = submit_tag 'Save changes', class: "btn btn-lg btn-primary"

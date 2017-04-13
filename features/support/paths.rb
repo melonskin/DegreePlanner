@@ -34,6 +34,9 @@ module NavigationHelpers
     when /^the student_plan page for "([^"]*)"$/
       plan_student_path(Student.find_by_user_id(User.find_by_name($1))) 
       
+    when /^the InterestCourses page for "([^"]*)"$/
+      interest_courses_student_path(Student.find_by_user_id(User.find_by_name($1))) 
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

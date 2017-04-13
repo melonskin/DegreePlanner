@@ -1,9 +1,9 @@
 = content_for(:title, "Home")
 
 .center.jumbotron
-  %h1 Welcome to the Degree Planner
+  = link_to image_tag("tamulogo.png", size: "200x200", alt: "Rails logo",:class=>"middle_pic"), 'http://tamu.edu'
+  %h10 Welcome to the Degree Planner
   %h2
     This is a project for the
     %a{:href => "http://courses.cse.tamu.edu/walker/csce606/"} Software Engineering Course
   = link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary"
-= link_to image_tag("tamulogo.png", size: "100x100", alt: "Rails logo",:class=>"middle_pic"), 'http://tamu.edu' 

@@ -5,9 +5,10 @@ class StudentSpecialCourseSemestership < ApplicationRecord
     
     before_save
 <<<<<<< HEAD
+    # validates :special_course, uniqueness:{ scope: :semester, message: "should happen once per semester" }
+=======
     validates :special_course, uniqueness: { scope: :semester, message: "should happen once per semester" }
     validates :credit, presence:true
-=======
-    # validates :special_course, uniqueness:{ scope: :semester, message: "should happen once per semester" }
->>>>>>> d3c31c500827cb2f2b84b7cc1a765ad9534cd6e6
+
+>>>>>>> bae680bc7819f803f99b21099bec0739f15a0e9a
 end
