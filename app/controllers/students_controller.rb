@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
-  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
-  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses]
+  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
+  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
+  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
 
 
   # rewrite autocomplete function
@@ -156,8 +156,7 @@ class StudentsController < ApplicationController
     year = params[:year]
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
-    student = Student.find_by_id(params[:id])
-    StudentSpecialCourseSemestership.create(:student => student, :special_course => course, :semester => semester, :credit => credit)
+    StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
     redirect_to plan_student_path
   end
   
@@ -171,10 +170,9 @@ class StudentsController < ApplicationController
   def destroy_sscs_ship
     department = params[:course][0, 4]
     number = params[:course][4, 3].to_i
-    student = Student.find_by_id(params[:id])
     course = SpecialCourse.find(params[:course])
     semester = params[:semester]
-    StudentSpecialCourseSemestership.where(:student => student, :special_course => course, :semester => semester).destroy_all
+    StudentSpecialCourseSemestership.where(:student => @student, :special_course => course, :semester => semester).destroy_all
     flash[:notice] = "#{course.full_name} was deleted."
     redirect_to plan_student_path
   end
