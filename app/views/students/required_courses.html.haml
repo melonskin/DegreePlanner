@@ -1,7 +1,9 @@
 = content_for(:title, "Course packages")
 
 .center
-  %h1 As a #{@student.program.name} student, you need to pick courses from the requiredpackages below.
+  %h1 Pick Required Classes
+  %br
+  %p As a #{@student.program.name} student, you need to pick courses from the required class packages below:
   = form_tag create_required_courses_student_path(@student) do
     = hidden_field_tag "no_create", @no_create
     - @student.program.packages.all.each do |package|

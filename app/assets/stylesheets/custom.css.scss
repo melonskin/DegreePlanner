@@ -54,6 +54,20 @@ h2 {
   color: $gray-light;
   text-align: center;
 }
+/*only for welcome*/
+h10 {
+  font-size: 2em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+/*reserved*/
+h11 {
+  font-size: 1.8em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: left;
+}
 
 p {
   font-size: 1.1em;
@@ -61,6 +75,7 @@ p {
 }
 
 table {
+  border: 2px solid black;
   margin: 2px solid black;
   }
 
@@ -70,7 +85,7 @@ table th, td{
 }
 
 table th {
-  background-color: $gray-lighter;
+  background-color: #ddd;
   color: Black;
   border: 1px solid black;
 }

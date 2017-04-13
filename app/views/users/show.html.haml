@@ -1,12 +1,14 @@
 = content_for(:title, "User details")
 .center
-  %h1= @user.name  
-  %br
-  %h2= @user.email  
+  %h10= "Welcome " + @user.name  
   %br
   - if current_student
+    %h2= "You can view your profile information."
+    %br
     = link_to "View your information", student_path(current_student), class: "btn btn-lg btn-primary"
   - else
+    %h2= "You need first complete your profile information."
+    %br
     = link_to "Fill in your information", new_student_path, class: "btn btn-lg btn-primary"
   %br
   %br

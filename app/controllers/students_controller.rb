@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
     student_params_all[:user_id] = current_user[:id]
     @student = Student.new(student_params_all)
     if @student.save
-      flash[:notice] = "#{@student.firstname}'s profile was successfully created."
+      flash[:success] = "#{@student.firstname}'s profile was successfully created."
       redirect_to student_path(@student)
     else
       render 'new'
@@ -40,13 +40,13 @@ class StudentsController < ApplicationController
 
   def update
     @student.update_attributes!(student_params)
-    flash[:notice] = "#{@student.firstname}'s profile was successfully updated."
+    flash[:success] = "#{@student.firstname}'s profile was successfully updated."
     redirect_to student_path(@student)
   end
 
   def destroy
     @student.destroy
-    flash[:notice] = "#{@student.firstname}'s profile was deleted."
+    flash[:success] = "#{@student.firstname}'s profile was deleted."
     redirect_to students_path
   end
 
@@ -164,6 +164,7 @@ class StudentsController < ApplicationController
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
     StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
+
     redirect_to plan_student_path
   end
   
