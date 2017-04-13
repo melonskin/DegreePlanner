@@ -1,7 +1,11 @@
 = content_for(:title, "Interest courses")
 
 .center
-  %h1 As a #{@student.program.name} student, you can pick some courses based on interest as below.
+  %h1 Pick Elective Classes
+  %br
+  %p As a #{@student.program.name} student, you can pick some courses based on your interests.
+  %p Please pick from the following interest packages.
+  %br
   = form_tag create_interest_courses_student_path(@student) do
     - @student.program.interests.all.each do |package|
       %h2 Pick from #{package.name} interest package:     
