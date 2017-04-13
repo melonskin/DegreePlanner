@@ -6,4 +6,5 @@ class StudentSpecialCourseSemestership < ApplicationRecord
     before_save
     validates :special_course, uniqueness: { scope: :semester, message: "should happen once per semester" }
     validates :credit, presence:true
+
 end

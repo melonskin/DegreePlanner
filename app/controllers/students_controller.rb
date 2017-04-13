@@ -143,8 +143,15 @@ class StudentsController < ApplicationController
     term = params[:semester]
     year = params[:year]
     semester = Semester.find_by_term_and_year(term, year)
-    StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
-    redirect_to plan_student_path
+    if StudentCourseSemestership.where(:student=>@student, :course=>course).first.blank?
+      StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+      redirect_to plan_student_path
+    else
+      StudentCourseSemestership.where(:student=>@student, :course=>course).destroy_all
+      StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+      flash[:warning] = 'Previous selection of this course has been deleted.'
+      redirect_to plan_student_path
+    end
   end
   
   def add_special_courses
