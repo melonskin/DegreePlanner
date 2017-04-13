@@ -126,7 +126,15 @@ class StudentsController < ApplicationController
   end
   
   def plan 
-    @semesters = @student.semesters.order("semesters.id ASC").distinct
+    ss_id = []
+    StudentSpecialCourseSemestership.where(:student_id => params[:id]).each do |s|
+      ss_id.push(s[:semester_id])
+    end
+    s_id = []
+    @student.semesters.each do |s| s_id.push(s.id) end
+    # semesters_id = special_semesters + semesters_id
+    list = ss_id | s_id
+    @semesters = Semester.where(:id => list).order('id').distinct
   end
 
   def add_plan_courses
