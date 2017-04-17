@@ -45,6 +45,14 @@ class Course < ApplicationRecord
     "#{self.department}"+"#{self.number}"+" "+"#{self.name}"
   end
   
+  def no_student
+    no_stu = 0
+    self.coursesections.each do |section|
+      no_stu += section.student 
+    end
+    no_stu
+  end
+  
   def average_gpa
     no_stu = 0
     gpa_total = 0
@@ -79,6 +87,10 @@ class Course < ApplicationRecord
   end
   
   def popup_display
-    popup = "GPA: " + self.average_gpa.to_s + "\n" +"A: " + self.average_a + "\n" + "B: " + self.average_b + "\n" + self.offered_semester
+    if self.no_student != 0
+      popup = "GPA: " + self.average_gpa.to_s + "\n" +"A: " + self.average_a + "\n" + "B: " + self.average_b + "\n" + self.offered_semester
+    else
+      popup = "NULL"
+    end
   end
 end
