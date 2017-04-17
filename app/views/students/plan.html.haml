@@ -38,8 +38,8 @@
     %table.table
     = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
       = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
-      = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
-      = select_tag "year", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+      = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
+      = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
       = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
       = submit_tag "Add special course", class: "btn btn-lg btn-primary"
     %br
@@ -50,8 +50,8 @@
     = form_tag(add_plan_courses_student_path(@student), :method => "post", id: "search-form") do
       = hidden_field_tag :course_id, '', :id => "my_course_id"
       = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course ID or name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
-      = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
-      = select_tag "yearsc",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+      = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
+      = select_tag "year",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
       = submit_tag "Add other elective course", class: "btn btn-lg btn-primary"
 
     %script{:charset => "utf-8", :type => "text/javascript"}
