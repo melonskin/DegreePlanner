@@ -34,7 +34,7 @@ Scenario: successful login
     And  I fill in "Password" with "123456"
     And I press "Log in"
     Then I should be on the user page for "Lilei"
-    And I should see "Lilei lilei@tamu.edu"
+    And I should see "Welcome Lilei"
     
 Scenario: fail to login
     Given I am on the login page
