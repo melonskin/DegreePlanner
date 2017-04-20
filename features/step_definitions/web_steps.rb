@@ -340,3 +340,9 @@ Given(/^the following InterestCourseship exist:$/) do |table|
     InterestCourseship.create(course_id: coshi[:course_id], interest_id: coshi[:interest_id])
   end
 end
+
+Given(/^the following SpecialCourse exist:$/) do |table|
+  table.hashes.each do |speccrs|
+      SpecialCourse.create(department: speccrs[:department], number: speccrs[:number], name: speccrs[:name], description: speccrs[:description], is_fall: speccrs[:is_fall], is_spring: speccrs[:is_spring], is_summer: speccrs[:is_summer])
+   end
+end

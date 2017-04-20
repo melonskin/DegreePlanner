@@ -152,12 +152,11 @@ class StudentsController < ApplicationController
     department = params[:course][0, 4]
     number = params[:course][4, 3].to_i
     course = SpecialCourse.find_by_department_and_number(department, number)
-    term = params[:semester]
-    year = params[:year]
+    term = params[:semestersc]
+    year = params[:yearsc]
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
-    StudentSpecialCourseSemestership.create!(:student => @student, :special_course => course, :semester => semester, :credit => credit)
-    redirect_to plan_student_path
+    StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
   end
   
   def destroy_scs_ship

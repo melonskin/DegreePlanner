@@ -36,7 +36,7 @@ Scenario: able to see personal profile as a comeback user
     And I should see "Program: 	Master of Computer Science"
     And I should see "Beginning year:	2017"
     And I should see "First Semester:	Spring"
-    And I should see "Expected Graduation year:	2019"
+    And I should see "Expected Graduation Year:	2019"
     And I should see "Expected Graduation Semester:	Spring"
     
 Scenario: able to edit the personal profile
