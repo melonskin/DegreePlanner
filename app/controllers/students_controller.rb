@@ -1,9 +1,11 @@
 class StudentsController < ApplicationController
+  include StudentsHelper
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
-  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
-  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
-  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship]
+  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
+  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
+  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
 
+  @@semesters = nil
 
   # rewrite autocomplete function
   def get_autocomplete_items(params)   
@@ -125,7 +127,7 @@ class StudentsController < ApplicationController
     redirect_to plan_student_path
   end
   
-  def plan 
+  def plan
     ss_id = []
     StudentSpecialCourseSemestership.where(:student_id => params[:id]).each do |s|
       ss_id.push(s[:semester_id])
@@ -135,6 +137,7 @@ class StudentsController < ApplicationController
     # semesters_id = special_semesters + semesters_id
     list = ss_id | s_id
     @semesters = Semester.where(:id => list).order('id').distinct
+    @@semesters = @semesters
   end
 
   def add_plan_courses
@@ -157,6 +160,7 @@ class StudentsController < ApplicationController
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
     StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
+    validation
     redirect_to plan_student_path  
   end
   
@@ -251,8 +255,16 @@ class StudentsController < ApplicationController
   end
   
   def validation
-    
+    if !f1_valid?
+      flash[:warning] = "warning!"
+    else
+      flash[:notice] = "good!"
+    end
+    if csce_valid?
+      flash[:notice] = "good!"
+    else
+      flash[:warning] = "bad!"
+    end
   end
-  
   
 end
