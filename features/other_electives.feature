@@ -43,7 +43,7 @@ Background: users in database
       |CSCE |655 |Human-Centered Computing |3 |A foundation course in human centered systems... |true |true |true |
       |CSCE |627 |Theory of Computability |3 | Formal models of computation such as pushdown... |true |true |true |
       |CSCE |629 |Analysis of Algorithms |3 | Concrete algorithm design and analysis; abs... |true |true |true |
-      |ECEN |600 |Experimental Optics | 3 | test of ECEN course |true |true |true |
+      |ECEN |600 |Experimental Optics | 3 | test of ECEN course... |true |true |true |
     
     Given the following Coursesection exist:
       | department | number | section | instructor | term | year | gpa | student | a | b | c | d | f | q | course_id |
@@ -59,6 +59,7 @@ Background: users in database
       |CSCE |655 | 600 | Jiang A | Fall | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 10 |
       |CSCE |627 | 600 | Jiang A | Spring | 2016 | 3.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 11 |
       |CSCE |629 | 600 | Jiang A | Spring | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
+      |ECEN |600 | 600 | Example Teacher | Fall | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
       
     Given the following Package exist:
       |name |no_required |program_id |
@@ -135,7 +136,7 @@ Background: users in database
         And  I select "2018" from "year_9"
         And  I press "Save changes"
         Then I should be on the student_plan page for "TestUserThree"
-        And I fill in "search" with "ECEC 600"
+        And I fill in "search" with "ECEN 600 Experimental Optics"
         And I select "Fall" from "semester"
         And I select "2017" from "year"
         And  I press "Add other elective course"
