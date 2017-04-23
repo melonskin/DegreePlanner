@@ -24,7 +24,7 @@ Scenario: successful signup
     And  I fill in "Comfirmation" with "123456"
     And I press "Create my account"
     Then I should be on the user page for "Student"
-    And I should see "Howdy, welcome to the Degree Planner!"
+    And I should see "Welcome"
 
 Scenario: fail to signup because of lack of name
     Given I am on the signup page
