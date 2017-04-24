@@ -19,13 +19,13 @@
 #### Student
 
 
-|firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-|Johana  |Rueda |FALSE |1 |1 |2017 |Spring |2019 |Spring |
-|Yining |Bao |TRUE |2 |2 |2017 |Fall |2019 |Fall |
-|Andres |Gonzalez |TRUE |3 |3 |2018 |Spring |2019 |Fall |
-|Shijin |Tang |TRUE |4 |4 |2018 |Fall |2020 |Fall |
-|Jingjia |Li |FALSE |1 |5 |2019 |Spring |2022 |Spring |
+|firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |has_prior_master |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+|Johana  |Rueda |FALSE |1 |1 |2017 |Spring |2019 |Spring |FALSE |
+|Yining |Bao |TRUE |2 |2 |2017 |Fall |2019 |Fall |FALSE |
+|Andres |Gonzalez |TRUE |3 |3 |2018 |Spring |2019 |Fall |FALSE |
+|Shijin |Tang |TRUE |4 |4 |2018 |Fall |2020 |Fall |FALSE |
+|Jingjia |Li |FALSE |1 |5 |2019 |Spring |2022 |Spring |FALSE |
 
 
 #### Program
