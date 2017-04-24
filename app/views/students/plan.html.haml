@@ -37,17 +37,6 @@
               %td= button_to 'Delete', destroy_sscs_ship_student_path(@student), :method => :delete, :params => { :course => course, :semester => semester} , class: "btn btn-primary"
 .row
   .col-md-4.col-md-offset-4
-    %h2 Pick Special Courses
-    %table.table
-    = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
-      = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
-      = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
-      = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
-      = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
-      = submit_tag "Add special course", class: "btn btn-lg btn-primary"
-    %br
-.row
-  .col-md-4.col-md-offset-4
     %h2 Pick other Electives
     %table.table
     = form_tag(add_plan_courses_student_path(@student), :method => "post", id: "search-form") do
@@ -63,6 +52,18 @@
       $('#search-form').submit()
       });
 %br 
+.row
+  .col-md-4.col-md-offset-4
+    %h2 Pick Special Courses
+    %table.table
+    = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
+      = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
+      = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
+      = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+      = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
+      = submit_tag "Add special course", class: "btn btn-lg btn-primary"
+    %br
+
 
 .center
   - if not @student.program.packages.first.nil?

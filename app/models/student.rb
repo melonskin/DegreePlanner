@@ -9,7 +9,7 @@ class Student < ApplicationRecord
     # has_many :semesters, :through => :student_special_course_semesterships
 
     belongs_to :program
-    validates_presence_of :firstname, :lastname, :is_f1, :program_id, :yearstart, :semstart, :yearend, :semend, :user_id
+    validates_presence_of :firstname, :lastname, :is_f1, :has_prior_master, :program_id, :yearstart, :semstart, :yearend, :semend, :user_id
 
     belongs_to :user
     before_save
@@ -59,7 +59,7 @@ class Student < ApplicationRecord
             if hour_min == hour_max
                 msg = "#{msg} hours: #{sc_hour}/#{hour_min}"
             else
-                msg = "#{msg} hours: #{sc_hour}/(#{hour_min} to #{hour_max})"
+                msg = "#{msg} hours: #{sc_hour}/(#{hour_min}-#{hour_max})"
             end
             self.errors.add(:base, msg)
             return nil
@@ -154,7 +154,12 @@ class Student < ApplicationRecord
 
     def total_valid(special_hour,ug_hour,dep_hour,joint_hour,non_dep_hour)
         hour = special_hour.to_i + ug_hour.to_i + dep_hour.to_i + joint_hour.to_i + non_dep_hour.to_i
-        if hour < self.program.total_hour
+        if self.program.total_hour_prior != 0 and self.has_prior_master.downcase == "true"
+            total_hour = self.program.total_hour_prior
+        else
+            total_hour = self.program.total_hour
+        end
+        if hour < total_hour
             msg = "Total course hours: #{hour}/#{self.program.total_hour}"
             self.errors.add(:base,msg)
             return nil
@@ -194,17 +199,93 @@ class Student < ApplicationRecord
         
     end
 
+    
+    def semester_max_valid
+        ss_id = []
+        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
+          ss_id.push(s[:semester_id])
+        end
+        s_id = []
+        self.semesters.each do |s| s_id.push(s.id) end
+        list = ss_id | s_id
+        semesters = Semester.where(:id => list).order('id').distinct 
+        flag = 0
+        
+        semesters.each do |semester|
+            credit = 0
+            StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
+                course = Course.find(scs.course_id.to_i)
+                credit += course.credit
+            end
+            StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
+                credit += sscs.credit
+            end
+            if (credit > 15)
+                msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (exceed limit)"
+                self.errors.add(:base,msg)
+                flag = 1
+            end
+        end
+        if flag == 1
+            return nil
+        end
+        return true
+    end
+    
+    def semester_f1_valid
+        if self.is_f1 == "false"
+            return true
+        end
+        ss_id = []
+        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
+          ss_id.push(s[:semester_id])
+        end
+        s_id = []
+        self.semesters.each do |s| s_id.push(s.id) end
+        list = ss_id | s_id
+        semesters = Semester.where(:id => list).order('id').distinct 
+        sem_count = semesters.count
+        sem_no = 0
+        flag = 0
+        semesters.each do |semester|
+            sem_no += 1
+            credit = 0
+            StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
+                course = Course.find(scs.course_id.to_i)
+                credit += course.credit
+            end
+            StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
+                credit += sscs.credit
+            end
+            if (credit < 9) and (sem_no != sem_count)
+                msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
+                self.errors.add(:base,msg)
+                flag = 1
+            end
+        end
+        if flag == 1
+            return nil
+        end
+        return true
+    end
+    
     def all_valid?
         special_hour = self.special_all_valid()
         ug_hour = self.ug_course_valid()
         non_dep_hour = self.non_dep_valid()
         joint_hour = self.joint_dep_valid()
         dep_hour = self.dep_valid()
+        semester_f1_ok = self.semester_f1_valid()
+        semester_max_ok = self.semester_max_valid()
         package_ok = self.package_valid()
         elective_ok = self.elective_valid(dep_hour,joint_hour,non_dep_hour)
         graded_ok = self.graded_valid(dep_hour,joint_hour,non_dep_hour)
         total_ok = self.total_valid(special_hour,ug_hour,dep_hour,joint_hour,non_dep_hour)
-        if not (package_ok.nil? or special_hour.nil? or ug_hour.nil? or non_dep_hour.nil? or joint_hour.nil? or dep_hour.nil? or elective_ok.nil? or graded_ok.nil? or total_ok.nil? )
+
+        if not (package_ok.nil? or special_hour.nil? or ug_hour.nil? or 
+            non_dep_hour.nil? or joint_hour.nil? or dep_hour.nil? or 
+            elective_ok.nil? or graded_ok.nil? or total_ok.nil? or 
+            semester_f1_ok.nil? or semester_max_ok.nil?)
             return true
         end
     end
