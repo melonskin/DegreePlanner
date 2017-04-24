@@ -135,6 +135,9 @@ class StudentsController < ApplicationController
     # semesters_id = special_semesters + semesters_id
     list = ss_id | s_id
     @semesters = Semester.where(:id => list).order('id').distinct
+    if @student.all_valid?
+      flash[:notice] = "Your degree plan is valid."
+    end
   end
 
   def add_plan_courses
