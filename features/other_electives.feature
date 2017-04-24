@@ -1,19 +1,17 @@
-Feature: Add a special_courses
+Feature: Add a nonCSCE_courses
     As a new student and user of the degree planner
-    I must be able to select special courses after selecting the interest courses and the required course
+    I must be able to select nonCSCE_courses
     
 Background: users in database
     Given the following User exist:
       | name | email | password |
-      | TestUserOne | TestUserOne@tamu.edu|123456|
-      | TestUserTwo | TestUserTwo@tamu.edu|123456|
+      | TestUserThree | TestUserThree@tamu.edu|123456|
     Given the following Program exist:
       |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
       |Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
     Given the following Student exist:
       |firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |
-      | TestUserOne |LastNameOne | FALSE |1 |1 |2017 |Spring |2018 | Fall |
-      | TestUserTwo |LastNameTwo |FALSE |1 |2 |2017 |Spring |2018 |Fall |
+      | TestUserThree |LastNameThree | FALSE |1 |1 |2017 |Spring |2018 | Fall |
     Given the following Semester exist:
       |term |year |
       |Spring |2017 |
@@ -45,6 +43,7 @@ Background: users in database
       |CSCE |655 |Human-Centered Computing |3 |A foundation course in human centered systems... |true |true |true |
       |CSCE |627 |Theory of Computability |3 | Formal models of computation such as pushdown... |true |true |true |
       |CSCE |629 |Analysis of Algorithms |3 | Concrete algorithm design and analysis; abs... |true |true |true |
+      |ECEN |600 |Experimental Optics | 3 | test of ECEN course |true |true |true |
     
     Given the following Coursesection exist:
       | department | number | section | instructor | term | year | gpa | student | a | b | c | d | f | q | course_id |
@@ -104,10 +103,10 @@ Background: users in database
       | 9 | 1 |
       
     Given I am on the login page
-        And  I fill in "Email" with "TestUserOne@tamu.edu"
+        And  I fill in "Email" with "TestUserThree@tamu.edu"
         And  I fill in "Password" with "123456"
         And I press "Log in"
-        Then I should be on the user page for "TestUserOne"
+        Then I should be on the user page for "TestUserThree"
     
     Scenario: successfully select graduate seminar
         And  I follow "Create degree plan"
@@ -121,7 +120,7 @@ Background: users in database
         And  I select "Spring" from "semester_11"
         And  I select "2017" from "year_11"
         And  I press "Save changes"
-        Then I should be on the InterestCourses page for "TestUserOne"
+        Then I should be on the InterestCourses page for "TestUserThree"
         And I check "courses_2"
         And I select "Fall" from "semester_2"
         And  I select "2017" from "year_2"
@@ -135,11 +134,10 @@ Background: users in database
         And I select "Spring" from "semester_9"
         And  I select "2018" from "year_9"
         And  I press "Save changes"
-        Then I should be on the student_plan page for "TestUserOne"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Fall" from "semestersc"
-        And I select "2017" from "yearsc"
-        And I fill in "credit" with "1"
-        And  I press "Add special course"
-        Then I should see "CSCE681 Seminar"
+        Then I should be on the student_plan page for "TestUserThree"
+        And I fill in "search" with "ECEC 600"
+        And I select "Fall" from "semester"
+        And I select "2017" from "year"
+        And  I press "Add other elective course"
+        Then I should see "ECEN 600 Experimental Optics"
         

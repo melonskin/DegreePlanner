@@ -21,6 +21,9 @@
         %th Program:
         %td= @student.program[:name]
       %tr
+        %th Prior master:
+        %td= @student.has_prior_master
+      %tr
         %th Beginning year:
         %td= @student.yearstart
       %tr

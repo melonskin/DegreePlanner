@@ -22,16 +22,20 @@
       = label :student, :program_id, 'Degree program'
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}
 
+      = label :student, :has_prior_master, 'If a Ph.D. candidate, do you have a related master degree?'
+      = select :student, :has_prior_master, ['True','False'], :selected => "False"
+      
+    
       = label :student, :yearstart, 'Year of your first semester'
       = select :student, :yearstart, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}
       
       = label :student, :semstart, 'First semester'
-      = select :student, :semstart, ['Spring','Summer','Fall'], :selected => @student.semstart
+      = select :student, :semstart, ['Spring','Summer','Fall']
 
       = label :student, :yearend, 'Expected Graduation year'
       = select :student, :yearend, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}
       
       = label :student, :semend, 'Expected Graduation Semester'
-      = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
+      = select :student, :semend, ['Spring','Summer','Fall']  
 
       = submit_tag 'Save changes', class: "btn btn-lg btn-primary"
