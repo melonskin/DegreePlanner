@@ -2,16 +2,15 @@ class Course < ApplicationRecord
   has_many :student_course_semesterships
   has_many :students, :through => :student_course_semesterships
   has_many :semesters, :through => :student_course_semesterships
-
   has_many :package_courseships
   has_many :packages, :through => :package_courseships
-
   has_many :coursesections
 
   scope :search_by_name, lambda { |q|
     q.downcase!
   (q ? where(["cast(number as text) LIKE ? or lower(name) LIKE ? or (lower(department) || ' ' || cast(number as text)) like ? or (lower(department) || cast(number as text)) like ? ", '%'+ q + '%', '%'+ q + '%','%'+ q + '%', '%'+ q + '%'])  : {})
   }
+
 
   def offered_semester
     semester = []

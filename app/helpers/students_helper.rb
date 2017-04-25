@@ -23,7 +23,7 @@ module StudentsHelper
     
     def f1_valid?
         ss_id = []
-        StudentSpecialCourseSemestership.where(:student_id => params[:id]).each do |s|
+        StudentSpecialCourseSemestership.where(:student_id => @student).each do |s|
           ss_id.push(s[:semester_id])
         end
         s_id = []
