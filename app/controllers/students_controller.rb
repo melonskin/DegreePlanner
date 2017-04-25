@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
   before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
 
   @@semesters = nil
+  @@student_special_course_semestership = nil
+  @@student_course_semestership = nil
 
   # rewrite autocomplete function
   def get_autocomplete_items(params)   
@@ -137,13 +139,12 @@ class StudentsController < ApplicationController
     # semesters_id = special_semesters + semesters_id
     list = ss_id | s_id
     @semesters = Semester.where(:id => list).order('id').distinct
-<<<<<<< HEAD
-    @@semesters = @semesters
-=======
     if @student.all_valid?
       flash.now[:success] = "Your degree plan is valid."
     end
->>>>>>> 594f3f239d933cac7216aa2719ac6180babc422b
+    @@semesters = @semesters
+    @student_special_course_semestership = @@student_special_course_semestership
+    @student_course_semestership = @@student_course_semestership
   end
 
   def add_plan_courses
@@ -152,7 +153,7 @@ class StudentsController < ApplicationController
     term = params[:semester]
     year = params[:year]
     semester = Semester.find_by_term_and_year(term, year)
-    StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+    @@student_course_semestership = StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
     redirect_to plan_student_path
   end
   
@@ -165,8 +166,7 @@ class StudentsController < ApplicationController
     year = params[:yearsc]
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
-    StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
-    validation
+    @@student_special_course_semestership = StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
     redirect_to plan_student_path  
   end
   
@@ -260,21 +260,5 @@ class StudentsController < ApplicationController
     end
   end
   
-<<<<<<< HEAD
-  def validation
-    if !f1_valid?
-      flash[:warning] = "warning!"
-    else
-      flash[:notice] = "good!"
-    end
-    if csce_valid?
-      flash[:notice] = "good!"
-    else
-      flash[:warning] = "bad!"
-    end
-  end
-  
-=======
 
->>>>>>> 594f3f239d933cac7216aa2719ac6180babc422b
 end
