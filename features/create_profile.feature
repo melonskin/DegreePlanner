@@ -39,7 +39,7 @@ Given I am on the login page
     Then I should be on the user page for "Lilei"
 
 Scenario: go to the profile page
-    And I should see "Fill in your information"
+    And I should see "You need first complete your profile"
     And I should not see "View your information"
     And I follow "Fill in your information"
     Then I should be on the profile_create page
