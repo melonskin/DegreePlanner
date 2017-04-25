@@ -19,28 +19,28 @@ class Student < ApplicationRecord
 
     def seminar_valid
         msg = "Seminar"
-        self.special_course_valid(681,self.program.seminar_hour_min,self.program.seminar_hour_max, msg)
+        return self.special_course_valid(681,self.program.seminar_hour_min,self.program.seminar_hour_max, msg)
     end
 
     def research_valid
         msg = "Research"
 
-        self.special_course_valid(691,self.program.research_hour_min,self.program.research_hour_max, msg)
+        return self.special_course_valid(691,self.program.research_hour_min,self.program.research_hour_max, msg)
     end
 
     def dstudy_valid
         msg = "Direct Study"
-        self.special_course_valid(685,self.program.direct_study_hour_min,self.program.direct_study_hour_max, msg)
+        return self.special_course_valid(685,self.program.direct_study_hour_min,self.program.direct_study_hour_max, msg)
     end
 
     def special_all_valid
-        seminar_hour = self.seminar_valid()
-        research_hour = self.research_valid()
-        dstudy_hour = self.dstudy_valid()
+        seminar_hour,seminar_hour_v = self.seminar_valid()
+        research_hour, research_hour_v = self.research_valid()
+        dstudy_hour, dstudy_hour_v = self.dstudy_valid()
         if seminar_hour.nil? or research_hour.nil? or dstudy_hour.nil?
-            return nil
+            return nil, seminar_hour_v + research_hour_v + dstudy_hour_v
         else
-            return seminar_hour + research_hour + dstudy_hour
+            return true, seminar_hour_v + research_hour_v + dstudy_hour_v
         end
 
     end
@@ -54,7 +54,7 @@ class Student < ApplicationRecord
             end
         end
         if (sc_hour >= hour_min)
-            return [hour_max, sc_hour].min
+            return true, [hour_max, sc_hour].min
         else
             if hour_min == hour_max
                 msg = "#{msg} hours: #{sc_hour}/#{hour_min}"
@@ -62,7 +62,7 @@ class Student < ApplicationRecord
                 msg = "#{msg} hours: #{sc_hour}/(#{hour_min}-#{hour_max})"
             end
             self.errors.add(:base, msg)
-            return nil
+            return nil, sc_hour
         end
     end
 
@@ -91,7 +91,7 @@ class Student < ApplicationRecord
                 hour += course.credit
             end
         end
-        return [hour,self.program.non_dep_hour_max].min 
+        return true, [hour,self.program.non_dep_hour_max].min 
     end
 
     def joint_dep_valid
@@ -105,10 +105,10 @@ class Student < ApplicationRecord
         end
         msg = "#{self.program.joint_dep} courses hours: #{hour}/#{self.program.joint_hour_min}"
         if (hour >= self.program.joint_hour_min)
-            return [self.program.joint_hour_max, hour].min
+            return true, [self.program.joint_hour_max, hour].min
         else
             self.errors.add(:base, msg)
-            return nil
+            return nil, hour
         end
     end
 
@@ -121,10 +121,10 @@ class Student < ApplicationRecord
         end
         msg = "CSCE course hours: #{hour}/#{self.program.dep_hour}"
         if (hour >= self.program.dep_hour)
-            return hour
+            return true, hour
         else
             self.errors.add(:base, msg)
-            return nil
+            return nil, hour
         end
     end
 
@@ -132,6 +132,7 @@ class Student < ApplicationRecord
         if self.program.elective_hour_min > 0
             hour = dep_hour.to_i - self.program.dep_hour + joint_hour.to_i - self.program.joint_hour_min + non_dep_hour.to_i - self.program.non_dep_hour_min
             if hour < self.program.elective_hour_min
+                hour = [hour,0].max
                 msg = "Elective course hours: #{hour}/#{self.program.elective_hour_min}"
                 self.errors.add(:base,msg)
                 return nil
@@ -270,17 +271,21 @@ class Student < ApplicationRecord
     end
     
     def all_valid?
-        special_hour = self.special_all_valid()
+        dep_hour,dep_hour_v = self.dep_valid()
+        joint_hour,joint_hour_v = self.joint_dep_valid()        
+        non_dep_hour,non_dep_hour_v = self.non_dep_valid()
+        package_ok = self.package_valid()
+        
+        special_hour,special_hour_v = self.special_all_valid()
+        
         ug_hour = self.ug_course_valid()
-        non_dep_hour = self.non_dep_valid()
-        joint_hour = self.joint_dep_valid()
-        dep_hour = self.dep_valid()
+
         semester_f1_ok = self.semester_f1_valid()
         semester_max_ok = self.semester_max_valid()
-        package_ok = self.package_valid()
-        elective_ok = self.elective_valid(dep_hour,joint_hour,non_dep_hour)
-        graded_ok = self.graded_valid(dep_hour,joint_hour,non_dep_hour)
-        total_ok = self.total_valid(special_hour,ug_hour,dep_hour,joint_hour,non_dep_hour)
+
+        elective_ok = self.elective_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)
+        graded_ok = self.graded_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)
+        total_ok = self.total_valid(special_hour_v,ug_hour,dep_hour_v,joint_hour_v,non_dep_hour_v)
 
         if not (package_ok.nil? or special_hour.nil? or ug_hour.nil? or 
             non_dep_hour.nil? or joint_hour.nil? or dep_hour.nil? or 
