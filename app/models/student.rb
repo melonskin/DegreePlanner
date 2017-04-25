@@ -40,7 +40,7 @@ class Student < ApplicationRecord
         if seminar_hour.nil? or research_hour.nil? or dstudy_hour.nil?
             return nil, seminar_hour_v + research_hour_v + dstudy_hour_v
         else
-            return true, seminar_hour + research_hour + dstudy_hour
+            return true, seminar_hour_v + research_hour_v + dstudy_hour_v
         end
 
     end
