@@ -95,6 +95,12 @@ Background: users in database
       | 11 | 2 |
       | 12 | 2 |
       | 13 | 2 |
+    Given the following SpecialCourse exist:
+      | department | number | name | description | is_fall | is_spring | is_summer |
+      | CSCE | 681 | Seminar | Computer Science Seminar | true | true | false |
+      | CSCE | 684 | Professional Internship | Computer Science Internship | false | false | true |
+      | CSCE | 685 | Directed Studies | Computer Science Directed Studies | true | true | false |
+      | CSCE | 691 | Research | Computer Science research | true | true | true |
       
     Given I am on the login page
         And  I fill in "Email" with "TestUserOne@tamu.edu"
@@ -143,7 +149,6 @@ Background: users in database
         And I select "Fall" from "semestersc"
         And I select "2017" from "yearsc"
         And I fill in "credit" with "1"
-        And  I press "Add special course"
-        Then I should see ""
-        And I should not see ""
-   
+        And I press "Add special course"
+        Then I should see "Your degree plan is valid."
+        
