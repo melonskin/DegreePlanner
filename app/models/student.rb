@@ -282,7 +282,7 @@ class Student < ApplicationRecord
         semesters = Semester.where(:id => list).order('id').distinct
         start_id = self.start_id()
         end_id = self.end_id()
-        if start_id > semesters.first.id || end_id < semesters.last.id
+        if !semesters.first.nil? && (start_id > semesters.first.id || end_id < semesters.last.id)
             msg = "You have courses out of your semester range."
             self.errors.add(:base,msg)
             return nil
