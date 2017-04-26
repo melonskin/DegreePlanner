@@ -286,7 +286,7 @@ end
 Given(/^the following Student exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |stud|
-    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], is_f1: stud[:is_f1], program_id: stud[:program_id], user_id: stud[:user_id], yearstart: stud[:yearstart], semstart: stud[:semstart], yearend: stud[:yearend], semend: stud[:semend])
+    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], program_id: stud[:program_id], is_f1: stud[:is_f1], user_id: stud[:user_id], yearstart: stud[:yearstart], semstart: stud[:semstart], yearend: stud[:yearend], semend: stud[:semend], has_prior_master: stud[:has_prior_master])
   end
 end
 
