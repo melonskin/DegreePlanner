@@ -264,6 +264,10 @@ class Student < ApplicationRecord
                 self.errors.add(:base,msg)
                 flag = 1
             end
+            if (credit < 9) && (sem_no == sem_count)
+                msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
+                self.errors.add(:base,msg)
+            end
         end
         if flag == 1
             return nil
@@ -300,6 +304,8 @@ class Student < ApplicationRecord
     
     def all_valid?
         sem_range_ok = self.sem_range_valid()
+        semester_f1_ok = self.semester_f1_valid()
+
         
         dep_hour,dep_hour_v = self.dep_valid()
         joint_hour,joint_hour_v = self.joint_dep_valid()        
@@ -310,7 +316,6 @@ class Student < ApplicationRecord
         
         ug_hour = self.ug_course_valid()
 
-        semester_f1_ok = self.semester_f1_valid()
         semester_max_ok = self.semester_max_valid()
 
         elective_ok = self.elective_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)

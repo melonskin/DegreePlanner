@@ -149,6 +149,8 @@ class StudentsController < ApplicationController
     @@semesters = @semesters
     @student_special_course_semestership = @@student_special_course_semestership
     @student_course_semestership = @@student_course_semestership
+    @@student_special_course_semestership = nil
+    @@student_course_semestership = nil
   end
 
   def add_plan_courses
