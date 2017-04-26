@@ -19,26 +19,26 @@
 #### Student
 
 
-|firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-|Johana  |Rueda |FALSE |1 |1 |2017 |Spring |2019 |Spring |
-|Yining |Bao |TRUE |2 |2 |2017 |Fall |2019 |Fall |
-|Andres |Gonzalez |TRUE |3 |3 |2018 |Spring |2019 |Fall |
-|Shijin |Tang |TRUE |4 |4 |2018 |Fall |2020 |Fall |
-|Jingjia |Li |FALSE |1 |5 |2019 |Spring |2022 |Spring |
+|firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |has_prior_master |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+|Johana  |Rueda |FALSE |1 |1 |2017 |Spring |2019 |Spring |FALSE |
+|Yining |Bao |TRUE |2 |2 |2017 |Fall |2019 |Fall |FALSE |
+|Andres |Gonzalez |TRUE |3 |3 |2018 |Spring |2019 |Fall |FALSE |
+|Shijin |Tang |TRUE |4 |4 |2018 |Fall |2020 |Fall |FALSE |
+|Jingjia |Li |FALSE |1 |5 |2019 |Spring |2022 |Spring |FALSE |
 
 
 #### Program
 
 
-|name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-|Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
-|Master of Engineering in Computer Science |MEN |FALSE |12 |0 |1 |0 |999 |1 |1 |0 |3 |30 |0 |4 |7 |6 |999 |6 |999 |
-|Master of Science in Computer Science |MSCS |TRUE |18 |0 |1 |0 |6 |1 |1 |0 |3 |32 |0 |4 |7 |0 |0 |0 |0 |
-|Master of Science in Computer Engineering |MSCE |TRUE |10 |0 |1 |0 |999 |1 |1 |0 |3 |32 |0 |4 |7 |6 |999 |6 |999 |
-|PhD in Computer Science |PhDCS |TRUE |30 |0 |0 |0 |6 |1 |2 |0 |0 |96 |64 |18 |999 |0 |0 |0 |0 |
-|PhD in Computer Engineering |PhDCE |TRUE |12 |30 |0 |0 |999 |1 |2 |0 |0 |96 |64 |18 |999 |6 |999 |12 |999 |
+|name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_hour_min |ug_hour_max |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_dep |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+|Master of Computer Science |MCS |FALSE |18 |0 |0 |3 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |NA |0 |0 |0 |0 |
+|Master of Engineering in Computer Science |MEN |FALSE |12 |0 |0 |3 |0 |999 |1 |1 |0 |3 |30 |0 |4 |7 |ECEN |6 |999 |6 |999 |
+|Master of Science in Computer Science |MSCS |TRUE |18 |0 |0 |3 |0 |6 |1 |1 |0 |3 |32 |0 |4 |7 |NA |0 |0 |0 |0 |
+|Master of Science in Computer Engineering |MSCE |TRUE |10 |0 |0 |3 |0 |999 |1 |1 |0 |3 |32 |0 |4 |7 |ECEN |6 |999 |6 |999 |
+|PhD in Computer Science |PhDCS |TRUE |30 |0 |0 |0 |0 |6 |1 |2 |0 |0 |96 |64 |18 |999 |NA |0 |0 |0 |0 |
+|PhD in Computer Engineering |PhDCE |TRUE |12 |30 |0 |0 |0 |999 |1 |2 |0 |0 |96 |64 |18 |999 |ECEN |6 |999 |12 |999 |
 
 
 #### Package
@@ -184,6 +184,103 @@
 |3 |4 |1 |
 |4 |1 |2 |
 |5 |1 |2 |
+
+
+#### Interest
+
+
+|name |program_id |
+|:---|:---|
+|Programming |1 |
+|Database |1 |
+|Wireless networks |1 |
+|Image processing |1 |
+|Algorithms |1 |
+|Artificial intelligence |1 |
+|Computer architecture |1 |
+|Programming |2 |
+|Database |2 |
+|Wireless networks |2 |
+|Image processing |2 |
+|Algorithms |2 |
+|Artificial intelligence |2 |
+|Computer architecture |2 |
+|Programming |3 |
+|Database |3 |
+|Wireless networks |3 |
+|Image processing |3 |
+|Algorithms |3 |
+|Artificial intelligence |3 |
+|Computer architecture |3 |
+|Programming |4 |
+|Database |4 |
+|Wireless networks |4 |
+|Image processing |4 |
+|Algorithms |4 |
+|Artificial intelligence |4 |
+|Computer architecture |4 |
+|Programming |5 |
+|Database |5 |
+|Wireless networks |5 |
+|Image processing |5 |
+|Algorithms |5 |
+|Artificial intelligence |5 |
+|Computer architecture |5 |
+|Programming |6 |
+|Database |6 |
+|Wireless networks |6 |
+|Image processing |6 |
+|Algorithms |6 |
+|Artificial intelligence |6 |
+|Computer architecture |6 |
+
+
+#### InterestCourseship
+
+
+|course_id |interest_id |
+|:---|:---|
+|41 |1 |
+|42 |1 |
+|43 |1 |
+|46 |1 |
+|49 |1 |
+|40 |2 |
+|44 |2 |
+|84 |2 |
+|87 |2 |
+|77 |3 |
+|78 |3 |
+|79 |3 |
+|50 |4 |
+|64 |4 |
+|67 |4 |
+|68 |4 |
+
+
+#### SpecialCourse
+
+
+|department |number |name |description |is_fall |is_spring |is_summer |
+|:---|:---|:---|:---|:---|:---|:---|
+|CSCE |681 |Seminar |.. |TRUE |TRUE |TRUE |
+|CSCE |684 |Professional Internship |.. |TRUE |TRUE |TRUE |
+|CSCE |685 |Directed Studies |.. |TRUE |TRUE |TRUE |
+|CSCE |691 |Research |.. |TRUE |TRUE |TRUE |
+
+
+#### StudentSpecialCourseSemestership
+
+
+|student_id |special_course_id |semester_id |credit |
+|:---|:---|:---|:---|
+|1 |3 |1 |3 |
+|1 |2 |1 |4 |
+|1 |1 |2 |1 |
+|2 |3 |1 |3 |
+|3 |4 |1 |5 |
+|4 |1 |2 |1 |
+|5 |1 |2 |1 |
 
 
 ## TSJ 0329  

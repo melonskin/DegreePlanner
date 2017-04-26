@@ -9,11 +9,11 @@ Background: users, programs, students in database
       | name | email | password |
       | Lilei|Lilei@tamu.edu|123456|
       | Hanmeimei|Hanmeimei@tamu.edu|123456|
-      | Hanlei|Hanlei@tamu.edu|123456|
+      | Hanlei|Hanlei@tamu.ezdu|123456|
       | Limeimei|Limeimei@tamu.edu|123456|
     Given the following Program exist:
-      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
-      |Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
+      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_hour_min | ug_hour_max |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max | joint_dep |   
+      |Master of Computer Science |MCS |FALSE |18 | 28 | 0 |3 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 | 0 |
     Given the following Semester exist:
       |term |year |
       |Spring |2017 |
@@ -39,7 +39,7 @@ Given I am on the login page
     Then I should be on the user page for "Lilei"
 
 Scenario: go to the profile page
-    And I should see "Fill in your information"
+    And I should see "You need first complete your profile"
     And I should not see "View your information"
     And I follow "Fill in your information"
     Then I should be on the profile_create page
@@ -49,6 +49,7 @@ Scenario: create new profile
     And  I fill in "First name" with "Lei"
     And  I fill in "Last name" with "Han"
     And  I select "True" from "Are you F1?"
+    And I select "True" from "If a Ph.D. candidate, do you have a related master degree?"
     And  I select "Master of Computer Science" from "Degree program"
     And I select "2017" from "Year of your first semester"
     And I select "Fall" from "First semester"

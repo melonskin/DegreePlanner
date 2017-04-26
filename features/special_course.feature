@@ -8,12 +8,8 @@ Background: users in database
       | TestUserOne | TestUserOne@tamu.edu|123456|
       | TestUserTwo | TestUserTwo@tamu.edu|123456|
     Given the following Program exist:
-      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
-      |Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
-    Given the following Student exist:
-      |firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |
-      | TestUserOne |LastNameOne | FALSE |1 |1 |2017 |Spring |2018 | Fall |
-      | TestUserTwo |LastNameTwo |FALSE |1 |2 |2017 |Spring |2018 |Fall |
+      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_hour_min | ug_hour_max |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max | joint_dep |   
+      |Master of Computer Science |MCS |FALSE |18 | 28 | 0 |3 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 | 0 |
     Given the following Semester exist:
       |term |year |
       |Spring |2017 |
@@ -31,6 +27,11 @@ Background: users in database
       |Spring |2021 |
       |Summer |2021 |
       |Fall |2021 |
+    Given the following Student exist:
+      |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
+      | TestUserOne |LastNameOne | 1 | FALSE |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserTwo |LastNameTwo | 1 | FALSE |1 |2017 |Spring |2018 | Fall | FALSE |
+
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
       |CSCE |603 |Database Systems and Applications |3 |Introduction to the concepts and design methodologies...|false |true |false |

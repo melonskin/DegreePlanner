@@ -35,6 +35,8 @@ Rails.application.routes.draw do
  #     get :addplancourse
       post :add_plan_courses
       post :add_special_courses
+      
+
     end
   end
  
