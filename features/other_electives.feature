@@ -134,12 +134,12 @@ Background: users in database
         And  I select "2017" from "year_7"
         And I check "courses_9"
         And I select "Spring" from "semester_9"
-        And  I select "2018" from "year_9"
-        And  I press "Save changes"
+        And I select "2018" from "year_9"
+        And I press "Save changes"
         Then I should be on the student_plan page for "TestUserThree"
-        And I type in "ECEN 600" into autocomplete list "search" and I choose "ECEN 600 Experimental Optics"
-        And I select "Fall" from "semester"
-        And I select "2017" from "year"
-        And  I press "Add other elective course"
+        And I fill in "search" with "ECEN 600"
         Then I should see "ECEN 600 Experimental Optics"
+        And I choose "ECEN 600 Experimental Optics" in the autocomplete list
+
+
         
