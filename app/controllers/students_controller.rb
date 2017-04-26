@@ -155,6 +155,11 @@ class StudentsController < ApplicationController
 
   def add_plan_courses
     # create relationship
+    if params[:course_id] == ""
+      flash[:danger] = "Select a valid course from the list."
+      redirect_to plan_student_path
+      return
+    end
     course = Course.find(params[:course_id])
     term = params[:semester]
     year = params[:year]

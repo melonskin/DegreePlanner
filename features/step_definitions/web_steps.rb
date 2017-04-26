@@ -15,9 +15,7 @@
 #
 # * http://benmabey.com/2008/05/19/imperative-vs-declarative-scenarios-in-user-stories.html
 # * http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
-# * http://elabs.se/blog/15-you-re-cuking-it-wrong
-#
-
+# * http://elabs.se/blog/15-you-re-cuking-it
 
 require 'uri'
 require 'cgi'
@@ -65,6 +63,13 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+When /^I type in "([^\"]*)" into autocomplete list "([^\"]*)" and I choose "([^\"]*)"$/ do |typed, input_name,should_select|
+  page.driver.browser.execute_script %Q{ $('input[data-autocomplete]').trigger("focus") }
+  fill_in("#{input_name}",:with => typed)
+  page.execute_script %Q{ $('input[data-autocomplete]').trigger("keydown") }
+  sleep 1
+  page.execute_script %Q{ $('.ui-menu-item a:contains("#{should_select}")').trigger("mouseenter").trigger("click"); }
+end
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:
@@ -281,14 +286,14 @@ end
 Given(/^the following Program exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |prog|
-    Program.create(name: prog[:name], acronym: prog[:acronym], is_thesis: prog[:is_thesis], dep_hour: prog[:dep_hour], graded_grad_hour: prog[:graded_grad_hour], ug_class: prog[:ug_class], non_dep_hour_min: prog[:non_dep_hour_min], non_dep_hour_max: prog[:non_dep_hour_max], seminar_hour_min: prog[:seminar_hour_min], seminar_hour_max: prog[:seminar_hour_max], direct_study_hour_min: prog[:direct_study_hour_min], direct_study_hour_max: prog[:direct_study_hour_max], total_hour: prog[:total_hour], total_hour_prior: prog[:total_hour_prior], research_hour_min: prog[:research_hour_min], research_hour_max: prog[:research_hour_max], joint_hour_min: prog[:joint_hour_min], joint_hour_max: prog[:joint_hour_max], elective_hour_min: prog[:elective_hour_min], elective_hour_max: prog[:elective_hour_max])
+    Program.create(name: prog[:name], acronym: prog[:acronym], is_thesis: prog[:is_thesis], dep_hour: prog[:dep_hour], graded_grad_hour: prog[:graded_grad_hour], ug_hour_min: prog[:ug_hour_min],ug_hour_max: prog[:ug_hour_max], non_dep_hour_min: prog[:non_dep_hour_min], non_dep_hour_max: prog[:non_dep_hour_max], seminar_hour_min: prog[:seminar_hour_min], seminar_hour_max: prog[:seminar_hour_max], direct_study_hour_min: prog[:direct_study_hour_min], direct_study_hour_max: prog[:direct_study_hour_max], total_hour: prog[:total_hour], total_hour_prior: prog[:total_hour_prior], research_hour_min: prog[:research_hour_min], research_hour_max: prog[:research_hour_max], joint_hour_min: prog[:joint_hour_min], joint_hour_max: prog[:joint_hour_max], elective_hour_min: prog[:elective_hour_min], elective_hour_max: prog[:elective_hour_max], joint_dep: prog[:joint_dep])
   end
 end
 
 Given(/^the following Student exist:$/) do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   table.hashes.each do |stud|
-    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], is_f1: stud[:is_f1], program_id: stud[:program_id], user_id: stud[:user_id], yearstart: stud[:yearstart], semstart: stud[:semstart], yearend: stud[:yearend], semend: stud[:semend])
+    Student.create(firstname: stud[:firstname], lastname: stud[:lastname], program_id: stud[:program_id], is_f1: stud[:is_f1], user_id: stud[:user_id], yearstart: stud[:yearstart], semstart: stud[:semstart], yearend: stud[:yearend], semend: stud[:semend], has_prior_master: stud[:has_prior_master])
   end
 end
 
