@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406204718) do
+ActiveRecord::Schema.define(version: 20170424155233) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "department"
@@ -82,7 +82,8 @@ ActiveRecord::Schema.define(version: 20170406204718) do
     t.datetime "updated_at",            null: false
     t.integer  "dep_hour"
     t.integer  "graded_grad_hour"
-    t.integer  "ug_class"
+    t.integer  "ug_hour_min"
+    t.integer  "ug_hour_max"
     t.integer  "non_dep_hour_min"
     t.integer  "non_dep_hour_max"
     t.integer  "seminar_hour_min"
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(version: 20170406204718) do
     t.integer  "joint_hour_max"
     t.integer  "elective_hour_min"
     t.integer  "elective_hour_max"
+    t.string   "joint_dep"
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -139,14 +141,15 @@ ActiveRecord::Schema.define(version: 20170406204718) do
     t.string   "firstname"
     t.string   "lastname"
     t.integer  "program_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "is_f1"
     t.integer  "user_id"
     t.integer  "yearstart"
     t.integer  "yearend"
     t.string   "semstart"
     t.string   "semend"
+    t.string   "has_prior_master"
   end
 
   create_table "users", force: :cascade do |t|

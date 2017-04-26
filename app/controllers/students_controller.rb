@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
   before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
 
   @@semesters = nil
+  @@student_special_course_semestership = nil
+  @@student_course_semestership = nil
 
   # rewrite autocomplete function
   def get_autocomplete_items(params)   
@@ -29,7 +31,7 @@ class StudentsController < ApplicationController
     student_params_all[:user_id] = current_user[:id]
     @student = Student.new(student_params_all)
     if @student.save
-      flash[:notice] = "#{@student.firstname}'s profile was successfully created."
+      flash[:success] = "#{@student.firstname}'s profile was successfully created."
       redirect_to student_path(@student)
     else
       render 'new'
@@ -41,14 +43,18 @@ class StudentsController < ApplicationController
   end
 
   def update
-    @student.update_attributes!(student_params)
-    flash[:notice] = "#{@student.firstname}'s profile was successfully updated."
+    @student.update_attributes(student_params)
+    if @student.save
+      flash[:success] = "#{@student.firstname}'s profile was successfully updated."
+    else
+      flash[:danger] = @student.errors.full_messages.first
+    end
     redirect_to student_path(@student)
   end
 
   def destroy
     @student.destroy
-    flash[:notice] = "#{@student.firstname}'s profile was deleted."
+    flash[:warning] = "#{@student.firstname}'s profile was deleted."
     redirect_to students_path
   end
 
@@ -68,7 +74,7 @@ class StudentsController < ApplicationController
     # validate requirecourse
     @student.program.packages.all.each do |package|
       if createpackage_params[:courses].nil? or (not createpackage_params[:courses].has_value?(package.id.to_s))
-        flash[:warning] = "Pick required courses from each package"
+        flash[:danger] = "Pick required courses from each package"
         # render "required_courses"
         redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
@@ -81,7 +87,7 @@ class StudentsController < ApplicationController
     # debugger
     package_dict.each do |package_id,no_picked|
       if Package.find(package_id).no_required > no_picked
-        flash[:warning] = "Pick required number of courses from each package"
+        flash[:danger] = "Pick required number of courses from each package"
         # render "required_courses"
         redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
@@ -137,7 +143,12 @@ class StudentsController < ApplicationController
     # semesters_id = special_semesters + semesters_id
     list = ss_id | s_id
     @semesters = Semester.where(:id => list).order('id').distinct
+    if @student.all_valid?
+      flash.now[:success] = "Your degree plan is valid."
+    end
     @@semesters = @semesters
+    @student_special_course_semestership = @@student_special_course_semestership
+    @student_course_semestership = @@student_course_semestership
   end
 
   def add_plan_courses
@@ -146,7 +157,7 @@ class StudentsController < ApplicationController
     term = params[:semester]
     year = params[:year]
     semester = Semester.find_by_term_and_year(term, year)
-    StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+    @@student_course_semestership = StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
     redirect_to plan_student_path
   end
   
@@ -159,15 +170,14 @@ class StudentsController < ApplicationController
     year = params[:yearsc]
     semester = Semester.find_by_term_and_year(term, year)
     credit = params[:credit]
-    StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
-    validation
+    @@student_special_course_semestership = StudentSpecialCourseSemestership.create(:student => @student, :special_course => course, :semester => semester, :credit => credit)
     redirect_to plan_student_path  
   end
   
   def destroy_scs_ship
     course = Course.find(params[:course])
     StudentCourseSemestership.where(:student => @student, :course=>course).destroy_all
-    flash[:notice] = "#{course.full_name} was deleted."
+    flash[:info] = "#{course.full_name} was deleted."
     redirect_to plan_student_path
   end
   
@@ -177,14 +187,14 @@ class StudentsController < ApplicationController
     course = SpecialCourse.find(params[:course])
     semester = params[:semester]
     StudentSpecialCourseSemestership.where(:student => @student, :special_course => course, :semester => semester).destroy_all
-    flash[:notice] = "#{course.full_name} was deleted."
+    flash[:info] = "#{course.full_name} was deleted."
     redirect_to plan_student_path
   end
 
   private
 
   def student_params
-    student_params = params.require(:student).permit(:firstname, :lastname, :is_f1, :yearstart, :semstart, :yearend, :semend, :program_id)
+    student_params = params.require(:student).permit(:firstname, :lastname, :is_f1,:has_prior_master, :yearstart, :semstart, :yearend, :semend, :program_id)
     student_params[:program_id] = Program.find_by_name(student_params[:program_id]).id
     student_params
   end
@@ -254,17 +264,5 @@ class StudentsController < ApplicationController
     end
   end
   
-  def validation
-    if !f1_valid?
-      flash[:warning] = "warning!"
-    else
-      flash[:notice] = "good!"
-    end
-    if csce_valid?
-      flash[:notice] = "good!"
-    else
-      flash[:warning] = "bad!"
-    end
-  end
-  
+
 end

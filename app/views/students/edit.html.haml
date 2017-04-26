@@ -16,15 +16,18 @@
 
       = label :student, :program_id, 'Degree program'
       = select :student, :program_id, Program.all.map {|p| p.name.to_s}, :selected => @student.program.name
+
+      = label :student, :has_prior_master, 'If a Ph.D. candidate, do you have a related master degree?'
+      = select :student, :has_prior_master, ['True','False'], :selected => @student.has_prior_master
       
       = label :student, :yearstart, 'Year of your first semester'
-      = select :student, :yearstart, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}
+      = select :student, :yearstart, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}, :selected => @student.yearstart
       
       = label :student, :semstart, 'First semester'
       = select :student, :semstart, ['Spring','Summer','Fall'], :selected => @student.semstart
 
       = label :student, :yearend, 'Expected Graduation year'
-      = select :student, :yearend, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}
+      = select :student, :yearend, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}, :selected => @student.yearend
       
       = label :student, :semend, 'Expected Graduation Semester'
       = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
