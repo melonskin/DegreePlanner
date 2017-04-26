@@ -4,7 +4,7 @@ class StudentCourseSemestership < ApplicationRecord
     belongs_to :semester
     
     before_save
-    validates :semester_id, :numericality => {:greater_than_or_equal_to => :start_id, :less_than_or_equal_to => :end_id, message: Proc.new { |c| "should be within the range. #{c.start_name} - #{c.end_name}"}}
+    validates :semester_id, :numericality => {:greater_than_or_equal_to => :start_id, :less_than_or_equal_to => :end_id, message: Proc.new { |c| "should be within the range (#{c.start_name} - #{c.end_name})."}}
     validates :course, uniqueness: {scope: :student}
 
   
