@@ -7,11 +7,11 @@ Background: users in database
       | name | email | password |
       | TestUserThree | TestUserThree@tamu.edu|123456|
     Given the following Program exist:
-      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_class |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
-      |Master of Computer Science |MCS |FALSE |18 |0 |1 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 |
+      |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_hour_min | ug_hour_max |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max | joint_dep |   
+      |Master of Computer Science |MCS |FALSE |18 | 28 | 0 |3 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |0 |0 |0 |0 | 0 |
     Given the following Student exist:
-      |firstname |lastname |is_f1 |program_id |user_id |yearstart |semstart |yearend |semend |
-      | TestUserThree |LastNameThree | FALSE |1 |1 |2017 |Spring |2018 | Fall |
+      |firstname |lastname |program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
+      | TestUserThree |LastNameThree | 1 | FALSE |1 |2017 |Spring |2018 | Fall | FALSE |
     Given the following Semester exist:
       |term |year |
       |Spring |2017 |
@@ -43,7 +43,7 @@ Background: users in database
       |CSCE |655 |Human-Centered Computing |3 |A foundation course in human centered systems... |true |true |true |
       |CSCE |627 |Theory of Computability |3 | Formal models of computation such as pushdown... |true |true |true |
       |CSCE |629 |Analysis of Algorithms |3 | Concrete algorithm design and analysis; abs... |true |true |true |
-      |ECEN |600 |Experimental Optics | 3 | test of ECEN course |true |true |true |
+      |ECEN |600 |Experimental Optics | 3 | test of ECEN course... |true |true |true |
     
     Given the following Coursesection exist:
       | department | number | section | instructor | term | year | gpa | student | a | b | c | d | f | q | course_id |
@@ -59,6 +59,7 @@ Background: users in database
       |CSCE |655 | 600 | Jiang A | Fall | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 10 |
       |CSCE |627 | 600 | Jiang A | Spring | 2016 | 3.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 11 |
       |CSCE |629 | 600 | Jiang A | Spring | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
+      |ECEN |600 | 600 | Example Teacher | Fall | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
       
     Given the following Package exist:
       |name |no_required |program_id |
@@ -135,7 +136,7 @@ Background: users in database
         And  I select "2018" from "year_9"
         And  I press "Save changes"
         Then I should be on the student_plan page for "TestUserThree"
-        And I fill in "search" with "ECEC 600"
+        And I fill in "search" with "ECEN 600 Experimental Optics"
         And I select "Fall" from "semester"
         And I select "2017" from "year"
         And  I press "Add other elective course"
