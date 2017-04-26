@@ -13,9 +13,10 @@ class Student < ApplicationRecord
 
     belongs_to :user
     before_save
-    
     validates :firstname, presence: true
     validates :lastname, presence: true
+    
+    validates :start_id, :numericality => {:less_than => Proc.new {|c| c.end_id}, :message => "can not be later than Expected Graduation Semester"}
 
     def seminar_valid
         msg = "Seminar"
@@ -270,7 +271,36 @@ class Student < ApplicationRecord
         return true
     end
     
+    def sem_range_valid
+        ss_id = []
+        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
+          ss_id.push(s[:semester_id])
+        end
+        s_id = []
+        self.semesters.each do |s| s_id.push(s.id) end
+        list = ss_id | s_id
+        semesters = Semester.where(:id => list).order('id').distinct
+        start_id = self.start_id()
+        end_id = self.end_id()
+        if start_id > semesters.first.id || end_id < semesters.last.id
+            msg = "You have courses out of your semester range."
+            self.errors.add(:base,msg)
+            return nil
+        end
+        return true
+    end
+        
+    def start_id
+        return Semester.find_by_term_and_year(self.semstart, self.yearstart).id
+    end
+        
+    def end_id
+        return Semester.find_by_term_and_year(self.semend, self.yearend).id
+    end
+    
     def all_valid?
+        sem_range_ok = self.sem_range_valid()
+        
         dep_hour,dep_hour_v = self.dep_valid()
         joint_hour,joint_hour_v = self.joint_dep_valid()        
         non_dep_hour,non_dep_hour_v = self.non_dep_valid()
@@ -290,7 +320,7 @@ class Student < ApplicationRecord
         if not (package_ok.nil? or special_hour.nil? or ug_hour.nil? or 
             non_dep_hour.nil? or joint_hour.nil? or dep_hour.nil? or 
             elective_ok.nil? or graded_ok.nil? or total_ok.nil? or 
-            semester_f1_ok.nil? or semester_max_ok.nil?)
+            semester_f1_ok.nil? or semester_max_ok.nil? or sem_range_ok.nil?)
             return true
         end
     end

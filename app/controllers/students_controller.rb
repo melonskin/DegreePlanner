@@ -43,8 +43,12 @@ class StudentsController < ApplicationController
   end
 
   def update
-    @student.update_attributes!(student_params)
-    flash[:success] = "#{@student.firstname}'s profile was successfully updated."
+    @student.update_attributes(student_params)
+    if @student.save
+      flash[:success] = "#{@student.firstname}'s profile was successfully updated."
+    else
+      flash[:danger] = @student.errors.full_messages.first
+    end
     redirect_to student_path(@student)
   end
 

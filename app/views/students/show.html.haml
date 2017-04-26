@@ -1,5 +1,7 @@
 = content_for(:title, @student.firstname+" profile")
 
+= render 'shared/student_error_messages'
+
 %h1 Profile information about #{@student.firstname} #{@student.lastname}
 %br
 .row
