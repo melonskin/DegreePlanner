@@ -6,7 +6,9 @@ SimpleCov.start 'rails'
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'capybara/cucumber'
 require 'cucumber/rails'
+require 'cucumber/autocomplete'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any

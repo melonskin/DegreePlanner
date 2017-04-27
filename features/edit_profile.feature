@@ -51,7 +51,7 @@ Scenario: able to see personal profile as a comeback user
     And I should see "First name: Lei"
     And I should see "Last name: Li"
     And I should see "Email: lilei@tamu.edu"
-    And I should see "Is F1?: FALSE"
+    And I should see "Is F1?: False"
     And I should see "Program: 	Master of Computer Science"
     And I should see "Beginning year:	2017"
     And I should see "First Semester:	Spring"

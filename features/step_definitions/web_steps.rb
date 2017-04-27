@@ -55,6 +55,10 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
+When /^(?:|I )press "([^"]*)" from "([^"]*)"$/ do |button|
+  click_button(button)
+end
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
@@ -63,13 +67,19 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
-When /^I type in "([^\"]*)" into autocomplete list "([^\"]*)" and I choose "([^\"]*)"$/ do |typed, input_name,should_select|
-  page.driver.browser.execute_script %Q{ $('input[data-autocomplete]').trigger("focus") }
-  fill_in("#{input_name}",:with => typed)
-  page.execute_script %Q{ $('input[data-autocomplete]').trigger("keydown") }
-  sleep 1
-  page.execute_script %Q{ $('.ui-menu-item a:contains("#{should_select}")').trigger("mouseenter").trigger("click"); }
+Then /^wait$/ do
+  sleep 2
 end
+
+When /^I type in "([^\"]*)" into autocomplete list "([^\"]*)" and I choose "([^\"]*)"$/ do |typed, input_name,should_select|
+   page.driver.browser.execute_script %Q{ $('input[data-autocomplete]').trigger("focus") }
+   fill_in("#{input_name}",:with => typed)
+   page.driver.browser.execute_script %Q{ $('input[data-autocomplete]').trigger("keydown") }
+   sleep 1
+   page.driver.browser.execute_script %Q{ $('.ui-menu-item a:contains("#{should_select}")').trigger("mouseenter").trigger("click"); }
+end
+#   page.execute_script %Q{ $('.ui-menu-item a:contains("#{should_select}")').trigger("mouseenter").trigger("click"); }
+# end
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:
@@ -350,4 +360,10 @@ Given(/^the following SpecialCourse exist:$/) do |table|
   table.hashes.each do |speccrs|
       SpecialCourse.create(department: speccrs[:department], number: speccrs[:number], name: speccrs[:name], description: speccrs[:description], is_fall: speccrs[:is_fall], is_spring: speccrs[:is_spring], is_summer: speccrs[:is_summer])
    end
+end
+
+Given(/^the following StudentCourseSemestership exist:$/) do |table|
+  table.hashes.each do |scs|
+      StudentCourseSemestership.create(student_id: scs[:student_id], course_id: scs[:course_id], semester_id: scs[:semester_id])
+  end
 end

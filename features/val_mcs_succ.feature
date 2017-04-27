@@ -1,5 +1,5 @@
 Feature: Validation of degree Plan  
-  MCS validation
+  I must be able to fvalidate my degree plan- MCS validation
     
 Background: users in database
     Given the following User exist:
@@ -28,7 +28,7 @@ Background: users in database
       |Fall |2021 |
     Given the following Student exist:
       |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
-      | TestUserOne |LastNameOne | 1 | FALSE |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserOne |LastNameOne | 1 | False |1 |2017 |Spring |2018 | Fall | FALSE |
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
       |CSCE |627 |Theory of Computability |3 |Theory of Computability description...|true |true |false |
