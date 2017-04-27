@@ -266,7 +266,6 @@ class Student < ApplicationRecord
             elsif (credit < 9) and (sem_no == sem_count)
                 msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
                 self.errors.add(:base,msg)
-                flag = 1
             end
         end
         if flag == 1
