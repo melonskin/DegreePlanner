@@ -283,8 +283,8 @@ class StudentsController < ApplicationController
           flag = false
           flash[:danger] = "You have courses out of your semester range."
         end
+      end
       return flag
-    end
   end
   
 
