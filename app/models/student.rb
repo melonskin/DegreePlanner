@@ -18,6 +18,9 @@ class Student < ApplicationRecord
     
     validates :start_id, :numericality => {:less_than => Proc.new {|c| c.end_id}, :message => "can not be later than Expected Graduation Semester"}
 
+    before_save { |st| st.is_f1 = st.is_f1.capitalize }
+    before_save { |st| st.has_prior_master = st.has_prior_master.capitalize }
+    
     def seminar_valid
         msg = "Seminar"
         return self.special_course_valid(681,self.program.seminar_hour_min,self.program.seminar_hour_max, msg)
