@@ -264,7 +264,7 @@ class Student < ApplicationRecord
                 self.errors.add(:base,msg)
                 flag = 1
             end
-            if (credit < 9) && (sem_no == sem_count)
+            if (credit < 9) && (sem_no == sem_count) && self.is_f1 == "true"
                 msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
                 self.errors.add(:base,msg)
             end
