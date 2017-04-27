@@ -1155,7 +1155,19 @@
         0
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1493335523
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "timestamp": 1493252321
+=======
+    "timestamp": 1493315105
+>>>>>>> Johana
+=======
+    "timestamp": 1493333054
+>>>>>>> Johana
+>>>>>>> 9016d4452fd58859f1541ee485c75f085cb45aa8
   },
   "RSpec": {
     "coverage": {
