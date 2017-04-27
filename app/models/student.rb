@@ -21,6 +21,17 @@ class Student < ApplicationRecord
     before_save { |st| st.is_f1 = st.is_f1.capitalize }
     before_save { |st| st.has_prior_master = st.has_prior_master.capitalize }
     
+    def total_semester
+        ss_id = []
+        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
+          ss_id.push(s[:semester_id])
+        end
+        s_id = []
+        self.semesters.each do |s| s_id.push(s.id) end
+        list = ss_id | s_id
+        return Semester.where(:id => list).order('id').distinct
+    end
+    
     def seminar_valid
         msg = "Seminar"
         return self.special_course_valid(681,self.program.seminar_hour_min,self.program.seminar_hour_max, msg)
@@ -28,7 +39,6 @@ class Student < ApplicationRecord
 
     def research_valid
         msg = "Research"
-
         return self.special_course_valid(691,self.program.research_hour_min,self.program.research_hour_max, msg)
     end
 
@@ -46,7 +56,6 @@ class Student < ApplicationRecord
         else
             return true, seminar_hour_v + research_hour_v + dstudy_hour_v
         end
-
     end
 
     def special_course_valid(course_number,hour_min,hour_max,msg)
@@ -110,10 +119,9 @@ class Student < ApplicationRecord
         msg = "#{self.program.joint_dep} courses hours: #{hour}/#{self.program.joint_hour_min}"
         if (hour >= self.program.joint_hour_min)
             return true, [self.program.joint_hour_max, hour].min
-        else
-            self.errors.add(:base, msg)
-            return nil, hour
         end
+        self.errors.add(:base, msg)
+        return nil, hour
     end
 
     def dep_valid
@@ -126,10 +134,9 @@ class Student < ApplicationRecord
         msg = "CSCE course hours: #{hour}/#{self.program.dep_hour}"
         if (hour >= self.program.dep_hour)
             return true, hour
-        else
-            self.errors.add(:base, msg)
-            return nil, hour
         end
+        self.errors.add(:base, msg)
+        return nil, hour
     end
 
     def elective_valid(dep_hour,joint_hour,non_dep_hour)
@@ -206,16 +213,8 @@ class Student < ApplicationRecord
 
     
     def semester_max_valid
-        ss_id = []
-        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
-          ss_id.push(s[:semester_id])
-        end
-        s_id = []
-        self.semesters.each do |s| s_id.push(s.id) end
-        list = ss_id | s_id
-        semesters = Semester.where(:id => list).order('id').distinct 
+        semesters = self.total_semester() 
         flag = 0
-        
         semesters.each do |semester|
             credit = 0
             StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
@@ -231,24 +230,14 @@ class Student < ApplicationRecord
                 flag = 1
             end
         end
-        if flag == 1
-            return nil
-        end
-        return true
+        return (flag == 1) ? nil : true
     end
     
     def semester_f1_valid
         if self.is_f1 == "False"
             return true
         end
-        ss_id = []
-        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
-          ss_id.push(s[:semester_id])
-        end
-        s_id = []
-        self.semesters.each do |s| s_id.push(s.id) end
-        list = ss_id | s_id
-        semesters = Semester.where(:id => list).order('id').distinct 
+        semesters = self.total_semester()
         sem_count = semesters.count
         sem_no = 0
         flag = 0
@@ -262,30 +251,22 @@ class Student < ApplicationRecord
             StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
                 credit += sscs.credit
             end
-            if (credit < 9) and (sem_no != sem_count)
-                msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
-                self.errors.add(:base,msg)
-                flag = 1
-            elsif (credit < 9) and (sem_no == sem_count)
-                msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
-                self.errors.add(:base,msg)
+            if credit < 9 
+                if sem_no != sem_count
+                    msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
+                    self.errors.add(:base,msg)
+                    flag = 1
+                else 
+                    msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
+                    self.errors.add(:base,msg)
+                end
             end
         end
-        if flag == 1
-            return nil
-        end
-        return true
+        return (flag == 1) ? nil : true
     end
     
     def sem_range_valid
-        ss_id = []
-        StudentSpecialCourseSemestership.where(:student_id => self.id).each do |s|
-          ss_id.push(s[:semester_id])
-        end
-        s_id = []
-        self.semesters.each do |s| s_id.push(s.id) end
-        list = ss_id | s_id
-        semesters = Semester.where(:id => list).order('id').distinct
+        semesters = self.total_semester()
         start_id = self.start_id()
         end_id = self.end_id()
         if !semesters.first.nil? && (start_id > semesters.first.id || end_id < semesters.last.id)
