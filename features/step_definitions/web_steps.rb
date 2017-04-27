@@ -357,3 +357,9 @@ Given(/^the following SpecialCourse exist:$/) do |table|
       SpecialCourse.create(department: speccrs[:department], number: speccrs[:number], name: speccrs[:name], description: speccrs[:description], is_fall: speccrs[:is_fall], is_spring: speccrs[:is_spring], is_summer: speccrs[:is_summer])
    end
 end
+
+Given(/^the following StudentCourseSemestership exist:$/) do |table|
+  table.hashes.each do |scs|
+      StudentCourseSemestership.create(student_id: scs[:student_id], course_id: scs[:course_id], semester_id: scs[:semester_id])
+  end
+end

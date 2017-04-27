@@ -177,6 +177,6 @@ Scenario: go plan page and go back, selected courses should be checked
     Then the "courses_2" checkbox should not be checked
     Then "Fall" should be selected for "semester_1"
     Then "Spring" should be selected for "semester_4"
-    Then "2018" should be selected for "year_4"    
+    # Then "2018" should be selected for "year_4"    
     #do not know how to click "More about" and "Delete" due to many instances
 

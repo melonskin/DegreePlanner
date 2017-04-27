@@ -1934,7 +1934,7 @@ Student.create( :firstname => "Johana", :lastname => "Rueda", :is_f1 => "false",
 Student.create( :firstname => "Yining", :lastname => "Bao", :is_f1 => "true", :program_id => 2, :user_id => 2, :yearstart => 2017, :semstart => "Fall", :yearend => 2019, :semend => "Fall", :has_prior_master => "false")
 Student.create( :firstname => "Andres", :lastname => "Gonzalez", :is_f1 => "true", :program_id => 3, :user_id => 3, :yearstart => 2018, :semstart => "Spring", :yearend => 2019, :semend => "Fall", :has_prior_master => "false")
 Student.create( :firstname => "Shijin", :lastname => "Tang", :is_f1 => "true", :program_id => 4, :user_id => 4, :yearstart => 2018, :semstart => "Fall", :yearend => 2020, :semend => "Fall", :has_prior_master => "false")
-Student.create( :firstname => "Jingjia", :lastname => "Li", :is_f1 => "false", :program_id => 1, :user_id => 5, :yearstart => 2019, :semstart => "Spring", :yearend => 2022, :semend => "Spring", :has_prior_master => "false")
+Student.create( :firstname => "Jingjia", :lastname => "Li", :is_f1 => "false", :program_id => 1, :user_id => 5, :yearstart => 2019, :semstart => "Spring", :yearend => 2021, :semend => "Spring", :has_prior_master => "false")
 InterestCourseship.create( :course_id => 41, :interest_id => 1)
 InterestCourseship.create( :course_id => 42, :interest_id => 1)
 InterestCourseship.create( :course_id => 43, :interest_id => 1)
