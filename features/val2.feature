@@ -1,5 +1,5 @@
 Feature: Validation of degree Plan  
-  MCS validation
+  I must be able to fvalidate my degree plan- MCS validation
     
 Background: users in database
     Given the following User exist:
@@ -28,7 +28,7 @@ Background: users in database
       |Fall |2021 |
     Given the following Student exist:
       |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
-      | TestUserOne |LastNameOne | 1 | FALSE |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserOne |LastNameOne | 1 | TRUE |1 |2017 |Spring |2018 | Fall | FALSE |
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
       |CSCE |627 |Theory of Computability |3 |Theory of Computability description...|true |true |false |
@@ -44,8 +44,10 @@ Background: users in database
       |CSCE |608 |Database Systems |3 |Database modeling techniques;... |true |false |false |
       |CSCE |670 |Information Storage and Retrieval | 3 | Information Storage and Retrieval... |true | true | false |
       |CSCE | 675 | Digital Libraries | 3 | Digital Libraries | true | true | false |
+      |CSCE | 420 | Artificial Intelligence | 3 | Description of Artificial Intelligence - Ok class to add| true | true | false |
+      |CSCE | 491 | Undergraduate research | 3 | Desc of Undergrad research- Not OK to add | true |true |false |
     Given the following Coursesection exist:
-      | department | number | section | instructor | term | year | gpa | student | a | b | c | d | f | q | course_id |
+      |department | number | section | instructor | term | year | gpa | student | a | b | c | d | f | q | course_id |
       |CSCE |603 | 600 | Jiang A | Spring | 2016 | 3.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 1 |
       |CSCE |604 | 600 | Jiang A | Spring | 2016 | 4.0 | 10 | 100.00% | 0 | 0 | 0 | 0 | 0 | 2 |
       |CSCE |605 | 600 | Jiang A | Spring | 2016 | 3.0 | 66 | 100.00% | 0 | 0 | 0 | 0 | 0 | 3 |
@@ -60,6 +62,11 @@ Background: users in database
       |CSCE |622 | 600 | Jiang A | Spring | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
       |CSCE |670| 600 | Jiang A | Spring | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
       |CSCE |675 | 600 | Jiang A | Spring | 2016 | 4.0 | 8 | 100.00% | 0 | 0 | 0 | 0 | 0 | 12 |
+      |CSCE |420 | 600 | Underdrad prof | Spring | 2016 | 4.0 | 10 | 100.00% | 0 | 0 | 0 | 0 | 0 | 6 |
+      |CSCE |491 | 600 | Underdrad prof | Spring | 2016 | 4.0 | 10 | 100.00% | 0 | 0 | 0 | 0 | 0 | 6 |
+    Given the following StudentCourseSemestership exist:
+      |student_id | course_id | semester_id |
+      | 1 | 15 | 3 |
     Given the following Package exist:
       |name |no_required |program_id |
       |Theory |1 |1 |
@@ -101,27 +108,27 @@ Background: users in database
       | CSCE | 684 | Professional Internship | Computer Science Internship | false | false | true |
       | CSCE | 685 | Directed Studies | Computer Science Directed Studies | true | true | false |
       | CSCE | 691 | Research | Computer Science research | true | true | true |
-      
     Given I am on the login page
         And  I fill in "Email" with "TestUserOne@tamu.edu"
         And  I fill in "Password" with "123456"
         And I press "Log in"
         Then I should be on the user page for "TestUserOne"
 
-        
-    Scenario: Successfully Validate MCS
-        And  I follow "Create degree plan"
-        And  I check "courses_1"
-        And  I select "Spring" from "semester_1"
-        And  I select "2017" from "year_1"
-        And  I check "courses_3"
-        And  I select "Spring" from "semester_3"
-        And  I select "2017" from "year_3"
-        And  I check "courses_6"
-        And  I select "Spring" from "semester_6"
-        And  I select "2017" from "year_6"
-        And  I press "Save changes"
-        Then I should be on the InterestCourses page for "TestUserOne"
+Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
+        And I follow "View degree plan"
+        And I follow "Back to package courses"
+        And I check "courses_1"
+        And I select "Spring" from "semester_1"
+        And I select "2017" from "year_1"
+        And I check "courses_3"
+        And I select "Spring" from "semester_3"
+        And I select "2017" from "year_3"
+        And I check "courses_6"
+        And I select "Spring" from "semester_6"
+        And I select "2017" from "year_6"
+        And I press "Save changes"
+        Then I should see "Degree Plan Draft"
+        And I follow "Back to interest courses"
         And I check "courses_7"
         And I select "Fall" from "semester_7"
         And I select "2017" from "year_7"
@@ -129,8 +136,8 @@ Background: users in database
         And I select "Fall" from "semester_4"
         And I select "2017" from "year_4"
         And I check "courses_9"
-        And I select "Fall" from "semester_9"
-        And I select "2017" from "year_9"
+        And I select "Spring" from "semester_9"
+        And I select "2018" from "year_9"
         And I check "courses_10"
         And I select "Spring" from "semester_10"
         And I select "2018" from "year_10"
@@ -138,17 +145,22 @@ Background: users in database
         And I select "Spring" from "semester_11"
         And I select "2018" from "year_11"
         And I check "courses_12"
-        And I select "Spring" from "semester_12"
+        And I select "Fall" from "semester_12"
         And I select "2018" from "year_12"
-        And I check "courses_13"
-        And I select "Fall" from "semester_13"
-        And I select "2018" from "year_13"
         And I press "Save changes"
-        Then I should be on the student_plan page for "TestUserOne"
+        Then I should see "Degree Plan Draft"
+        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
+        Then I should see "Seminar hours: 0/1"
         And I select "CSCE681 Seminar" from "course"
         And I select "Fall" from "semestersc"
+        And I select "2020" from "yearsc"
+        And I fill in "credit" with "1"
+        And I press "Add special course"
+        Then I should see "Semester should be within"
+        And I select "CSCE681 Seminar" from "course"
+        And I select "Spring" from "semestersc"
         And I select "2017" from "yearsc"
         And I fill in "credit" with "1"
         And I press "Add special course"
+        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
         Then I should see "Your degree plan is valid."
-        
