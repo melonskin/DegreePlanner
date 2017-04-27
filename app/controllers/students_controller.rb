@@ -99,10 +99,15 @@ class StudentsController < ApplicationController
     delete_all_package_courses(packages)
 
     # create relationship
-    select_package_courses(createpackage_params)
+    flag = select_package_courses(createpackage_params)
     # redirect_to plan_student_path
     # TO DO, modifing package course will be directed to plan path
     # debugger
+    if !flag
+      redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
+      return
+    end
+      
     if createpackage_params[:no_create].to_i == 1
       redirect_to plan_student_path
     else
@@ -128,9 +133,13 @@ class StudentsController < ApplicationController
     delete_all_package_courses(packages)
     
     # create relationship
-    select_package_courses(createpackage_params)
+    flag = select_package_courses(createpackage_params)
     
-    redirect_to plan_student_path
+    if flag
+      redirect_to plan_student_path
+    else
+      redirect_to interest_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
+    end
   end
   
   def plan
@@ -261,13 +270,20 @@ class StudentsController < ApplicationController
   end
   
   def select_package_courses(createpackage_params)
+      flag = true
       createpackage_params[:courses].each do |course_id, package_id|
         term = createpackage_params[:semester][course_id.to_s]
         year = createpackage_params[:year][course_id.to_s]
         semester = Semester.find_by_term_and_year(term, year)
         course = Course.find(course_id)
         # add relationships
-        StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+        if semester.id >= @student.start_id && semester.id <= @student.end_id
+          @scs = StudentCourseSemestership.create(:student=>@student, :course=>course, :semester=>semester)
+        else
+          flag = false
+          flash[:danger] = "You have courses out of your semester range."
+        end
+      return flag
     end
   end
   
