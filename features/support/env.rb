@@ -6,6 +6,7 @@ SimpleCov.start 'rails'
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'capybara/cucumber'
 require 'cucumber/rails'
 require 'cucumber/autocomplete'
 
