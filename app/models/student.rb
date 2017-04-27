@@ -235,7 +235,7 @@ class Student < ApplicationRecord
     end
     
     def semester_f1_valid
-        if self.is_f1 == "false"
+        if self.is_f1 == "False"
             return true
         end
         ss_id = []
@@ -263,10 +263,10 @@ class Student < ApplicationRecord
                 msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
                 self.errors.add(:base,msg)
                 flag = 1
-            end
-            if (credit < 9) && (sem_no == sem_count) && self.is_f1 == "true"
+            elsif (credit < 9) and (sem_no == sem_count)
                 msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
                 self.errors.add(:base,msg)
+                flag = 1
             end
         end
         if flag == 1
