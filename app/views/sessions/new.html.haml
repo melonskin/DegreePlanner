@@ -9,9 +9,11 @@
 
       = label :session, :password
       = password_field :session, :password, class: 'form-control'
-
-      = submit_tag "Log in!", class: "btn btn-primary" 
+      
+      = check_box :session, :remember_me
+      %Remember Remember me on this computer
+      %end
+      
+      = submit_tag "Log in", class: "btn btn-primary" 
 
     %p New user? #{link_to "Sign up now!", signup_path}
-
-
