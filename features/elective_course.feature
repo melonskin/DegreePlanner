@@ -158,7 +158,7 @@ Background: users, programs, students in database
         And  I select "2018" from "year_9"
         And  I press "Save changes"
         Then I should be on the student_plan page for "Johana"  
-        And I follow "Back to interest courses"
+        And I follow "Back to Interest"
         Then I should be on the InterestCourses page for "Johana"
         Then the "courses_2" checkbox should be checked
         Then "Fall" should be selected for "semester_2"
