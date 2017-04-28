@@ -1,6 +1,6 @@
 Feature: Validation of degree Plan  
   I must be able to fvalidate my degree plan- MCS validation
-    
+  
 Background: users in database
     Given the following User exist:
       | name | email | password |
@@ -20,15 +20,10 @@ Background: users in database
       |Spring |2019 |
       |Summer |2019 |
       |Fall |2019 |
-      |Spring |2020 |
-      |Summer |2020 |
-      |Fall |2020 |
-      |Spring |2021 |
-      |Summer |2021 |
-      |Fall |2021 |
     Given the following Student exist:
       |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
-      | TestUserOne |LastNameOne | 1 | TRUE |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserOne |LastNameOne | 1 | False |1 |2017 |Spring |2019 | Fall | FALSE |
+      | TestUserTwo |LastNameTwo | 1 | False |2 | 2017 | Spring | 2018 | Fall | FALSE |
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
       |CSCE |627 |Theory of Computability |3 |Theory of Computability description...|true |true |false |
@@ -66,7 +61,16 @@ Background: users in database
       |CSCE |491 | 600 | Underdrad prof | Spring | 2016 | 4.0 | 10 | 100.00% | 0 | 0 | 0 | 0 | 0 | 6 |
     Given the following StudentCourseSemestership exist:
       |student_id | course_id | semester_id |
-      | 1 | 15 | 3 |
+      | 1 | 3 | 1 |
+      | 1 | 7 | 1 |
+      | 1 | 6 | 3 |
+      | 1 | 13 | 3 |
+      | 1 | 12 | 4 |
+      | 1 | 11 | 4 |
+      | 1 | 10 | 6 |
+      | 1 | 9 | 6 |
+      | 1 | 8 | 7 |
+      | 1 | 1 | 7 |
     Given the following Package exist:
       |name |no_required |program_id |
       |Theory |1 |1 |
@@ -113,111 +117,18 @@ Background: users in database
         And  I fill in "Password" with "123456"
         And I press "Log in"
         Then I should be on the user page for "TestUserOne"
-
-Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
+    
+Scenario: Valid Semester, chnage profile, classes out of range
+        And I follow "View your information"
+        Then I should see "Profile information"
+        And I follow "Edit Profile"
+        Then I should see "Edit Your Profile"
+        And I select "2018" from "Expected Graduation year"
+        And I press "Update student info"
+        Then I should see "Profile information"
+        And I follow "Back to home"
         And I follow "View degree plan"
-        And I follow "Back to Package"
-        And I check "courses_1"
-        And I select "Spring" from "semester_1"
-        And I select "2017" from "year_1"
-        And I check "courses_3"
-        And I select "Spring" from "semester_3"
-        And I select "2017" from "year_3"
-        And I check "courses_6"
-        And I select "Spring" from "semester_6"
-        And I select "2017" from "year_6"
-        And I press "Save changes"
         Then I should see "Degree Plan Draft"
-        And I follow "Back to Interest"
-        And I check "courses_7"
-        And I select "Fall" from "semester_7"
-        And I select "2017" from "year_7"
-        And I check "courses_4"
-        And I select "Fall" from "semester_4"
-        And I select "2017" from "year_4"
-        And I check "courses_9"
-        And I select "Spring" from "semester_9"
-        And I select "2018" from "year_9"
-        And I check "courses_10"
-        And I select "Spring" from "semester_10"
-        And I select "2018" from "year_10"
-        And I check "courses_11"
-        And I select "Spring" from "semester_11"
-        And I select "2018" from "year_11"
-        And I check "courses_12"
-        And I select "Fall" from "semester_12"
-        And I select "2018" from "year_12"
-        And I press "Save changes"
-        Then I should see "Degree Plan Draft"
-<<<<<<< HEAD
-        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
-=======
-        Then I should see "Reduce course load form required by ISS"
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
         Then I should see "Seminar hours: 0/1"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Fall" from "semestersc"
-        And I select "2020" from "yearsc"
-        And I fill in "credit" with "1"
-        And I press "Add special course"
-        Then I should see "Semester should be within"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Spring" from "semestersc"
-        And I select "2017" from "yearsc"
-        And I fill in "credit" with "1"
-        And I press "Add special course"
-<<<<<<< HEAD
-        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
-=======
-        Then I should see "Reduce course load form required by ISS"
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
-        # Then I should see "Your degree plan is valid."  
-        
-Scenario: Successfully Validate delete required class
-        And I follow "View degree plan"
-        And I follow "Back to Package"
-        And I check "courses_1"
-        And I select "Spring" from "semester_1"
-        And I select "2017" from "year_1"
-        And I check "courses_3"
-        And I select "Spring" from "semester_3"
-        And I select "2017" from "year_3"
-        And I check "courses_6"
-        And I select "Spring" from "semester_6"
-        And I select "2017" from "year_6"
-        And I press "Save changes"
-        Then I should see "Degree Plan Draft"
-        And I follow "Back to Interest"
-        And I check "courses_7"
-        And I select "Fall" from "semester_7"
-        And I select "2017" from "year_7"
-        And I check "courses_4"
-        And I select "Fall" from "semester_4"
-        And I select "2017" from "year_4"
-        And I check "courses_9"
-        And I select "Spring" from "semester_9"
-        And I select "2018" from "year_9"
-        And I check "courses_10"
-        And I select "Spring" from "semester_10"
-        And I select "2018" from "year_10"
-        And I check "courses_11"
-        And I select "Spring" from "semester_11"
-        And I select "2018" from "year_11"
-        And I check "courses_12"
-        And I select "Fall" from "semester_12"
-        And I select "2018" from "year_12"
-        And I press "Save changes"
-        Then I should see "Degree Plan Draft"
-<<<<<<< HEAD
-        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
-=======
-        Then I should see "Reduce course load form required by ISS"
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
-        Then I should see "Seminar hours: 0/1"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Fall" from "semestersc"
-        And I select "2017" from "yearsc"
-        And I fill in "credit" with "1"
-        And I press "Add special course"
-        #Then I should see "Your degree plan is valid."
-        #Then I press "Delete" from "courses_1"
+        Then I should not see "Package courses: invalid; go back to edit."
+        Then I should see "You have courses out of your semester range."
