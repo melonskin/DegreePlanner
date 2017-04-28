@@ -1,75 +1,134 @@
 = content_for(:title, "Degree plan")
 
-= render 'shared/course_error_messages'
-= render 'shared/student_error_messages'
-
-.center
-  %h1 Degree Plan Draft
-  %br
- 
-- @semesters.each do |semester|
-  
-  %h2 Semester #{semester.term} #{semester.year}    
-  .row
-    .col-md-6.col-md-offset-3
-      %table.table{:border => 1 }
-        %thead
-          %tr
-            %th Course
-            %th Credit
-            %th Additional Information
-            %th Delete?
-        %tbody
-          - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
-            - course = Course.find(scs.course_id.to_i)
-            %tr
-              %td
-                %div{:title => "#{course.popup_display}"} #{course.full_name}
-              %td= course.credit
-              %td= link_to "More about", course_path(course), class: "btn btn-primary"
-              %td= button_to 'Delete', destroy_scs_ship_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
-          - StudentSpecialCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |sscs|
-            - course = SpecialCourse.find(sscs.special_course_id.to_i)
-            %tr
-              %td
-                #{course.full_name}
-              %td= sscs.credit
-              %td= link_to "More about", special_course_path(course), class: "btn btn-primary"
-              %td= button_to 'Delete', destroy_sscs_ship_student_path(@student), :method => :delete, :params => { :course => course, :semester => semester} , class: "btn btn-primary"
-.row
-  .col-md-4.col-md-offset-4
-    %h2 Pick other Electives
-    %table.table
-    = form_tag(add_plan_courses_student_path(@student), :method => "post", id: "search-form") do
-      = hidden_field_tag :course_id, '', :id => "my_course_id"
-      = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course ID or name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
-      = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
-      = select_tag "year",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
-      = submit_tag "Add other elective course", class: "btn btn-lg btn-primary"
-
-    %script{:charset => "utf-8", :type => "text/javascript"}
-    :cdata
-      $('#search').bind('railsAutocomplete.select', function(event, data){
-      $('#search-form').submit()
+%head
+  :javascript
+    /*Menu-toggle*/
+      $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("active");
       });
-%br 
-.row
-  .col-md-4.col-md-offset-4
-    %h2 Pick Special Courses
-    %table.table
-    = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
-      = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
-      = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
-      = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
-      = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
-      = submit_tag "Add special course", class: "btn btn-lg btn-primary"
-    %br
+    
+      /*Scroll Spy*/
+      $('body').scrollspy({ target: '#spy', offset:80});
+  
+      /*Smooth link animation*/
+      $('a[href*=#]:not([href=#])').click(function() {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+  
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+              if (target.length) {
+                  $('html,body').animate({
+                      scrollTop: target.offset().top
+                  }, 1000);
+                  return false;
+              }
+          }
+      });
 
+#wrapper
+  / Sidebar
+  #sidebar-wrapper
+    %nav#spy
+      %ul.sidebar-nav.nav
+        %li.sidebar-brand
+          %a{:href => "#home"}
+            %span.fa.fa-home.solo Home
+        %li
+          %a{"data-scroll" => "", :href => "#error"}
+            %span.fa.fa-anchor.solo Errors
+        %li
+          %a{"data-scroll" => "", :href => "#course"}
+            %span.fa.fa-anchor.solo Pick Electives
+        %li
+          %a{"data-scroll" => "", :href => "#specialcourse"}
+            %span.fa.fa-anchor.solo Pick Special Courses
+        - if not @student.program.packages.first.nil?
+          %li
+            = link_to "Back to Package", required_courses_student_path(:no_create => 1)
+        %li
+          = link_to "Back to Interest", interest_courses_student_path
+  .Fixed
+    %a#menu-toggle.glyphicon.glyphicon-align-justify.btn-menu.toggle{:href => "#", :style => "font-size: 30px"}
+      %i.fa.fa-bars.fa-6
+  #page-content-wrapper
 
-.center
-  - if not @student.program.packages.first.nil?
-    %p
-      = link_to "Back to package courses", required_courses_student_path(:no_create => 1), class: "btn btn-lg btn-primary"
-  %p
-    = link_to "Back to interest courses", interest_courses_student_path, class: "btn btn-lg btn-primary"
-
+    .page-content.inset{"data-spy" => "scroll", "data-target" => "#spy"}
+      .left
+        %legend#error
+        %br
+        %h1#home Degree Plan Draft
+        .row
+          .col-md-6.col-md-offset-3
+            = render 'shared/course_error_messages'
+            = render 'shared/student_error_messages'
+        %br
+    
+      - @semesters.each do |semester|
+      
+        %h2 Semester #{semester.term} #{semester.year}    
+        .row
+          .col-md-8.col-md-offset-2
+            %table.table{:border => 1 }
+              %thead
+                %tr
+                  %th Course
+                  %th Credit
+                  %th Additional Information
+                  %th Delete?
+              %tbody
+                - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|
+                  - course = Course.find(scs.course_id.to_i)
+                  %tr
+                    %td
+                      %div{:title => "#{course.popup_display}"} #{course.full_name}
+                    %td= course.credit
+                    %td= link_to "More about", course_path(course), class: "btn btn-primary"
+                    %td= button_to 'Delete', destroy_scs_ship_student_path(@student), :method => :delete, :params => { :course => course} , class: "btn btn-primary"
+                - StudentSpecialCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |sscs|
+                  - course = SpecialCourse.find(sscs.special_course_id.to_i)
+                  %tr
+                    %td
+                      #{course.full_name}
+                    %td= sscs.credit
+                    %td= link_to "More about", special_course_path(course), class: "btn btn-primary"
+                    %td= button_to 'Delete', destroy_sscs_ship_student_path(@student), :method => :delete, :params => { :course => course, :semester => semester} , class: "btn btn-primary"
+      .row
+        %legend#course
+        %br
+        .col-md-4.col-md-offset-4
+          %h2 Pick other Electives
+          %table.table
+          = form_tag(add_plan_courses_student_path(@student), :method => "post", id: "search-form") do
+            = hidden_field_tag :course_id, '', :id => "my_course_id"
+            = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course ID or name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
+            = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
+            = select_tag "year",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+            = submit_tag "Add other elective course", class: "btn btn-lg btn-primary"
+      
+          %script{:charset => "utf-8", :type => "text/javascript"}
+          :cdata
+            $('#search').bind('railsAutocomplete.select', function(event, data){
+            $('#search-form').submit()
+            });
+      %br 
+      .row
+        %legend#specialcourse
+        %br
+        .col-md-4.col-md-offset-4
+          %h2 Pick Special Courses
+          %table.table
+          = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
+            = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
+            = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
+            = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+            = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
+            = submit_tag "Add special course", class: "btn btn-lg btn-primary"
+          %br
+      
+      // .center
+      //   - if not @student.program.packages.first.nil?
+      //     %p
+      //       = link_to "Back to package courses", required_courses_student_path(:no_create => 1), class: "btn btn-lg btn-primary"
+      //   %p
+      //     = link_to "Back to interest courses", interest_courses_student_path, class: "btn btn-lg btn-primary"
