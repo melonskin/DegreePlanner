@@ -172,7 +172,7 @@ Scenario: go plan page and go back, selected courses should be checked
     Then I should see "Please pick from the following interest packages"
     And  I press "Save changes"
     Then I should be on the student_plan page for "Lilei"
-    And I follow "Back to package courses"
+    And I follow "Back to Package"
     Then the "courses_1" checkbox should be checked
     Then the "courses_2" checkbox should not be checked
     Then "Fall" should be selected for "semester_1"

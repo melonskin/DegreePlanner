@@ -22,8 +22,9 @@
     /         %li= link_to "Log in", signup_path
     = render 'layouts/header'
     .container
-      - flash.each do |message_type, message|
-        %div{:class => "alert alert-#{message_type}"}= message
+      .col-md-7.col-md-offset-4
+        - flash.each do |message_type, message|
+          %div{:class => "alert alert-#{message_type}"}= message
       = yield
       = render 'layouts/footer'
       = debug(params) if Rails.env.development?

@@ -1,6 +1,6 @@
 Feature: Validation of degree Plan  
   I must be able to fvalidate my degree plan- MCS validation
-    
+  
 Background: users in database
     Given the following User exist:
       | name | email | password |
@@ -20,15 +20,10 @@ Background: users in database
       |Spring |2019 |
       |Summer |2019 |
       |Fall |2019 |
-      |Spring |2020 |
-      |Summer |2020 |
-      |Fall |2020 |
-      |Spring |2021 |
-      |Summer |2021 |
-      |Fall |2021 |
     Given the following Student exist:
       |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
-      | TestUserOne |LastNameOne | 1 | TRUE |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserOne |LastNameOne | 1 | True |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserTwo |LastNameTwo | 1 | False |2 | 2017 | Spring | 2018 | Fall | FALSE |
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
       |CSCE |627 |Theory of Computability |3 |Theory of Computability description...|true |true |false |
@@ -66,7 +61,16 @@ Background: users in database
       |CSCE |491 | 600 | Underdrad prof | Spring | 2016 | 4.0 | 10 | 100.00% | 0 | 0 | 0 | 0 | 0 | 6 |
     Given the following StudentCourseSemestership exist:
       |student_id | course_id | semester_id |
-      | 1 | 15 | 3 |
+      | 1 | 3 | 1 |
+      | 1 | 7 | 1 |
+      | 1 | 6 | 1 |
+      | 1 | 13 | 3 |
+      | 1 | 12 | 3 |
+      | 1 | 11 | 3 |
+      | 1 | 10 | 4 |
+      | 1 | 9 | 4 |
+      | 1 | 8 | 4 |
+      | 1 | 5 | 4 |
     Given the following Package exist:
       |name |no_required |program_id |
       |Theory |1 |1 |
@@ -113,47 +117,15 @@ Background: users in database
         And  I fill in "Password" with "123456"
         And I press "Log in"
         Then I should be on the user page for "TestUserOne"
-
-Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
+    
+Scenario: Not Valid Required Classes
         And I follow "View degree plan"
-        And I follow "Back to Package"
-        And I check "courses_1"
-        And I select "Spring" from "semester_1"
-        And I select "2017" from "year_1"
-        And I check "courses_3"
-        And I select "Spring" from "semester_3"
-        And I select "2017" from "year_3"
-        And I check "courses_6"
-        And I select "Spring" from "semester_6"
-        And I select "2017" from "year_6"
-        And I press "Save changes"
         Then I should see "Degree Plan Draft"
-        And I follow "Back to Interest"
-        And I check "courses_7"
-        And I select "Fall" from "semester_7"
-        And I select "2017" from "year_7"
-        And I check "courses_4"
-        And I select "Fall" from "semester_4"
-        And I select "2017" from "year_4"
-        And I check "courses_9"
-        And I select "Spring" from "semester_9"
-        And I select "2018" from "year_9"
-        And I check "courses_10"
-        And I select "Spring" from "semester_10"
-        And I select "2018" from "year_10"
-        And I check "courses_11"
-        And I select "Spring" from "semester_11"
-        And I select "2018" from "year_11"
-        And I check "courses_12"
-        And I select "Fall" from "semester_12"
-        And I select "2018" from "year_12"
-        And I press "Save changes"
-        Then I should see "Degree Plan Draft"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
         Then I should see "Seminar hours: 0/1"
+        Then I should see "Package courses: invalid; go back to edit."
         And I select "CSCE681 Seminar" from "course"
-        And I select "Fall" from "semestersc"
-        And I select "2020" from "yearsc"
+        And I select "Spring" from "semestersc"
+        And I select "2019" from "yearsc"
         And I fill in "credit" with "1"
         And I press "Add special course"
         Then I should see "Semester should be within"
@@ -162,50 +134,22 @@ Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
         And I select "2017" from "yearsc"
         And I fill in "credit" with "1"
         And I press "Add special course"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
-        # Then I should see "Your degree plan is valid."  
-        
-Scenario: Successfully Validate delete required class
-        And I follow "View degree plan"
-        And I follow "Back to Package"
+        Then I should not see "Seminar hours: 0/1"
+        Then I should see "Package courses: invalid; go back to edit."
+        Then I follow "Back to Package"
+        Then I should see "Pick Required Classes"
         And I check "courses_1"
         And I select "Spring" from "semester_1"
-        And I select "2017" from "year_1"
-        And I check "courses_3"
-        And I select "Spring" from "semester_3"
-        And I select "2017" from "year_3"
-        And I check "courses_6"
-        And I select "Spring" from "semester_6"
-        And I select "2017" from "year_6"
+        And I select "2018" from "year_1"
+        And I check "courses_2"
+        And I select "Spring" from "semester_2"
+        And I select "2018" from "year_2"
         And I press "Save changes"
-        Then I should see "Degree Plan Draft"
+        Then I should be on the student_plan page for "TestUserOne"
+        Then I should not see "Your degree plan is valid."
+        Then I should see "Spring 2018 course hours: 18/(9-15) (exceed limit)"
         And I follow "Back to Interest"
-        And I check "courses_7"
-        And I select "Fall" from "semester_7"
-        And I select "2017" from "year_7"
-        And I check "courses_4"
-        And I select "Fall" from "semester_4"
-        And I select "2017" from "year_4"
-        And I check "courses_9"
-        And I select "Spring" from "semester_9"
-        And I select "2018" from "year_9"
-        And I check "courses_10"
-        And I select "Spring" from "semester_10"
-        And I select "2018" from "year_10"
-        And I check "courses_11"
-        And I select "Spring" from "semester_11"
-        And I select "2018" from "year_11"
-        And I check "courses_12"
-        And I select "Fall" from "semester_12"
-        And I select "2018" from "year_12"
+        And I select "Fall" from "semester_10"
+        And I select "Fall" from "semester_9"
         And I press "Save changes"
-        Then I should see "Degree Plan Draft"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
-        Then I should see "Seminar hours: 0/1"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Fall" from "semestersc"
-        And I select "2017" from "yearsc"
-        And I fill in "credit" with "1"
-        And I press "Add special course"
-        #Then I should see "Your degree plan is valid."
-        #Then I press "Delete" from "courses_1"
+        Then I should see "Your degree plan is valid."
