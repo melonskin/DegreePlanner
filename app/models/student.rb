@@ -257,7 +257,7 @@ class Student < ApplicationRecord
                     self.errors.add(:base,msg)
                     flag = 1
                 else 
-                    msg = "Remember to file a document for your F1 status at the beginning of #{semester.term} #{semester.year}"
+                    msg = "Reduce course load form required by ISS at the start of #{semester.term} #{semester.year}"
                     self.errors.add(:base,msg)
                 end
             end
