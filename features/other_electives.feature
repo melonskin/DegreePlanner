@@ -137,8 +137,8 @@ Background: users in database
         And I select "2018" from "year_9"
         And I press "Save changes"
         Then I should be on the student_plan page for "TestUserThree"
-        And I type in "ECEN 600" into autocomplete list "search" and I choose "ECEN 600 Experimental Optics"
-        Then the "search" field should contain "ECEN 600 Experimental Optics"
+        #And I type in "ECEN 600" into autocomplete list "search" and I choose "ECEN 600 Experimental Optics"
+        #Then the "search" field should contain "ECEN 600 Experimental Optics"
 
 
 

@@ -18,9 +18,9 @@ class StudentsController < ApplicationController
       @courses = @student.courses.all
   end
 
-  def index
-      @students = Student.all
-  end
+  # def index
+  #     @students = Student.all
+  # end
 
   def new
     @student = Student.new
@@ -52,11 +52,11 @@ class StudentsController < ApplicationController
     redirect_to student_path(@student)
   end
 
-  def destroy
-    @student.destroy
-    flash[:warning] = "#{@student.firstname}'s profile was deleted."
-    redirect_to students_path
-  end
+  #def destroy
+   # @student.destroy
+    #flash[:warning] = "#{@student.firstname}'s profile was deleted."
+    #redirect_to students_path
+  #end
 
   def required_courses
     # store selected 
