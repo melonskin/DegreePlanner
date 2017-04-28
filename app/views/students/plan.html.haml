@@ -25,7 +25,9 @@
               }
           }
       });
-
+.Fixed
+  %a#menu-toggle.glyphicon.glyphicon-align-justify.btn-menu.toggle{:href => "#", :style => "font-size: 30px"}
+    %i.fa.fa-bars.fa-6
 #wrapper
   / Sidebar
   #sidebar-wrapper
@@ -48,9 +50,9 @@
             = link_to "Back to Package", required_courses_student_path(:no_create => 1)
         %li
           = link_to "Back to Interest", interest_courses_student_path
-  .Fixed
-    %a#menu-toggle.glyphicon.glyphicon-align-justify.btn-menu.toggle{:href => "#", :style => "font-size: 30px"}
-      %i.fa.fa-bars.fa-6
+  // .Fixed
+  //   %a#menu-toggle.glyphicon.glyphicon-align-justify.btn-menu.toggle{:href => "#", :style => "font-size: 30px"}
+  //     %i.fa.fa-bars.fa-6
   #page-content-wrapper
 
     .page-content.inset{"data-spy" => "scroll", "data-target" => "#spy"}
