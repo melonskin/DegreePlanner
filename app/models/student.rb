@@ -211,19 +211,23 @@ class Student < ApplicationRecord
         
     end
 
+    def calculate_credit(semester)
+        credit = 0
+        StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
+            course = Course.find(scs.course_id.to_i)
+            credit += course.credit
+        end
+        StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
+            credit += sscs.credit
+        end
+        return credit
+    end
     
     def semester_max_valid
         semesters = self.total_semester() 
         flag = 0
         semesters.each do |semester|
-            credit = 0
-            StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
-                course = Course.find(scs.course_id.to_i)
-                credit += course.credit
-            end
-            StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
-                credit += sscs.credit
-            end
+            credit = calculate_credit(semester)
             if (credit > 15)
                 msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (exceed limit)"
                 self.errors.add(:base,msg)
@@ -232,6 +236,8 @@ class Student < ApplicationRecord
         end
         return (flag == 1) ? nil : true
     end
+    
+    
     
     def semester_f1_valid
         if self.is_f1 == "False"
@@ -243,14 +249,7 @@ class Student < ApplicationRecord
         flag = 0
         semesters.each do |semester|
             sem_no += 1
-            credit = 0
-            StudentCourseSemestership.where(:student=>self, :semester=>semester).all.each do |scs|
-                course = Course.find(scs.course_id.to_i)
-                credit += course.credit
-            end
-            StudentSpecialCourseSemestership.where(:student=>self, :semester=>semester).all.each do |sscs|
-                credit += sscs.credit
-            end
+            credit = calculate_credit(semester)
             if credit < 9 
                 if sem_no != sem_count
                     msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
