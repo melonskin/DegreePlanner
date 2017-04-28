@@ -149,7 +149,7 @@ Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
         And I select "2018" from "year_12"
         And I press "Save changes"
         Then I should see "Degree Plan Draft"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
+        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
         Then I should see "Seminar hours: 0/1"
         And I select "CSCE681 Seminar" from "course"
         And I select "Fall" from "semestersc"
@@ -162,7 +162,7 @@ Scenario: Successfully Validate F1 Status, Valid ug course, seminar hours
         And I select "2017" from "yearsc"
         And I fill in "credit" with "1"
         And I press "Add special course"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
+        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
         # Then I should see "Your degree plan is valid."  
         
 Scenario: Successfully Validate delete required class
@@ -200,7 +200,7 @@ Scenario: Successfully Validate delete required class
         And I select "2018" from "year_12"
         And I press "Save changes"
         Then I should see "Degree Plan Draft"
-        Then I should see "Remember to file a document for your F1 status at the beginning of Fall 2018"
+        Then I should see "Reduce course load form required by ISS at the start of Fall 2018"
         Then I should see "Seminar hours: 0/1"
         And I select "CSCE681 Seminar" from "course"
         And I select "Fall" from "semestersc"
