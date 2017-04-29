@@ -198,8 +198,6 @@ class StudentsController < ApplicationController
   end
   
   def destroy_sscs_ship
-    department = params[:course][0, 4]
-    number = params[:course][4, 3].to_i
     course = SpecialCourse.find(params[:course])
     semester = params[:semester]
     StudentSpecialCourseSemestership.where(:student => @student, :special_course => course, :semester => semester).destroy_all
@@ -223,7 +221,7 @@ class StudentsController < ApplicationController
   def set_student
     begin
       @student = Student.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       @student = nil
     end
   end

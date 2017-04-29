@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-29T04:16:55+00:00">2017-04-29T04:16:55+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-04-29T04:38:53+00:00">2017-04-29T04:38:53+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">82.69%</span></span>
+    (<span class="covered_percent"><span class="yellow">82.95%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         39.25
+         39.37
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>32</b> files in total.
-    <b>647</b> relevant lines. 
+    <b>645</b> relevant lines. 
     <span class="green"><b>535</b> lines covered</span> and
-    <span class="red"><b>112</b> lines missed </span>
+    <span class="red"><b>110</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#d8fc1769a4e57f2bda4dd6cdbfc372bf131a23e6" class="src_link" title="app/controllers/students_controller.rb">app/controllers/students_controller.rb</a></td>
-        <td class="yellow strong">81.18 %</td>
-        <td>291</td>
-        <td>170</td>
+        <td class="yellow strong">82.14 %</td>
+        <td>289</td>
+        <td>168</td>
         <td>138</td>
-        <td>32</td>
-        <td>17.5</td>
+        <td>30</td>
+        <td>17.7</td>
       </tr>
       
       <tr>
@@ -379,20 +379,20 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">79.57%</span></span>
+    (<span class="covered_percent"><span class="yellow">80.26%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         15.67
+         15.8
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>7</b> files in total.
-    <b>235</b> relevant lines. 
+    <b>233</b> relevant lines. 
     <span class="green"><b>187</b> lines covered</span> and
-    <span class="red"><b>48</b> lines missed </span>
+    <span class="red"><b>46</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -460,12 +460,12 @@
       
       <tr>
         <td class="strong"><a href="#d8fc1769a4e57f2bda4dd6cdbfc372bf131a23e6" class="src_link" title="app/controllers/students_controller.rb">app/controllers/students_controller.rb</a></td>
-        <td class="yellow strong">81.18 %</td>
-        <td>291</td>
-        <td>170</td>
+        <td class="yellow strong">82.14 %</td>
+        <td>289</td>
+        <td>168</td>
         <td>138</td>
-        <td>32</td>
-        <td>17.5</td>
+        <td>30</td>
+        <td>17.7</td>
       </tr>
       
       <tr>
@@ -1622,11 +1622,11 @@
         <div class="source_table" id="d8fc1769a4e57f2bda4dd6cdbfc372bf131a23e6">
   <div class="header">
     <h3>app/controllers/students_controller.rb</h3>
-    <h4><span class="yellow">81.18 %</span> covered</h4>
+    <h4><span class="yellow">82.14 %</span> covered</h4>
     <div>
-      <b>170</b> relevant lines. 
+      <b>168</b> relevant lines. 
       <span class="green"><b>138</b> lines covered</span> and
-      <span class="red"><b>32</b> lines missed.</span>
+      <span class="red"><b>30</b> lines missed.</span>
     </div>
   </div>
   
@@ -2836,49 +2836,49 @@
         <li class="missed" data-hits="0" data-linenumber="201">
           
           
-          <code class="ruby">    department = params[:course][0, 4]</code>
+          <code class="ruby">    course = SpecialCourse.find(params[:course])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="202">
           
           
-          <code class="ruby">    number = params[:course][4, 3].to_i</code>
+          <code class="ruby">    semester = params[:semester]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="203">
           
           
-          <code class="ruby">    course = SpecialCourse.find(params[:course])</code>
+          <code class="ruby">    StudentSpecialCourseSemestership.where(:student =&gt; @student, :special_course =&gt; course, :semester =&gt; semester).destroy_all</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="204">
           
           
-          <code class="ruby">    semester = params[:semester]</code>
+          <code class="ruby">    flash[:info] = &quot;#{course.full_name} was deleted.&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="205">
           
           
-          <code class="ruby">    StudentSpecialCourseSemestership.where(:student =&gt; @student, :special_course =&gt; course, :semester =&gt; semester).destroy_all</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="206">
-          
-          
-          <code class="ruby">    flash[:info] = &quot;#{course.full_name} was deleted.&quot;</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="207">
-          
-          
           <code class="ruby">    redirect_to plan_student_path</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="208">
+        <li class="never" data-hits="" data-linenumber="206">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="207">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="208">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="209">
@@ -2890,211 +2890,211 @@
         <li class="covered" data-hits="1" data-linenumber="210">
           <span class="hits">1</span>
           
-          <code class="ruby">  private</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="211">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="212">
-          <span class="hits">1</span>
-          
           <code class="ruby">  def student_params</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="213">
+        <li class="covered" data-hits="6" data-linenumber="211">
           <span class="hits">6</span>
           
           <code class="ruby">    student_params = params.require(:student).permit(:firstname, :lastname, :is_f1,:has_prior_master, :yearstart, :semstart, :yearend, :semend, :program_id)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="214">
+        <li class="covered" data-hits="6" data-linenumber="212">
           <span class="hits">6</span>
           
           <code class="ruby">    student_params[:program_id] = Program.find_by_name(student_params[:program_id]).id</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="215">
+        <li class="covered" data-hits="6" data-linenumber="213">
           <span class="hits">6</span>
           
           <code class="ruby">    student_params</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="216">
+        <li class="never" data-hits="" data-linenumber="214">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="217">
+        <li class="never" data-hits="" data-linenumber="215">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="218">
+        <li class="covered" data-hits="1" data-linenumber="216">
           <span class="hits">1</span>
           
           <code class="ruby">  def createpackage_params</code>
         </li>
       
-        <li class="covered" data-hits="153" data-linenumber="219">
+        <li class="covered" data-hits="153" data-linenumber="217">
           <span class="hits">153</span>
           
           <code class="ruby">    createpackage_params = params</code>
         </li>
       
-        <li class="covered" data-hits="153" data-linenumber="220">
+        <li class="covered" data-hits="153" data-linenumber="218">
           <span class="hits">153</span>
           
           <code class="ruby">    createpackage_params</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="219">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="222">
+        <li class="never" data-hits="" data-linenumber="220">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="223">
+        <li class="covered" data-hits="1" data-linenumber="221">
           <span class="hits">1</span>
           
           <code class="ruby">  def set_student</code>
         </li>
       
-        <li class="covered" data-hits="98" data-linenumber="224">
+        <li class="covered" data-hits="98" data-linenumber="222">
           <span class="hits">98</span>
           
           <code class="ruby">    begin</code>
         </li>
       
-        <li class="covered" data-hits="98" data-linenumber="225">
+        <li class="covered" data-hits="98" data-linenumber="223">
           <span class="hits">98</span>
           
           <code class="ruby">      @student = Student.find(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="226">
+        <li class="missed" data-hits="0" data-linenumber="224">
           
           
           <code class="ruby">    rescue ActiveRecord::RecordNotFound =&gt; e</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="227">
+        <li class="missed" data-hits="0" data-linenumber="225">
           
           
           <code class="ruby">      @student = nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="228">
+        <li class="never" data-hits="" data-linenumber="226">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="229">
+        <li class="never" data-hits="" data-linenumber="227">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="230">
+        <li class="never" data-hits="" data-linenumber="228">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="231">
+        <li class="never" data-hits="" data-linenumber="229">
           
           
           <code class="ruby"># can use for both require courses and interest courses</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="232">
+        <li class="covered" data-hits="1" data-linenumber="230">
           <span class="hits">1</span>
           
           <code class="ruby">  def selected_hash(packages)</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="233">
+        <li class="covered" data-hits="26" data-linenumber="231">
           <span class="hits">26</span>
           
           <code class="ruby">    @selected_hash = {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="234">
+        <li class="never" data-hits="" data-linenumber="232">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="235">
+        <li class="covered" data-hits="26" data-linenumber="233">
           <span class="hits">26</span>
           
           <code class="ruby">    if params.has_key?(:courses)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="236">
+        <li class="covered" data-hits="2" data-linenumber="234">
           <span class="hits">2</span>
           
           <code class="ruby">      courses_hash = Rack::Utils.parse_nested_query(params[:courses])</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="237">
+        <li class="covered" data-hits="2" data-linenumber="235">
           <span class="hits">2</span>
           
           <code class="ruby">      semester_hash = Rack::Utils.parse_nested_query(params[:semester])</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="238">
+        <li class="covered" data-hits="2" data-linenumber="236">
           <span class="hits">2</span>
           
           <code class="ruby">      year_hash = Rack::Utils.parse_nested_query(params[:year])</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="239">
+        <li class="covered" data-hits="2" data-linenumber="237">
           <span class="hits">2</span>
           
           <code class="ruby">      courses_hash.each do |course_id, package_id|</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="240">
+        <li class="covered" data-hits="6" data-linenumber="238">
           <span class="hits">6</span>
           
           <code class="ruby">        @selected_hash[package_id.to_i]={} if not @selected_hash.has_key?(package_id.to_i)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="241">
+        <li class="covered" data-hits="6" data-linenumber="239">
           <span class="hits">6</span>
           
           <code class="ruby">        @selected_hash[package_id.to_i][course_id.to_i] = {}</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="242">
+        <li class="covered" data-hits="6" data-linenumber="240">
           <span class="hits">6</span>
           
           <code class="ruby">        @selected_hash[package_id.to_i][course_id.to_i][:semester]= semester_hash[course_id.to_s]</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="243">
+        <li class="covered" data-hits="6" data-linenumber="241">
           <span class="hits">6</span>
           
           <code class="ruby">        @selected_hash[package_id.to_i][course_id.to_i][:year]= year_hash[course_id.to_s]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="244">
+        <li class="never" data-hits="" data-linenumber="242">
           
           
           <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="243">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="244">
+          
+          
+          <code class="ruby">    else</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="245">
@@ -3103,277 +3103,265 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="246">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="247">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="248">
+        <li class="covered" data-hits="24" data-linenumber="246">
           <span class="hits">24</span>
           
           <code class="ruby">      packages.all.each do |package|</code>
         </li>
       
-        <li class="covered" data-hits="102" data-linenumber="249">
+        <li class="covered" data-hits="102" data-linenumber="247">
           <span class="hits">102</span>
           
           <code class="ruby">        package.courses.all.each do |course|</code>
         </li>
       
-        <li class="covered" data-hits="165" data-linenumber="250">
+        <li class="covered" data-hits="165" data-linenumber="248">
           <span class="hits">165</span>
           
           <code class="ruby">          if not StudentCourseSemestership.where(:student=&gt;@student, :course=&gt;course).blank?</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="251">
+        <li class="covered" data-hits="32" data-linenumber="249">
           <span class="hits">32</span>
           
           <code class="ruby">            @selected_hash[package.id]={} if not @selected_hash.has_key?(package.id)</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="252">
+        <li class="covered" data-hits="32" data-linenumber="250">
           <span class="hits">32</span>
           
           <code class="ruby">            @selected_hash[package.id][course.id] = {} if not @selected_hash[package.id].has_key?(course.id)</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="253">
+        <li class="covered" data-hits="32" data-linenumber="251">
           <span class="hits">32</span>
           
           <code class="ruby">            selected_semester = Semester.find(StudentCourseSemestership.where(:student=&gt;@student, :course=&gt;course).first.semester_id).term</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="254">
+        <li class="covered" data-hits="32" data-linenumber="252">
           <span class="hits">32</span>
           
           <code class="ruby">            selected_year = Semester.find(StudentCourseSemestership.where(:student=&gt;@student, :course=&gt;course).first.semester_id).year</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="255">
+        <li class="covered" data-hits="32" data-linenumber="253">
           <span class="hits">32</span>
           
           <code class="ruby">            @selected_hash[package.id][course.id][:semester] = selected_semester</code>
         </li>
       
-        <li class="covered" data-hits="32" data-linenumber="256">
+        <li class="covered" data-hits="32" data-linenumber="254">
           <span class="hits">32</span>
           
           <code class="ruby">            @selected_hash[package.id][course.id][:year] = selected_year</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="257">
+        <li class="never" data-hits="" data-linenumber="255">
           
           
           <code class="ruby">          end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="258">
+        <li class="never" data-hits="" data-linenumber="256">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="259">
+        <li class="never" data-hits="" data-linenumber="257">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="260">
+        <li class="never" data-hits="" data-linenumber="258">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="26" data-linenumber="261">
+        <li class="covered" data-hits="26" data-linenumber="259">
           <span class="hits">26</span>
           
           <code class="ruby">    @selected_hash</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="262">
+        <li class="never" data-hits="" data-linenumber="260">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="263">
+        <li class="never" data-hits="" data-linenumber="261">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="264">
+        <li class="covered" data-hits="1" data-linenumber="262">
           <span class="hits">1</span>
           
           <code class="ruby">  def delete_all_package_courses(packages)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="265">
+        <li class="covered" data-hits="18" data-linenumber="263">
           <span class="hits">18</span>
           
           <code class="ruby">    packages.each do |package|</code>
         </li>
       
-        <li class="covered" data-hits="86" data-linenumber="266">
+        <li class="covered" data-hits="86" data-linenumber="264">
           <span class="hits">86</span>
           
           <code class="ruby">      package.courses.each do |course|</code>
         </li>
       
-        <li class="covered" data-hits="136" data-linenumber="267">
+        <li class="covered" data-hits="136" data-linenumber="265">
           <span class="hits">136</span>
           
           <code class="ruby">        StudentCourseSemestership.where(:student=&gt;@student, :course =&gt; course).destroy_all</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="268">
+        <li class="never" data-hits="" data-linenumber="266">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="269">
+        <li class="never" data-hits="" data-linenumber="267">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="270">
+        <li class="never" data-hits="" data-linenumber="268">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="271">
+        <li class="never" data-hits="" data-linenumber="269">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="272">
+        <li class="covered" data-hits="1" data-linenumber="270">
           <span class="hits">1</span>
           
           <code class="ruby">  def select_package_courses(createpackage_params)</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="273">
+        <li class="covered" data-hits="18" data-linenumber="271">
           <span class="hits">18</span>
           
           <code class="ruby">      flag = true</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="274">
+        <li class="covered" data-hits="18" data-linenumber="272">
           <span class="hits">18</span>
           
           <code class="ruby">      createpackage_params[:courses].each do |course_id|</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="275">
+        <li class="covered" data-hits="89" data-linenumber="273">
           <span class="hits">89</span>
           
           <code class="ruby">        term = createpackage_params[:semester][course_id.to_s]</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="276">
+        <li class="covered" data-hits="89" data-linenumber="274">
           <span class="hits">89</span>
           
           <code class="ruby">        year = createpackage_params[:year][course_id.to_s]</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="277">
+        <li class="covered" data-hits="89" data-linenumber="275">
           <span class="hits">89</span>
           
           <code class="ruby">        semester = Semester.find_by_term_and_year(term, year)</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="278">
+        <li class="covered" data-hits="89" data-linenumber="276">
           <span class="hits">89</span>
           
           <code class="ruby">        course = Course.find(course_id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="279">
+        <li class="never" data-hits="" data-linenumber="277">
           
           
           <code class="ruby">        # add relationships</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="280">
+        <li class="covered" data-hits="89" data-linenumber="278">
           <span class="hits">89</span>
           
           <code class="ruby">        if semester.id &gt;= @student.start_id &amp;&amp; semester.id &lt;= @student.end_id</code>
         </li>
       
-        <li class="covered" data-hits="89" data-linenumber="281">
+        <li class="covered" data-hits="89" data-linenumber="279">
           <span class="hits">89</span>
           
           <code class="ruby">          @scs = StudentCourseSemestership.create(:student=&gt;@student, :course=&gt;course, :semester=&gt;semester)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="282">
+        <li class="never" data-hits="" data-linenumber="280">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="283">
+        <li class="missed" data-hits="0" data-linenumber="281">
           
           
           <code class="ruby">          flag = false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="284">
+        <li class="missed" data-hits="0" data-linenumber="282">
           
           
           <code class="ruby">          flash[:danger] = &quot;You have courses out of your semester range.&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="285">
+        <li class="never" data-hits="" data-linenumber="283">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="286">
+        <li class="never" data-hits="" data-linenumber="284">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="287">
+        <li class="covered" data-hits="18" data-linenumber="285">
           <span class="hits">18</span>
           
           <code class="ruby">      return flag</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="288">
+        <li class="never" data-hits="" data-linenumber="286">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="289">
+        <li class="never" data-hits="" data-linenumber="287">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="290">
+        <li class="never" data-hits="" data-linenumber="288">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="291">
+        <li class="never" data-hits="" data-linenumber="289">
           
           
           <code class="ruby">end</code>
