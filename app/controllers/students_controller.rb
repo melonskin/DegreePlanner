@@ -1,9 +1,9 @@
 class StudentsController < ApplicationController
   include StudentsHelper
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
-  before_action :set_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
-  before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
-  before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
+  before_action :set_student, :logged_in_user, :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
+  # before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
+  # before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
 
   @@semesters = nil
   @@student_special_course_semestership = nil

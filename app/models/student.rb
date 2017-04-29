@@ -237,8 +237,6 @@ class Student < ApplicationRecord
         return (flag == 1) ? nil : true
     end
     
-    
-    
     def semester_f1_valid
         if self.is_f1 == "False"
             return true
