@@ -271,7 +271,7 @@ class StudentsController < ApplicationController
   
   def select_package_courses(createpackage_params)
       flag = true
-      createpackage_params[:courses].each do |course_id, package_id|
+      createpackage_params[:courses].each do |course_id|
         term = createpackage_params[:semester][course_id.to_s]
         year = createpackage_params[:year][course_id.to_s]
         semester = Semester.find_by_term_and_year(term, year)
