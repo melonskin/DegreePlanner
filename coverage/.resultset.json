@@ -284,62 +284,34 @@
         null,
         null,
         1,
-        52,
-        52,
-        120,
-        120,
+        127,
+        127,
+        339,
+        339,
         null,
-        52,
-        4,
+        127,
+        16,
         null,
-        52,
+        127,
         null,
         null,
         1,
         26,
-<<<<<<< HEAD
-        0,
-        0,
-        0,
-        null,
-=======
         26,
         26,
         79,
         79,
-        204,
-        204,
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
-        null,
-        79,
-        9,
-        null,
-<<<<<<< HEAD
-        null,
-        null,
-        null,
-=======
-        79,
         1,
         1,
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
         1,
         null,
-<<<<<<< HEAD
-        9,
-        9,
-        9,
-        9,
-        9,
-        26,
-        26,
-=======
         null,
         26,
         null,
         null,
+        null,
+        null,
         1,
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
         26,
         9,
         null,
@@ -350,13 +322,6 @@
         17,
         48,
         48,
-        48,
-        135,
-        135,
-        null,
-        48,
-        7,
-        null,
         48,
         10,
         0,
@@ -1143,29 +1108,8 @@
         0,
         0
       ],
-<<<<<<< HEAD
-      "/home/ubuntu/workspace/DegreePlanner/app/controllers/static_pages_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/home/ubuntu/workspace/DegreePlanner/app/controllers/special_courses_controller.rb": [
         0,
-=======
-      "/home/ubuntu/workspace/DegreePlanner/app/channels/application_cable/connection.rb": [
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
         0,
         0,
         0,
@@ -1190,10 +1134,6 @@
         0
       ]
     },
-<<<<<<< HEAD
-    "timestamp": 1493402374
-=======
-    "timestamp": 1493416193
->>>>>>> 828f4fdb2d891194a60c7e75c7afc4ec0b9f77bd
+    "timestamp": 1493418923
   }
 }

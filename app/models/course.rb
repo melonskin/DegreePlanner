@@ -44,50 +44,75 @@ class Course < ApplicationRecord
     "#{self.department}"+"#{self.number}"+" "+"#{self.name}"
   end
   
-  def no_student
-    no_stu = 0
-    self.coursesections.each do |section|
-      no_stu += section.student 
-    end
-    no_stu
-  end
+  # def no_student
+  #   no_stu = 0
+  #   self.coursesections.each do |section|
+  #     no_stu += section.student 
+  #   end
+  #   no_stu
+  # end
   
-  def average_gpa
+  # def average_gpa
+  #   no_stu = 0
+  #   gpa_total = 0
+  #   self.coursesections.each do |section|
+  #     no_stu += section.student 
+  #     gpa_total += section.gpa*section.student
+  #   end
+  #   gpa = gpa_total/no_stu
+  #   gpa.round(2)
+  # end
+  
+  # def average_a
+  #   no_stu = 0
+  #   a_total = 0
+  #   self.coursesections.each do |section|
+  #     no_stu += section.student 
+  #     a_total += section.a.to_f*section.student
+  #   end
+  #   a = a_total/no_stu
+  #   a.round(2).to_s + "%"
+  # end
+  
+  # def average_b
+  #   no_stu = 0
+  #   b_total = 0
+  #   self.coursesections.each do |section|
+  #     no_stu += section.student 
+  #     b_total += section.b.to_f*section.student
+  #   end
+  #   b = b_total/no_stu
+  #   b.round(2).to_s + "%"
+  # end
+  
+  def average_grades
     no_stu = 0
     gpa_total = 0
-    self.coursesections.each do |section|
-      no_stu += section.student 
-      gpa_total += section.gpa*section.student
-    end
-    gpa = gpa_total/no_stu
-    gpa.round(2)
-  end
-  
-  def average_a
-    no_stu = 0
     a_total = 0
-    self.coursesections.each do |section|
-      no_stu += section.student 
-      a_total += section.a.to_f*section.student
-    end
-    a = a_total/no_stu
-    a.round(2).to_s + "%"
-  end
-  
-  def average_b
-    no_stu = 0
     b_total = 0
     self.coursesections.each do |section|
-      no_stu += section.student 
+      no_stu += section.student
+      gpa_total += section.gpa*section.student
+      a_total += section.a.to_f*section.student
       b_total += section.b.to_f*section.student
     end
-    b = b_total/no_stu
-    b.round(2).to_s + "%"
+    if no_stu == 0
+      return no_stu, nil, nil, nil
+    else
+      g = gpa_total/no_stu
+      gpa = g.round(2).to_s
+      a = a_total/no_stu
+      a_ave = a.round(2).to_s + "%"
+      b = b_total/no_stu
+      b_ave = b.round(2).to_s + "%"
+      return no_stu, gpa, a_ave, b_ave
+    end
   end
   
   def popup_display
-    if self.no_student != 0
-      popup = "GPA: " + self.average_gpa.to_s + "\n" +"A: " + self.average_a + "\n" + "B: " + self.average_b + "\n" + self.offered_semester
+    no_stu, gpa, a_ave, b_ave = self.average_grades()
+    if no_stu != 0
+      popup = "GPA: " + gpa + "\n" +"A: " + a_ave + "\n" + "B: " + b_ave + "\n" + self.offered_semester
     else
       popup = "NULL"
     end
