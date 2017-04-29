@@ -1,5 +1,6 @@
 = content_for(:title, "Log in")
 %h1 Log in
+
 .row
   .col-md-6.col-md-offset-3
     = form_tag login_path do 
@@ -10,9 +11,9 @@
       = label :session, :password
       = password_field :session, :password, class: 'form-control'
       
-      = check_box :session, :remember_me
-      %Remember Remember me on this computer
-      %end
+      = label :session, :remember_me, class: "checkbox inline" do 
+        = check_box :session, :remember_me
+        %span Remember me on this computer:
       
       = submit_tag "Log in", class: "btn btn-primary" 
 
