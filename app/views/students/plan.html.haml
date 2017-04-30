@@ -50,9 +50,7 @@
             = link_to "Back to Package", required_courses_student_path(:no_create => 1)
         %li
           = link_to "Back to Interest", interest_courses_student_path
-  // .Fixed
-  //   %a#menu-toggle.glyphicon.glyphicon-align-justify.btn-menu.toggle{:href => "#", :style => "font-size: 30px"}
-  //     %i.fa.fa-bars.fa-6
+
   #page-content-wrapper
    
     .page-content.inset{"data-spy" => "scroll", "data-target" => "#spy"}
@@ -105,7 +103,7 @@
             = hidden_field_tag :course_id, '', :id => "my_course_id"
             = text_field_tag :search, params[:search], class: "search-query", placeholder: "Type course ID or name", type: "search", data: {autocomplete: autocomplete_course_name_students_path,:id_element => '#my_course_id'}
             = select_tag "semester", options_for_select(['Fall','Spring','Summer'])
-            = select_tag "year",options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+            = select_tag "year",options_for_select(((@student.yearstart..@student.yearend).step(1)))
             = submit_tag "Add other elective course", class: "btn btn-lg btn-primary"
       
           %script{:charset => "utf-8", :type => "text/javascript"}
@@ -123,7 +121,7 @@
           = form_tag(add_special_courses_student_path(@student), :method => "post", id: "search-form") do
             = select_tag "course", options_for_select(SpecialCourse.all.map {|c| c.department + c.number.to_s + " " + c.name})
             = select_tag "semestersc", options_for_select(['Fall','Spring','Summer'])
-            = select_tag "yearsc", options_for_select(Semester.all.map {|p| p.year.to_s}.uniq)
+            = select_tag "yearsc", options_for_select(((@student.yearstart..@student.yearend).step(1)))
             = text_field_tag :credit, params[:credit], placeholder: "Type the credit(s) you want to take for this semester"
             = submit_tag "Add special course", class: "btn btn-lg btn-primary"
           %br

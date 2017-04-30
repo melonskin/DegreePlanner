@@ -2,7 +2,7 @@
 %h1 Log in
 
 .row
-  .col-md-6.col-md-offset-3
+  .col-md-4.col-md-offset-4
     = form_tag login_path do 
 
       = label :session, :email
@@ -13,8 +13,7 @@
       
       = label :session, :remember_me, class: "checkbox inline" do 
         = check_box :session, :remember_me
-        %span Remember me on this computer:
-      
+        %span Remember me:
       = submit_tag "Log in", class: "btn btn-primary" 
 
     %p New user? #{link_to "Sign up now!", signup_path}

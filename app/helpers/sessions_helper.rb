@@ -26,10 +26,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  def log_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
+  # def log_out
+  #   session.delete(:user_id)
+  #   @current_user = nil
+  # end
   
   def current_student
     @current_student ||= Student.find_by(user_id: session[:user_id])
