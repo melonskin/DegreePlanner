@@ -172,7 +172,7 @@ class Student < ApplicationRecord
             total_hour = self.program.total_hour
         end
         if hour < total_hour
-            msg = "Total course hours: #{hour}/#{self.program.total_hour}"
+            msg = "Total course hours: #{hour}/#{total_hour}"
             self.errors.add(:base,msg)
             return nil
         end
