@@ -22,7 +22,7 @@
     /         %li= link_to "Log in", signup_path
     = render 'layouts/header'
     .container
-      - if logged_in? and (not current_student.nil?) and current_page?(plan_student_path)
+      - if logged_in? and (not current_student.nil?) and not (current_page?(controller: 'static_pages', action: 'about') or current_page?(controller: 'static_pages',action: 'help') or current_page?(controller: 'static_pages',action: 'contact')) and current_page?(plan_student_path)
         .col-md-7.col-md-offset-4
           - flash.each do |message_type, message|
             %div{:class => "alert alert-#{message_type}"}= message

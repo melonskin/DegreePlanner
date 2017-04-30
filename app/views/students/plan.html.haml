@@ -38,13 +38,10 @@
             %span.fa.fa-home.solo Home
         %li
           %a{"data-scroll" => "", :href => "#error"}
-            %span.fa.fa-anchor.solo Errors
+            %span.fa.fa-anchor.solo Error Messages
         %li
           %a{"data-scroll" => "", :href => "#course"}
-            %span.fa.fa-anchor.solo Pick Electives
-        %li
-          %a{"data-scroll" => "", :href => "#specialcourse"}
-            %span.fa.fa-anchor.solo Pick Special Courses
+            %span.fa.fa-anchor.solo Pick Courses
         - if not @student.program.packages.first.nil?
           %li
             = link_to "Back to Package", required_courses_student_path(:no_create => 1)
@@ -113,8 +110,6 @@
             });
       %br 
       .row
-        %legend#specialcourse
-        %br
         .col-md-4.col-md-offset-4
           %h2 Pick Special Courses
           %table.table
