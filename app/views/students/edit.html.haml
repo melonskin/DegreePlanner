@@ -21,13 +21,13 @@
       = select :student, :has_prior_master, ['True','False'], :selected => @student.has_prior_master
       
       = label :student, :yearstart, 'Year of your first semester'
-      = select :student, :yearstart, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}, :selected => @student.yearstart
+      = select :student, :yearstart, (Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}).sort(), :selected => @student.yearstart
       
       = label :student, :semstart, 'First semester'
       = select :student, :semstart, ['Spring','Summer','Fall'], :selected => @student.semstart
 
       = label :student, :yearend, 'Expected Graduation year'
-      = select :student, :yearend, Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}, :selected => @student.yearend
+      = select :student, :yearend, (Semester.all.distinct(:year).pluck(:year) {|s| s.year.to_s}).sort(), :selected => @student.yearend
       
       = label :student, :semend, 'Expected Graduation Semester'
       = select :student, :semend, ['Spring','Summer','Fall'], :selected => @student.semend     
