@@ -118,7 +118,7 @@ Background: users in database
         And I press "Log in"
         Then I should be on the user page for "TestUserOne"
     
-Scenario: Valid Semester, chnage profile, classes out of range
+Scenario: Valid Semester, change profile, classes out of range
         And I follow "View your information"
         Then I should see "Profile information"
         And I follow "Edit Profile"

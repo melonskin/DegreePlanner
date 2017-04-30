@@ -22,7 +22,7 @@ Background: users in database
       |Fall |2019 |
     Given the following Student exist:
       |firstname |lastname | program_id | is_f1 | user_id |yearstart |semstart |yearend |semend | has_prior_master |
-      | TestUserOne |LastNameOne | 1 | True |1 |2017 |Spring |2018 | Fall | FALSE |
+      | TestUserOne |LastNameOne | 1 | True |1 |2017 |Spring |2019 | Spring | FALSE |
       | TestUserTwo |LastNameTwo | 1 | False |2 | 2017 | Spring | 2018 | Fall | FALSE |
     Given the following Course exist:
       |department |number |name |credit |description |is_fall |is_spring |is_summer |
@@ -125,13 +125,6 @@ Scenario: Not Valid Required Classes
         Then I should see "Package courses: invalid; go back to edit."
         And I select "CSCE681 Seminar" from "course"
         And I select "Spring" from "semestersc"
-        And I select "2019" from "yearsc"
-        And I fill in "credit" with "1"
-        And I press "Add special course"
-        Then I should see "Semester should be within"
-        And I select "CSCE681 Seminar" from "course"
-        And I select "Spring" from "semestersc"
-        And I select "2017" from "yearsc"
         And I fill in "credit" with "1"
         And I press "Add special course"
         Then I should not see "Seminar hours: 0/1"
