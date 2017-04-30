@@ -17,6 +17,7 @@
               %b.caret
             %ul.dropdown-menu
               %li= link_to "Profile", current_user
+              %li= link_to "Edit User Profile", edit_user_path(current_user)
               - if current_student
                 %li= link_to "Student info", student_path(current_student)
               %li.divider

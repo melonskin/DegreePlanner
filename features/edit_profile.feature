@@ -60,7 +60,7 @@ Scenario: able to see personal profile as a comeback user
     
 Scenario: able to edit the personal profile
     Given I am on the student_profile page for "Lilei"
-    And I follow "Edit"
+    And I follow "Edit Profile"
     Then I should be on the edit_profile page for "Lilei"
     And  I fill in "First name" with "Le"
     And I press "Update student info"
@@ -69,7 +69,7 @@ Scenario: able to edit the personal profile
     
 Scenario: able to edit the personal profile Semester
     Given I am on the student_profile page for "Lilei"
-    And I follow "Edit"
+    And I follow "Edit Profile"
     Then I should be on the edit_profile page for "Lilei"
     Then I select "Fall" from "First semester"
     And I press "Update student info"
