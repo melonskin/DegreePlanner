@@ -253,7 +253,7 @@ class Student < ApplicationRecord
                     msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
                     self.errors.add(:base,msg)
                     flag = 1
-                else 
+                elsif semester.term.downcase != 'summer'
                     msg = "Reduce course load form required by ISS at the start of #{semester.term} #{semester.year}"
                     self.errors.add(:base,msg)
                 end
