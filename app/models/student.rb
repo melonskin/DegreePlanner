@@ -249,7 +249,7 @@ class Student < ApplicationRecord
             sem_no += 1
             credit = calculate_credit(semester)
             if credit < 9 
-                if sem_no != sem_count
+                if sem_no != sem_count and semester.term.downcase != 'summer'
                     msg = "#{semester.term} #{semester.year} course hours: #{credit}/(9-15) (F1 requirement)"
                     self.errors.add(:base,msg)
                     flag = 1
