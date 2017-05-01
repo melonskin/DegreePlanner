@@ -284,8 +284,6 @@ class Student < ApplicationRecord
     
     def all_valid?
         sem_range_ok = self.sem_range_valid()
-        semester_f1_ok = self.semester_f1_valid()
-
         
         dep_hour,dep_hour_v = self.dep_valid()
         joint_hour,joint_hour_v = self.joint_dep_valid()        
@@ -302,6 +300,8 @@ class Student < ApplicationRecord
         graded_ok = self.graded_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)
         total_ok = self.total_valid(special_hour_v,ug_hour,dep_hour_v,joint_hour_v,non_dep_hour_v)
 
+        semester_f1_ok = self.semester_f1_valid()
+        
         if not (package_ok.nil? or special_hour.nil? or ug_hour.nil? or 
             non_dep_hour.nil? or joint_hour.nil? or dep_hour.nil? or 
             elective_ok.nil? or graded_ok.nil? or total_ok.nil? or 
