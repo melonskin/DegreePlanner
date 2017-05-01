@@ -4,7 +4,7 @@ class StudentSpecialCourseSemestership < ApplicationRecord
     belongs_to :semester
 
     before_save
-    validates :special_course, uniqueness: { scope: :semester, message: "can be only taken once per semester" }
+    validates :special_course, uniqueness: { scope: [:semester,:student], message: "can be only taken once per semester" }
     validates :semester_id, :numericality => {:greater_than_or_equal_to => :start_id, :less_than_or_equal_to => :end_id, message: Proc.new { |c| "should be within the range (#{c.start_name} - #{c.end_name})."}}
     validates :credit, presence: true, 
         :numericality => {only_integer: true, greater_than_or_equal_to: 1,
