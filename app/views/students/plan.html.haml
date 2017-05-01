@@ -71,7 +71,7 @@
                 %tr
                   %th Course
                   %th Credit
-                  %th Additional Information
+                  %th Additional Info
                   %th Delete?
               %tbody
                 - StudentCourseSemestership.where(:student=>@student, :semester=>semester).all.each do |scs|

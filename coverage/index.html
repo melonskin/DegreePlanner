@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-01T21:47:11+00:00">2017-05-01T21:47:11+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-05-01T22:50:14+00:00">2017-05-01T22:50:14+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -7255,106 +7255,106 @@
           <code class="ruby">    def all_valid?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="286">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="287">
+        <li class="covered" data-hits="24" data-linenumber="286">
           <span class="hits">24</span>
           
-          <code class="ruby">        dep_hour,dep_hour_v = self.dep_valid()</code>
+          <code class="ruby">        sem_range_ok = self.sem_range_valid()</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="287">
+          
+          
+          <code class="ruby">        </code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="288">
           <span class="hits">24</span>
           
-          <code class="ruby">        joint_hour,joint_hour_v = self.joint_dep_valid()        </code>
+          <code class="ruby">        dep_hour,dep_hour_v = self.dep_valid()</code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="289">
           <span class="hits">24</span>
           
-          <code class="ruby">        non_dep_hour,non_dep_hour_v = self.non_dep_valid()</code>
+          <code class="ruby">        joint_hour,joint_hour_v = self.joint_dep_valid()        </code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="290">
           <span class="hits">24</span>
           
+          <code class="ruby">        non_dep_hour,non_dep_hour_v = self.non_dep_valid()</code>
+        </li>
+      
+        <li class="covered" data-hits="24" data-linenumber="291">
+          <span class="hits">24</span>
+          
           <code class="ruby">        package_ok = self.package_valid()</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="291">
+        <li class="never" data-hits="" data-linenumber="292">
           
           
           <code class="ruby">        </code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="292">
+        <li class="covered" data-hits="24" data-linenumber="293">
           <span class="hits">24</span>
           
           <code class="ruby">        special_hour,special_hour_v = self.special_all_valid()</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="293">
+        <li class="never" data-hits="" data-linenumber="294">
           
           
           <code class="ruby">        </code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="294">
+        <li class="covered" data-hits="24" data-linenumber="295">
           <span class="hits">24</span>
           
           <code class="ruby">        ug_hour = self.ug_course_valid()</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="295">
+        <li class="never" data-hits="" data-linenumber="296">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="296">
+        <li class="covered" data-hits="24" data-linenumber="297">
           <span class="hits">24</span>
           
           <code class="ruby">        semester_max_ok = self.semester_max_valid()</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="297">
+        <li class="never" data-hits="" data-linenumber="298">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="298">
-          <span class="hits">24</span>
-          
-          <code class="ruby">        elective_ok = self.elective_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)</code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="299">
           <span class="hits">24</span>
           
-          <code class="ruby">        graded_ok = self.graded_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)</code>
+          <code class="ruby">        elective_ok = self.elective_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)</code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="300">
           <span class="hits">24</span>
           
+          <code class="ruby">        graded_ok = self.graded_valid(dep_hour_v,joint_hour_v,non_dep_hour_v)</code>
+        </li>
+      
+        <li class="covered" data-hits="24" data-linenumber="301">
+          <span class="hits">24</span>
+          
           <code class="ruby">        total_ok = self.total_valid(special_hour_v,ug_hour,dep_hour_v,joint_hour_v,non_dep_hour_v)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="301">
+        <li class="never" data-hits="" data-linenumber="302">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="24" data-linenumber="302">
-          <span class="hits">24</span>
-          
-          <code class="ruby">        sem_range_ok = self.sem_range_valid()</code>
         </li>
       
         <li class="covered" data-hits="24" data-linenumber="303">
