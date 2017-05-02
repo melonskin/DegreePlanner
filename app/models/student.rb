@@ -141,9 +141,8 @@ class Student < ApplicationRecord
 
     def elective_valid(dep_hour,joint_hour,non_dep_hour)
         if self.program.elective_hour_min > 0
-            hour = dep_hour.to_i - self.program.dep_hour + joint_hour.to_i - self.program.joint_hour_min + non_dep_hour.to_i - self.program.non_dep_hour_min
+            hour = [dep_hour.to_i - self.program.dep_hour,0].max + [joint_hour.to_i - self.program.joint_hour_min,0].max + [non_dep_hour.to_i - self.program.non_dep_hour_min,0].max
             if hour < self.program.elective_hour_min
-                hour = [hour,0].max
                 msg = "Elective course hours: #{hour}/#{self.program.elective_hour_min}"
                 self.errors.add(:base,msg)
                 return nil
