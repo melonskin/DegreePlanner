@@ -2,9 +2,7 @@ class StudentsController < ApplicationController
   include StudentsHelper
   autocomplete :course, :name, :display_value => :display_autocomplete, :extra_data => [:department,:number,:name, :is_spring, :is_fall, :is_summer], :full => true
   before_action :set_student, :logged_in_user, :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
-  # before_action :logged_in_user, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
-  # before_action :correct_student, :only => [:show,:edit,:update,:destroy,:required_courses, :create_required_courses,:interest_courses, :create_interest_courses, :plan, :destroy_scs_ship, :add_plan_courses, :add_special_courses, :destroy_sscs_ship, :validation, :f1_valid?]
-
+  
   @@semesters = nil
   @@student_special_course_semestership = nil
   @@student_course_semestership = nil
@@ -75,7 +73,6 @@ class StudentsController < ApplicationController
     @student.program.packages.all.each do |package|
       if createpackage_params[:courses].nil? or (not createpackage_params[:courses].has_value?(package.id.to_s))
         flash[:danger] = "Pick required courses from each package"
-        # render "required_courses"
         redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
       end
@@ -84,11 +81,9 @@ class StudentsController < ApplicationController
     createpackage_params[:courses].each do |course_id, package_id|
       package_dict[package_id] = (not package_dict.has_key?(package_id)) ? 1 : package_dict[package_id]+1
     end
-    # debugger
     package_dict.each do |package_id,no_picked|
       if Package.find(package_id).no_required > no_picked
         flash[:danger] = "Pick required number of courses from each package"
-        # render "required_courses"
         redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
         return
       end
@@ -100,9 +95,6 @@ class StudentsController < ApplicationController
 
     # create relationship
     flag = select_package_courses(createpackage_params)
-    # redirect_to plan_student_path
-    # TO DO, modifing package course will be directed to plan path
-    # debugger
     if !flag
       redirect_to required_courses_student_path(:courses => createpackage_params[:courses], :semester => createpackage_params[:semester], :year =>createpackage_params[:year])
       return
@@ -149,7 +141,6 @@ class StudentsController < ApplicationController
     end
     s_id = []
     @student.semesters.each do |s| s_id.push(s.id) end
-    # semesters_id = special_semesters + semesters_id
     list = ss_id | s_id
     @semesters = Semester.where(:id => list).order('id').distinct
     if @student.all_valid?

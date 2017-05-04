@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # .authenticate(params[:id][:email])
-    # debugger
   end
 
   def create

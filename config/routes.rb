@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  # get 'static_pages/home'
   root 'static_pages#home'
   get 'about'   => 'static_pages#about'
   get 'help'   => 'static_pages#help'
@@ -32,7 +31,6 @@ Rails.application.routes.draw do
       delete :destroy_scs_ship
       delete :destroy_sscs_ship
       
- #     get :addplancourse
       post :add_plan_courses
       post :add_special_courses
       

@@ -7,19 +7,6 @@
     = csrf_meta_tags
     = render 'layouts/shim'
   %body
-    / %h1.title Degree Planner
-    / - if flash[:success]
-    /   #notice.message= flash[:success]
-    / - elsif flash[:warning]
-    /   #warning.message= flash[:warning]
-    / %header.navbar.navbar-fixed-top.navbar-inverse
-    /   .container
-    /     = link_to "Degree Planner", signup_path, id: "logo"
-    /     %nav
-    /       %ul.nav.navbar-nav.navbar-right
-    /         %li= link_to "Home",   static_pages_home_path
-    /         %li= link_to "About",   static_pages_about_path
-    /         %li= link_to "Log in", signup_path
     = render 'layouts/header'
     .container
       - if logged_in? and (not current_student.nil?) and not (current_page?(controller: 'static_pages', action: 'about') or current_page?(controller: 'static_pages',action: 'help') or current_page?(controller: 'static_pages',action: 'contact')) and current_page?(plan_student_path)

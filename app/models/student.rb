@@ -6,7 +6,6 @@ class Student < ApplicationRecord
 
     has_many :semesters, :through => :student_course_semesterships
 
-    # has_many :semesters, :through => :student_special_course_semesterships
 
     belongs_to :program
     validates_presence_of :firstname, :lastname, :is_f1, :has_prior_master, :program_id, :yearstart, :semstart, :yearend, :semend, :user_id
