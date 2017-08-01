@@ -1,4 +1,4 @@
-db/seeds.rb
-coverage/*
-tmp/*
+/db/seeds.rb
+/coverage/*
+/tmp/*
 .DS_Store

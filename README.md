@@ -34,7 +34,7 @@
 |name |acronym |is_thesis |dep_hour |graded_grad_hour |ug_hour_min |ug_hour_max |non_dep_hour_min |non_dep_hour_max |seminar_hour_min |seminar_hour_max |direct_study_hour_min |direct_study_hour_max |total_hour |total_hour_prior |research_hour_min |research_hour_max |joint_dep |joint_hour_min |joint_hour_max |elective_hour_min |elective_hour_max |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 |Master of Computer Science |MCS |FALSE |18 |0 |0 |3 |0 |6 |1 |1 |0 |3 |30 |0 |0 |0 |NA |0 |0 |0 |0 |
-|Master of Engineering in Computer Science |MEN |FALSE |12 |0 |0 |3 |0 |999 |1 |1 |0 |3 |30 |0 |4 |7 |ECEN |6 |999 |6 |999 |
+|Master of Engineering in Computer Engineering |MEN |FALSE |12 |0 |0 |3 |0 |999 |1 |1 |0 |3 |30 |0 |4 |7 |ECEN |6 |999 |6 |999 |
 |Master of Science in Computer Science |MSCS |TRUE |18 |0 |0 |3 |0 |6 |1 |1 |0 |3 |32 |0 |4 |7 |NA |0 |0 |0 |0 |
 |Master of Science in Computer Engineering |MSCE |TRUE |10 |0 |0 |3 |0 |999 |1 |1 |0 |3 |32 |0 |4 |7 |ECEN |6 |999 |6 |999 |
 |PhD in Computer Science |PhDCS |TRUE |30 |0 |0 |0 |0 |6 |1 |2 |0 |0 |96 |64 |18 |999 |NA |0 |0 |0 |0 |
